@@ -1,0 +1,2702 @@
+##############################################################################
+#                                                                            #
+#           CIF RESTRAINTS AND CONSTRAINTS DICTIONARY VERSION 1.0            #
+#           -----------------------------------------------------            #
+#                                                                            #
+# This dictionary contains the names and definitions proposed for reporting  #
+# restraints and constraints in the Core CIF dictionary                      #
+#                                                                            #
+# Copyright 2011 International Union of Crystallography                      #
+##############################################################################
+
+##############################################################################
+#                                                                            #
+# Some notes on the philosophy followed in this dictionary                   #
+# --------------------------------------------------------                   #
+# The items in this dictionary are designed for reporting the restraints     #
+# and constraints applied during the final refinement of a structure.        #
+# They are not intended, nor are they suitable, for use as instructions      #
+# to a refinement program.                                                   #
+#                                                                            #
+# A RESTRAINT is a condition used in the refinement of a crystal structure   #
+# that requires one or more of the parameters of the refinement to lie       #
+# within a certain range.                                                    #
+#                                                                            #
+# A CONSTRAINT is a condition used in the refinement of a crystal structure  #
+# that requires one or more parameters of the refinement to have a           #
+# specific value or be exactly equal to another refined parameter.           #
+#                                                                            #
+# The range of values allowed in a restraint is given in this dictionary     #
+# by a target value and a weighting parameter, the latter being the          #
+# expectation value of the difference between the refined value and          #
+# the target. Constraints are indicated by setting the weighting             #
+# parameter to zero.                                                         #
+#                                                                            #
+# Restraints and constraints are handled in many different ways in different #
+# programs.  The actual parameters restrained are determined by the way the  #
+# restraint is expressed within the program, and different programs          #
+# express the same restraint in different ways.  In this dictionary the      #
+# restraints are expressed in a way that is most natural to the description  #
+# of the crystal structure, which means that the parameters given here       #
+# may not correspond to the parameters that were actually restrained.        #
+# For example, the rigid-body constraint is expressed here by listing the    #
+# atoms in the rigid body. Distances and angles between them are constant.   #
+# For a rigid body the target parameters are the same as the refined         #
+# parameters, allowing the target geometry of the rigid body to be found     #
+# from the reported atomic coordinates.  However, in order to apply          #
+# this constraint in a refinement, either the coordinates of the atoms       #
+# in some arbitrary coordinate system or a sufficient number of geometric    #
+# parameters of the body must be specified. Since all these methods          #
+# preserve the rigid body intact, it is only the result that needs to be     #
+# reported, not the details of the method used. In this way the description  #
+# of restraints and constraints has been kept as simple as possible.         #
+#                                                                            #
+# The restraints and constraints used are many and varied, and not all       #
+# can be given in the forms listed in this dictionary.                       #
+# For this reason a general item _restr_special_details has been             #
+# provided so that a text description can be given for                       #
+# a restraint or constraint that cannot be reported in any other way.        #
+#                                                                            #
+# Attention is drawn to existing items in the core dictionary that flag      #
+# whether items have been restrained or constrained:                         #
+#   _atom_site_refinement_flags_adp                                          #
+#   _atom_site_refinement_flags_occupation                                   #
+#   _atom_site_refinement_flags_posn                                         #
+#   _atom_site_restraints                                                    #
+#                                                                            #
+##############################################################################
+
+data_on_this_dictionary
+    _dictionary_name            cif_core_restraints.dic
+    _dictionary_version         1.0
+    _dictionary_update          2011-03-09
+    _dictionary_history
+;
+   2009-18-10  Following consultations between the user community and
+               I. David Brown and Ilia Guzei, IDB started preparing this
+               dictionary using DDL1 by creating items
+               required by distance and angle restraints.
+
+   2009-12-09  IDB Completed first draft.
+
+   2010-01-13  IDB Corrected minor errors detected by IG prior to DMG review.
+
+   2010-01-14  IDB: Run through vcif by Brian McMahon and corrections made.
+               esd replaced by su in _type_conditions.
+
+   2010-06-03  IDB: U_ISO, U_SIMIILAR.
+
+   2010-09-15  IDB: The revised rigid body description is added.
+
+   2010-10-15  IDB: Corrections from H. Bernstein made.
+   
+   2010-12-09  NJA: minor editing.
+   
+   2011-01-24  BMcM: minor editing incorporating authors' final revisions.
+   
+   2011-03-09  BMcM: released
+;
+
+# This dictionary describes 14 restraints some of which are also constraints.
+#
+# 1.  Other restraint or constraint
+# 2.  Angle
+# 3.  Distance
+# 4.  Minimum approach of two atoms
+# 5.  Angles restrained to be equal
+# 6.  Distances restrained to be equal
+# 7.  Torsion angles restrained to be equal
+# 8.  Restrained parameter
+# 9.  Rigid body
+# 10. Atoms lie on a plane
+# 11. Torsion angle
+# 12. Isotropic atom
+# 13. Rigid bond
+# 14. Similar atomic displacement parameters
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 1. GENERAL RESTRAINT
+# ----------------------------------------------------------------------------
+#  A general description of constraints and restraints not covered
+#  by other CIF items.
+#
+######################
+#                    #
+#  RESTR             #
+#                    #
+######################
+
+data_restr_[]
+    _name                      '_restr_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              This category is for describing restraints that cannot be
+               described elsewhere.
+;
+
+data_restr_special_details
+    _name                      '_restr_special_details'
+    _category                    restr
+    _type                        char
+    _definition
+;              Text describing any restraint or constraint that cannot be
+               described using any of the the other restraint items.
+               See also _atom_site_restraints.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 2. AN ANGLE IS RESTRAINED TO A PREDETERMINED VALUE.
+# ----------------------------------------------------------------------------
+#
+####################
+#                  #
+#  RESTR_ANGLE     #
+#                  #
+####################
+
+data_restr_angle_[]
+    _name                      '_restr_angle_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_angle_atom_site_label_1
+    _restr_angle_site_symmetry_1
+    _restr_angle_atom_site_label_2
+    _restr_angle_atom_site_label_3
+    _restr_angle_site_symmetry_3
+    _restr_angle_target
+    _restr_angle_target_weight_param
+    _restr_angle_diff
+    _restr_angle_details
+       C1 1_555  C2  C3 1_555 120  1   -0.3 'generated by JANA'
+       C2 1_555  C3  C4 3_455 120  1.5  0.5 ?
+;
+
+;
+Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              Items in this category define angles that were restrained
+               in the final refinement.
+;
+
+data_restr_angle_atom_site_label_
+    loop_ _name                '_restr_angle_atom_site_label_1'
+                               '_restr_angle_atom_site_label_2'
+                               '_restr_angle_atom_site_label_3'
+    _category                    restr_angle
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels used to define the angle. Atom 2
+               is at the apex of the angle.
+;
+
+data_restr_angle_details
+    _name                      '_restr_angle_details'
+    _category                    restr_angle
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_angle_atom_site_label_'
+    _definition
+;              A free-text description of the restraint.
+;
+
+data_restr_angle_diff
+    _name                      '_restr_angle_diff'
+    _category                    restr_angle
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_angle_atom_site_label_'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The difference between the target and the refined angle.
+;
+
+data_restr_angle_site_symmetry_
+    loop_ _name                '_restr_angle_site_symmetry_1'
+                               '_restr_angle_site_symmetry_2'
+                               '_restr_angle_site_symmetry_3'
+    _category                    restr_angle
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_angle_atom_site_label_'
+    _enumeration_default         1_555
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _definition
+;              The symmetry transformation needed to generate the coordinates
+               of the three atoms that define the angle.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the angle. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+data_restr_angle_target
+    _name                      '_restr_angle_target'
+    _category                    restr_angle
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_angle_atom_site_label_'
+    _enumeration_range           0:180
+    _units                       degrees
+    _definition
+;              The expectation angle defined by the three atoms.
+               This is the target angle for the restrained refinement.
+;
+
+data_restr_angle_target_weight_param
+    _name                      '_restr_angle_target_weight_param'
+    _category                    restr_angle
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_angle_atom_site_label_'
+    _enumeration_range           0:180
+    _enumeration_default         0
+    _units                       degrees
+    _definition
+;              Weighting parameter = sqrt(1/weight).
+               It is the expectation value of the difference between
+               the refined value and the target.
+               If this parameter is set to zero, the angle will be constrained
+               to refine to the target value.
+               If this item is absent, its value will be taken as zero
+               and the distance will be constrained.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 3. A DISTANCE IS RESTRAINED TO A PREDETERMINED VALUE.
+# ----------------------------------------------------------------------------
+#
+#####################
+#                   #
+#  RESTR_DISTANCE   #
+#                   #
+#####################
+
+data_restr_distance_[]
+    _name                      '_restr_distance_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              This category describes restraints applied to
+               distances during the final refinement.
+;
+   
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_distance_atom_site_label_1
+    _restr_distance_atom_site_label_2
+    _restr_distance_site_symmetry_2
+    _restr_distance_target
+    _restr_distance_target_weight_param
+    _restr_distance_diff
+    _restr_distance_details
+      C1   C2  1_555  1.524  0.04 -0.032 'generated by SHELX DFIX'
+      C2   C3  1_555  1.340  0.04  0.051 'generated by SHELX DFIX'
+      Na1  Ca1 1_555  0.0    0.0   0.0   'Na1 is constrained to occupy Ca site'
+      Fe1  Ca1 1_555  0.0    0.0   0.0   ?
+      Al1  Ca1 1_555  0.0    0.0   0.0   ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_distance_atom_site_label_
+    loop_ _name                '_restr_distance_atom_site_label_1'
+                               '_restr_distance_atom_site_label_2'
+    _category                    restr_distance
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the two atoms defining
+               the distance restrained.
+;
+
+data_restr_distance_details
+    _name                      '_restr_distance_details'
+    _category                    restr_distance
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_distance_atom_site_label_'
+    _definition
+;              A free-text description of the restraint.
+;
+
+data_restr_distance_diff
+    _name                      '_restr_distance_diff'
+    _category                    restr_distance
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_distance_atom_site_label_'
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The difference between the target and the refined distance.
+;
+
+data_restr_distance_site_symmetry_
+    loop_ _name                '_restr_distance_site_symmetry_1'
+                               '_restr_distance_site_symmetry_2'
+    _category                    restr_distance
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_distance_atom_site_label_'
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _enumeration_default         1_555
+    _definition
+;              The symmetry transformation needed to generate the coordinates
+               of the two atoms that define the distance.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the distance. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+data_restr_distance_target
+    _name                      '_restr_distance_target'
+    _category                    restr_distance
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_distance_atom_site_label_'
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The expectation distance between the two atoms.
+               This is the target distance for the restrained refinement.
+;
+
+data_restr_distance_target_weight_param
+    _name                      '_restr_distance_target_weight_param'
+    _category                    restr_distance
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_distance_atom_site_label_'
+    _enumeration_default         0
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              Weighting parameter = sqrt(1/weight).
+               It is the expectation value of the difference between
+               the refined value and the target.
+               If this parameter is set to zero, the distance will be
+               constrained to refine to the target value.
+               If this item is absent, its value will be taken as zero
+               and the distance will be constrained.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 4. ATOMS CANNOT OCCUPY THE SAME POSITION
+# ----------------------------------------------------------------------------
+# The 'anti-bumping' restraint prevents two atoms from occupying the
+# same site. It would normally be reported only for those distances
+# in which this restraint was invoked.
+#
+###########################
+#                         #
+#  RESTR_DISTANCE_MIN     #
+#                         #
+###########################
+
+data_restr_distance_min_[]
+    _name                      '_restr_distance_min_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category offer power-law and exponential
+               expressions for a function designed to prevent two atoms
+               occupying the same location.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+   loop_
+   _restr_distance_min_atom_site_label_1
+   _restr_distance_min_site_symmetry_1
+   _restr_distance_min_atom_site_label_2
+   _restr_distance_min_site_symmetry_2
+   _restr_distance_min_A
+   _restr_distance_min_B
+   _restr_distance_min_C
+   _restr_distance_min_E
+   _restr_distance_min_F
+   _restr_distance_min_G
+   _restr_distance_min_distance
+   _restr_distance_min_details
+     O1 1_555 O2 1_555 0 . . 1 2.8 0.3 2.75(1) 'using the exponential restraint'
+     O2 1_555 O3 2_455 0 0 0 1 2.8 0   2.83(1) 'using the hard sphere model'
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_distance_min_A
+    _name                      '_restr_distance_min_A'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _definition
+;              The weight associated with the difference between the
+               refined distance D and the prescribed minimum distance
+               (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0.  In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target distance
+               of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_atom_site_label_
+    loop_ _name                '_restr_distance_min_atom_site_label_1'
+                               '_restr_distance_min_atom_site_label_2'
+    _category                    restr_distance_min
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels for the two atoms that are kept apart.
+;
+
+data_restr_distance_min_B
+    _name                      '_restr_distance_min_B'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The weight associated with the difference between the
+               refined distance D and the prescribed minimum distance
+               (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0. In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target
+               distance of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_C
+    _name                      '_restr_distance_min_C'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _definition
+;              The weight associated with the difference between the
+               refined distance D and the prescribed minimum distance
+               (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0.  In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target
+               distance of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_details
+    _name                      '_restr_distance_min_details'
+    _category                    restr_distance_min
+    _type                        char
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _definition
+;              A text description of the restraint giving details not
+               given elsewhere.
+;
+
+data_restr_distance_min_difference
+    _name                      '_restr_distance_min_difference'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The difference in angstroms between the refined distance
+               of approach of the two atoms and the target distance B or F:
+
+               difference = D - B or D - F
+;
+
+data_restr_distance_min_distance
+    _name                      '_restr_distance_min_distance'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The refined distance, D, between the two atoms.
+;
+
+data_restr_distance_min_E
+    _name                      '_restr_distance_min_E'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _enumeration_default         0
+    _definition
+;              The weight associated with the difference between the
+               refined distance D and the prescribed minimum distance
+               (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0.  In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target
+               distance of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_F
+    _name                      '_restr_distance_min_F'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The weight associated with the difference between the
+               refined distance D and the prescribed minimum distance
+               (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0.  In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target
+               distance of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_G
+    _name                      '_restr_distance_min_G'
+    _category                    restr_distance_min
+    _type                        numb
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The weight associated with the difference between
+               the refined distance D and the prescribed minimum
+               distance (B or F) is given by the expression
+
+               w = A*(B/D)^C^ + E*exp((D-F)/G)
+
+               A and E are dimensionless weighting parameters.
+               Either function could be used alone by setting A or E to zero.
+               The default values of A and E are zero.
+
+               If A=0, B and C are undefined; if E=0, F and G are undefined.
+
+               A hard-sphere contact can be generated by setting E=1,
+               F=prescribed minimum distance and G=0.  In this case G
+               (combined with a non-zero E) should be treated as a flag
+               indicating a hard-sphere interaction with a target
+               distance of F so as to avoid division by zero.
+;
+
+data_restr_distance_min_site_symmetry_
+    loop_ _name                '_restr_distance_min_site_symmetry_1'
+                               '_restr_distance_min_site_symmetry_2'
+    _category                    restr_distance_min
+    _type                        char
+    _list                        yes
+    _list_reference            'restr_distance_min_atom_site_label_'
+    _definition
+;              The site symmetries of the two atoms kept apart.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atoms that are kept apart.  These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 5. SEVERAL ANGLES ARE RESTRAINED TO BE EQUAL.
+# ----------------------------------------------------------------------------
+# This restraint contains two categories.
+# The first defines the angles restrained and assigns
+# them to different classes that are restrained independently.
+# The second category defines the properties of each class.
+#
+##########################
+#                        #
+#  RESTR_EQUAL_ANGLE     #
+#                        #
+##########################
+
+data_restr_equal_angle_[]
+    _name                      '_restr_equal_angle_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category list the atoms defining the angles
+               that are restrained to be equal in the final refinement.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_angle_atom_site_label_1
+    _restr_equal_angle_site_symmetry_1
+    _restr_equal_angle_atom_site_label_2   # Atom 2 is at the apex of the angle
+    _restr_equal_angle_site_symmetry_2
+    _restr_equal_angle_atom_site_label_3
+    _restr_equal_angle_site_symmetry_3
+    _restr_equal_angle_class_id
+    _restr_equal_angle_detail
+      C1 1_555  C2  1_555  C3 1_555 1  'Benzene ring with mirror symmetry'
+      C2 1_555  C3  1_555  C4 2_655 2  ?
+      C4 1_555  C5  1_555  C6 1_555 2  ?
+      C5 1_555  C6  1_555  C1 1_555 1  ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_equal_angle_atom_site_label_
+    loop_ _name                '_restr_equal_angle_atom_site_label_1'
+                               '_restr_equal_angle_atom_site_label_2'
+                               '_restr_equal_angle_atom_site_label_3'
+    _category                    restr_equal_angle
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the three atoms that define one of
+               the angles restrained to be equal to other angles in
+               the same class.
+;
+
+data_restr_equal_angle_class_id
+    _name                      '_restr_equal_angle_class_id'
+    _category                    restr_equal_angle
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_angle_atom_site_label_'
+    _enumeration_default         1
+    _definition
+;              A character string identifying the class of equal angles
+               to which this angle belongs.
+;
+
+data_restr_equal_angle_details
+    _name                      '_restr_equal_angle_detail'
+    _category                    restr_equal_angle
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_angle_atom_site_label_'
+    _definition
+;              A text description giving details of an angle in
+               a class of angles that are restrained to be equal.
+;
+
+data_restr_equal_angle_site_symmetry_
+    loop_ _name                '_restr_equal_angle_site_symmetry_1'
+                               '_restr_equal_angle_site_symmetry_2'
+                               '_restr_equal_angle_site_symmetry_3'
+    _category                    restr_equal_angle
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_angle_atom_site_label_'
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _enumeration_default         1_555
+    _definition
+;              The site symmetries of the three atoms that define an angle
+               restrained to be equal to other angles in the same class.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the angle. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+
+###################################
+#                                 #
+#  RESTR_EQUAL_ANGLE_CLASS        #
+#                                 #
+###################################
+
+data_restr_equal_angle_class_[]
+    _name                      '_restr_equal_angle_class_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category give details of the target angles
+               for each class of angles that are restrained to be equal
+               in the final refinement.
+;
+      loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_angle_class_class_id
+    _restr_equal_angle_class_target_weight_param
+    _restr_equal_angle_class_average
+    _restr_equal_angle_class_esd
+    _restr_equal_angle_class_diff_max
+    _restr_equal_angle_class_detail
+      1  0.50  123.52  0.32 0.62  ?
+      2  0.50  118.23  0.52 1.43  ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_equal_angle_class_average
+    _name                      '_restr_equal_angle_class_average'
+    _category                    restr_equal_angle_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_angle_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The average angle in the class of angles restrained to
+               be the same after refinement.
+;
+
+data_restr_equal_angle_class_class_id
+    _name                      '_restr_equal_angle_class_class_id'
+    _category                    restr_equal_angle_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_restr_equal_angle_class_id'
+    _enumeration_default         1
+    _definition
+;              A character string that identifies the class of angles
+               whose properties are described.
+;
+
+data_restr_equal_angle_class_detail
+    _name                      '_restr_equal_angle_class_detail'
+    _category                    restr_equal_angle_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_angle_class_class_id'
+    _definition
+;              A text description giving details of the class of angles that
+               are restrained to be equal.
+;
+
+data_restr_equal_angle_class_diff_max
+    _name                      '_restr_equal_angle_class_diff_max'
+    _category                    restr_equal_angle_class
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_equal_angle_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The maximum deviation of an angle in the class from the
+               class average after refinement.
+;
+
+data_restr_equal_angle_class_esd
+    _name                      '_restr_equal_angle_class_esd'
+    _category                    restr_equal_angle_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_angle_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The actual estimated standard deviation of the angles in the
+               class from their average after refinement.
+               This number is expected to be similar to the value set for
+               _restr_equal_angle_class_target_weight_param.
+;
+
+data_restr_equal_angle_class_target_weight_param
+    _name                      '_restr_equal_angle_class_target_weight_param'
+    _category                    restr_equal_angle_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_angle_class_class_id'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       degrees
+    _definition
+;              The weighting parameter = sqrt(1/weight).
+               The expectation value of the estimated standard deviation of
+               the angles in the class from their average after refinement.
+               This value determines the weight assigned to the restraint.
+               If it is zero the angles are constrained to be equal.
+               The default value is zero.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 6. SEVERAL DISTANCES ARE RESTRAINED TO BE EQUAL.
+# ----------------------------------------------------------------------------
+# This restraint contains two categories.
+# The first defines the distances restrained and assigns
+# them to different classes that are restrained independently.
+# The second category defines the properties of each class.
+#
+#############################
+#                           #
+#  RESTR_EQUAL_DISTANCE     #
+#                           #
+#############################
+
+data_restr_equal_distance_[]
+    _name                      '_restr_equal_distance_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category list the atoms defining the distances
+               that are restrained to be equal in the final refinement.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_distance_atom_site_label_1
+    _restr_equal_distance_site_symmetry_1
+    _restr_equal_distance_atom_site_label_2
+    _restr_equal_distance_site_symmetry_2
+    _restr_equal_distance_class_id
+    _restr_equal_distance_details
+      C1 1_555  C2 1_555  1  'C1-C2 and C3-C4 are restrained to be equal'
+      C2 1_555  C3 1_555  2  'C2-C3, C4-C5 and C5-C6 are restrained to be equal'
+      C3 1_555  C4 2_655  1  ?
+      C4 1_555  C5 1_555  2  ?
+      C5 1_555  C6 1_555  2  ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+data_restr_equal_distance_atom_site_label_
+    loop_ _name                '_restr_equal_distance_atom_site_label_1'
+                               '_restr_equal_distance_atom_site_label_2'
+    _category                    restr_equal_distance
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the two atoms that define one of the
+               distances restrained to be equal to other distances in
+               the same class.
+;
+
+data_restr_equal_distance_class_id
+    _name                      '_restr_equal_distance_class_id'
+    _category                    restr_equal_distance
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_distance_atom_site_label_'
+    _enumeration_default         1
+    _definition
+;              A character string identifying the class of equal distances
+               to which this distance belongs.
+;
+
+data_restr_equal_distance_details
+    _name                      '_restr_equal_distance_details'
+    _category                    restr_equal_distance
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_distance_atom_site_label_'
+    _definition
+;              A text description giving details of a distance in
+               a class of distances that are restrained to be equal.
+;
+
+data_restr_equal_distance_site_symmetry_
+    loop_ _name                '_restr_equal_distance_site_symmetry_1'
+                               '_restr_equal_distance_site_symmetry_2'
+    _category                    restr_equal_distance
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_distance_atom_site_label_'
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _enumeration_default         1_555
+    _definition
+;              The site symmetries of the two atoms that define a distance
+               restrained to be equal to other distances in the same
+               class.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the distance. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+###################################
+#                                 #
+#  RESTR_EQUAL_DISTANCE_CLASS     #
+#                                 #
+###################################
+
+data_restr_equal_distance_class_[]
+    _name                      '_restr_equal_distance_class_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category give details of the target distances
+               for each class of distances that are restrained to be equal
+               in the final refinement.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_distance_class_class_id
+    _restr_equal_distance_class_target_weight_param
+    _restr_equal_distance_class_average
+    _restr_equal_distance_class_esd
+    _restr_equal_distance_class_diff_max
+    _restr_equal_distance_class_details
+             1  0.04   1.534  0.032  0.053   ?
+             2  0.04   1.338  0.052  0.103   ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_equal_distance_class_average
+    _name                      '_restr_equal_distance_class_average'
+    _category                    restr_equal_distance_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_distance_class_class_id'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The average distance in the class of distances restrained to
+               be the same after refinement.
+;
+
+data_restr_equal_distance_class_class_id
+    _name                      '_restr_equal_distance_class_class_id'
+    _category                    restr_equal_distance_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_restr_equal_distance_class_id'
+    _enumeration_default         1
+    _definition
+;              A character string that identifies the class of distances
+               whose properties are described.
+;
+
+data_restr_equal_distance_class_details
+    _name                      '_restr_equal_distance_class_details'
+    _category                    restr_equal_distance_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_distance_class_class_id'
+    _definition
+;              A text description giving details of the class of distances that
+               are restrained to be equal.
+;
+
+data_restr_equal_distance_class_diff_max
+    _name                      '_restr_equal_distance_class_diff_max'
+    _category                    restr_equal_distance_class
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_equal_distance_class_class_id'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The maximum deviation of a distance in the class from the
+               class average after refinement.
+;
+
+data_restr_equal_distance_class_esd
+    _name                      '_restr_equal_distance_class_esd'
+    _category                    restr_equal_distance_class
+    _type                        numb
+    _list_reference            '_restr_equal_distance_class_class_id'
+    _list                        yes
+    _enumeration_range           0:
+    _units                       Angstrom
+    _definition
+;              The actual estimated standard deviation of the distances in the
+               class from their average after refinement.
+               This number is expected to be similar to the value set for
+               _restr_equal_distance_class_target_weight_param.
+;
+
+data_restr_equal_distance_class_target_weight_param
+    _name                      '_restr_equal_distance_class_target_weight_param'
+    _category                    restr_equal_distance_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_distance_class_class_id'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The weighting parameter = sqrt(1/weight).
+               The expectation value of the estimated standard deviation of the
+               distances in the class from their average after refinement.
+               This value determines the weight assigned to the restraint.
+               If it is zero the distances are constrained to be equal.
+               The default value is zero.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 7. SEVERAL TORSION ANGLES ARE RESTRAINED TO BE EQUAL.
+# ----------------------------------------------------------------------------
+# This restraint contains two categories.
+# The first defines the torsion angles restrained and assigns
+# them to different classes that are restrained independently.
+# The second category defines the properties of each class.
+#
+############################
+#                          #
+#  RESTR_EQUAL_TORSION     #
+#                          #
+############################
+
+data_restr_equal_torsion_[]
+    _name                      '_restr_equal_torsion_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category list the atoms defining the
+               torsion angles that are restrained to be equal in
+               the final refinement.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_torsion_atom_site_label_1
+    _restr_equal_torsion_site_symmetry_1
+    _restr_equal_torsion_atom_site_label_2
+    _restr_equal_torsion_site_symmetry_2
+    _restr_equal_torsion_atom_site_label_3
+    _restr_equal_torsion_site_symmetry_3
+    _restr_equal_torsion_atom_site_label_4
+    _restr_equal_torsion_site_symmetry_4
+    _restr_equal_torsion_class_id
+    _restr_equal_torsion_details
+        C1 1_555  C2  1_555  C3 1_555  C4 1_555 1 ?
+        C5 1_555  C6  1_555  C1 1_555  C2 1_555 1 ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_equal_torsion_atom_site_label_
+    loop_ _name                '_restr_equal_torsion_atom_site_label_1'
+                               '_restr_equal_torsion_atom_site_label_2'
+                               '_restr_equal_torsion_atom_site_label_3'
+                               '_restr_equal_torsion_atom_site_label_4'
+    _category                    restr_equal_torsion
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the four atoms that define one of the
+               torsion angles restrained to be equal to other torsion
+               angles in the same class.  The torsion angle is the dihedral
+               angle between the plane defined by atoms 1, 2 and 3, and
+               the plane defined by atoms 2, 3 and 4.
+;
+
+data_restr_equal_torsion_class_id
+    _name                      '_restr_equal_torsion_class_id'
+    _category                    restr_equal_torsion
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_atom_site_label_'
+    _enumeration_default         1
+    _definition
+;              A character string identifying the class of equal torsion
+               angles to which this torsion angle belongs.
+;
+
+data_restr_equal_torsion_details
+    _name                      '_restr_equal_torsion_details'
+    _category                    restr_equal_torsion
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_atom_site_label_'
+    _definition
+;              A text description giving details of a torsion angle in
+               a class of torsion angles that are restrained to be equal.
+;
+
+data_restr_equal_torsion_site_symmetry_
+    loop_ _name                '_restr_equal_torsion_site_symmetry_1'
+                               '_restr_equal_torsion_site_symmetry_2'
+                               '_restr_equal_torsion_site_symmetry_3'
+                               '_restr_equal_torsion_site_symmetry_4'
+    _category                    restr_equal_torsion
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_atom_site_label_'
+    _enumeration_default         1_555
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _definition
+;              The site symmetries of the four atoms that define a torsion angle
+               restrained to be equal to other torsion angles in the
+               same class.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the torsion angle.
+               These translations (x,y,z) are related to (k,l,m)
+               by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+###################################
+#                                 #
+#  RESTR_EQUAL_TORSION_CLASS      #
+#                                 #
+###################################
+
+data_restr_equal_torsion_class_[]
+    _name                      '_restr_equal_torsion_class_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category give details of the target torsion
+               angles for each class of torsion angles that are restrained
+               to be equal in the final refinement.
+;
+   loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_equal_torsion_class_class_id
+    _restr_equal_torsion_class_target_weight_param
+    _restr_equal_torsion_class_average
+    _restr_equal_torsion_class_esd
+    _restr_equal_torsion_class_diff_max
+    _restr_equal_torsion_class_details
+       1  0.50  123.52  0.32  0.62 ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_equal_torsion_class_average
+    _name                      '_restr_equal_torsion_class_average'
+    _category                    restr_equal_torsion_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The average torsion angle in the class of torsion angles
+               restrained to be the same after refinement.
+;
+
+data_restr_equal_torsion_class_class_id
+    _name                      '_restr_equal_torsion_class_class_id'
+    _category                    restr_equal_torsion_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent         '_restr_equal_torsion_class_id'
+    _enumeration_default         1
+    _definition
+;              A character string that identifies the class of torsion
+               angles whose properties are described.
+;
+
+data_restr_equal_torsion_class_details
+    _name                      '_restr_equal_torsion_class_details'
+    _category                    restr_equal_torsion_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_class_class_id'
+    _definition
+;              A text description giving details of the class of torsion
+               angles that are restrained to be equal.
+;
+
+data_restr_equal_torsion_class_diff_max
+    _name                      '_restr_equal_torsion_class_diff_max'
+    _category                    restr_equal_torsion_class
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The maximum deviation of a torsion angle in the class
+               from the class average after refinement.
+;
+
+data_restr_equal_torsion_class_esd
+    _name                      '_restr_equal_torsion_class_esd'
+    _category                    restr_equal_torsion_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_class_class_id'
+    _enumeration_range           0:
+    _units                       degrees
+    _definition
+;              The actual estimated standard deviation of the torsion
+               angles in the class from their average after refinement.
+               This number is expected to be similar to the value set for
+               _restr_equal_torsion_class_target_weight_param.
+;
+
+data_restr_equal_torsion_class_target_weight_param
+    _name                      '_restr_equal_torsion_class_target_weight_param'
+    _category                    restr_equal_torsion_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_equal_torsion_class_class_id'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       degrees
+    _definition
+;              The weighting parameter = sqrt(1/weight).
+               This is the expectation value of the estimated
+               standard deviation (given in _restr_equal_torsion_class_esd)
+               of the torsion angles in the class from their
+               average after refinement.
+               This value determines the weight assigned to the target.
+               If it is zero the torsion angles are constrained to be equal.
+               The default value is zero.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 8. THE SUM OF A GIVEN PARAMETER OF THE SPECIFIED ATOMS IS
+# RESTRAINED.
+# ----------------------------------------------------------------------------
+# This restraint, which will normally be used to restrain the total
+# occupancy of an atom site, can be used to restrain the value of
+#   SUM(over the specified atoms){PARAMETER*COEFFICIENT}
+# where PARAMETER will usually be the occupancy
+# (but other allowed quantities such as x, y and z will be specified
+# in the enumeration list) and COEFFICIENT is a user-defined
+# number with a default value of 1.0.
+# Two loops are needed to describe this restraint.
+#
+########################
+#                      #
+#  RESTR_PARAMETER     #
+#                      #
+########################
+
+data_restr_parameter_[]
+    _name                      '_restr_parameter_[]'
+    _category                    category_overview
+    _type                        null
+ loop_ _example
+       _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_id
+    _restr_parameter_class_id
+    _restr_parameter_atom_site_label
+    _restr_parameter_atom_coefficient
+      1 1 O1   1
+      2 1 O1a  1
+      3 1 O1b  1
+;
+;
+   These examples should be read in conjunction with the examples
+   given for the category restr_parameter_class.
+
+   Example 1. In class 1 the sites O1, O1a and O1b refer to separate 
+   sites over which oxygen is disordered, but which in total contain
+   0.8 oxygen atoms (as defined by _restr_parameter_class_target).
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_id
+    _restr_parameter_class_id
+    _restr_parameter_atom_site_label
+    _restr_parameter_atom_coefficient
+      a 2 Na1  1
+      b 2 K1   1
+      c 2 Ca1  1
+      d 2 Al1  1
+;
+;
+   Example 2. 
+   Class 2 consists of a mixture of Na, K, Ca and Al atoms on the same
+   site with the total occupancy set to 1.0 as defined in
+   _restr_parameter_class_target.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_id
+    _restr_parameter_class_id
+    _restr_parameter_atom_site_label
+    _restr_parameter_atom_coefficient
+      1 3 Na1  1
+      2 3 K1   1
+      3 3 Ca1  2
+      4 3 Al1  3
+;
+;
+   Example 3. 
+   Class 3 consists of the same atoms as class 2, but by using coefficients
+   equal to the ionic charge, the total charge on the site is
+   restrained to 2.0.
+   Note that the parameter restrained is still the occupancy
+   but the use of coefficients transforms the restraint from
+   occupancy to formal charge.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_id
+    _restr_parameter_class_id
+    _restr_parameter_atom_site_label
+    _restr_parameter_atom_coefficient
+      1 4 O2   1
+;
+;
+   Example 4. 
+   In class 4 the y coordinate of O2 is restrained to be close to a
+   pseudo-mirror plane at y = 0.5 (see _restr_parameter_class_target).
+   This example may not have much practical use, but is included
+   to show what can be done with this definition.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_id
+    _restr_parameter_class_id
+    _restr_parameter_atom_site_label
+    _restr_parameter_atom_coefficient
+      1 5 O3   1
+      2 5 O4   1
+;
+;
+   Example 5. 
+   In class 5 the positions of O3 and O4 are correlated in such a way that
+   these atoms are displaced equal distances from the plane x = 0
+   [i.e., x(O3) + x(O4) = 0].
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              This restraint, which will normally be used to restrain
+               the total occupancy of an atom site, can be used to
+               restrain the value of
+               SUM(over the specified atoms){PARAMETER*COEFFICIENT}
+               where PARAMETER will usually be the value of the
+               occupancy (but other allowed quantities such as x, y
+               and z can be specified in the enumeration) and
+               COEFFICIENT is a user-defined number with a default
+               value of 1.0. The restraint requires two loops; the
+               first defines the atoms in each sum (class) and the
+               second describes the properties of the class.
+;
+
+data_restr_parameter_atom_coefficient
+    _name                      '_restr_parameter_atom_coefficient'
+    _category                    restr_parameter
+    _type                        numb
+    _list                        yes
+    _list_reference             '_restr_parameter_id'
+    _enumeration_default         1
+    _definition
+;              A parameter that scales the quantity being restrained.
+               It can be used to convert a constraint on occupancy to
+               a constraint on ionic charge.
+;
+
+data_restr_parameter_atom_site_label
+    _name                      '_restr_parameter_atom_site_label'
+    _category                    restr_parameter
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_parameter_id'
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site label for an atom in this class.
+;
+
+data_restr_parameter_class_id
+    _name                      '_restr_parameter_class_id'
+    _category                    restr_parameter
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_parameter_id'
+    _enumeration_default         1
+    _definition
+;              The identifier of the class of restraint applied to the atoms.
+;
+
+data_restr_parameter_id
+    _name                      '_restr_parameter_id'
+    _category                    restr_parameter
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _definition
+;              A unique identifier for each line in a loop.
+;
+
+###################################
+#                                 #
+#     RESTR_PARAMETER_CLASS       #
+#                                 #
+###################################
+
+data_restr_parameter_class_[]
+    _name                      '_restr_parameter_class_[]'
+    _category                    category_overview
+    _type                        null
+ loop_ _example
+       _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_parameter_class_class_id
+    _restr_parameter_class_parameter_type
+    _restr_parameter_class_target
+    _restr_parameter_class_target_weight_param
+    _restr_parameter_class_details
+       1 occupancy   0.8  0.01   'total occupation is 0.8'
+       2 occupancy   1.0  0.001  'total occupation is 1.0'
+       3 occupancy   2.0  0.01   'total charge is 2.0'
+       4 position_y  0.5  0.002  'keep close to pseudo-mirror plane'
+       5 position_x  0    0.01   'correlate position of O3 and O4'
+;
+;  Example 1.
+   This example gives the properties of the five classes given as examples in
+   restr_parameter.
+
+   The _*_class_id is the _list_reference and is the same as _*_class_id
+   in the restr_parameter loop.
+
+   The _*_parameter_type indicates the atomic parameter that is restrained.
+
+   _*_target is the target value for the sum of the product of
+   _restr_parameter_atom_coefficient and the value of the _*_parameter_type
+   for the atom.
+
+   _*_target_weight_sum gives the expectation value of the difference
+   between the target and the refined value of sum(coefficient*parameter).
+
+   _*_details gives a description of the restraint applied.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              This restraint, which will normally be used to restrain
+               the total occupancy of an atom site, can be used to
+               restrain the value of
+               SUM(over the specified atoms){PARAMETER*COEFFICIENT}
+               where PARAMETER will usually be the value of the occupancy
+               (but other allowed quantities such as x, y and z can be
+               specified in the enumeration) and COEFFICIENT is a user-defined
+               number with a default value of 1.0.
+               The restraint requires two loops, the first defines the
+               atoms in each sum (class) and the second describes the
+               properties of the class.
+;
+
+data_restr_parameter_class_class_id
+    _name                      '_restr_parameter_class_class_id'
+    _category                    restr_parameter_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_restr_parameter_class_id'
+    _enumeration_default         1
+    _definition
+;              The class ID of the restraint described in this category.
+;
+
+data_restr_parameter_class_details
+    _name                      '_restr_parameter_class_details'
+    _category                    restr_parameter_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_parameter_class_class_id'
+    _definition
+;              A text description of the restraint.
+;
+
+data_restr_parameter_class_parameter_type
+    _name                      '_restr_parameter_class_parameter_type'
+    _category                    restr_parameter_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_parameter_class_class_id'
+    loop_ _enumeration
+          _enumeration_detail
+                                 occupancy    '_atom_site_occupancy'
+                                 position_x   '_atom_site_fract_x'
+                                 position_y   '_atom_site_fract_y'
+                                 position_z   '_atom_site_fract_z'
+    _definition
+;              A flag that indicates the nature of the value
+               that is being restrained.
+;
+
+data_restr_parameter_class_target
+    _name                      '_restr_parameter_class_target'
+    _category                    restr_parameter_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_parameter_class_class_id'
+    _definition
+;              The target value for the sum of values of the appropriate
+               parameter type multiplied by the _*_target_weight_param.
+;
+
+data_restr_parameter_class_target_weight_param
+    _name                      '_restr_parameter_class_target_weight_param'
+    _category                    restr_parameter_class
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_parameter_class_class_id'
+    _enumeration_default         0
+    _definition
+;              Weighting parameter = sqrt(1/weight).
+               It is the expectation value of the difference between
+               the refined value of the sum(parameter*coefficient)
+               and the _*_target.
+               If this parameter is set to zero, the sum will be constrained
+               to refine to the target value.
+               If this item is absent, its value will be taken as zero
+               and the distance will be constrained.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 9. A GROUP OF ATOMS IS RESTRAINED TO LIE ON A PLANE.
+# ----------------------------------------------------------------------------
+# This restraint contains two categories.
+# The first lists the atoms that define each plane, each plane being
+# composed of atoms from the same class.
+# The second category describes the properties of each plane (class).
+#
+######################
+#                    #
+#  RESTR_PLANE       #
+#                    #
+######################
+
+data_restr_plane_[]
+    _name                      '_restr_plane_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_plane_id
+    _restr_plane_atom_site_label
+    _restr_plane_site_symmetry
+    _restr_plane_class_id
+    _restr_plane_target_weight_param
+    _restr_plane_displacement
+    _restr_plane_details
+      1 c1 1_555 1 0.02   0.002(1) 'c1 to c4 lie on one plane'
+      2 c2 1_555 1 0.02  -0.003(2) ?
+      3 c3 1_555 1 0.02  -0.002(1) ?
+      4 c4 1_555 1 0.02   0.002(2) ?
+      5 c1 2_655 2 0.003  0.004(1) 'c1, c5, c6 and c7 lie on one plane'
+      6 c5 1_555 2 0.003 -0.002(2) ?
+      7 c6 1_555 2 0.003  0.002(3) ?
+      8 c7 1_555 2 0.003 -0.002(2) ?
+;
+;Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              Items in this category define the atoms that make up
+               each class of plane.
+;
+
+data_restr_plane_atom_site_label
+    _name                      '_restr_plane_atom_site_label'
+    _category                    restr_plane
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              An atom-site label of one of the atoms that form the plane.
+;
+
+data_restr_plane_class_id
+    _name                      '_restr_plane_class_id'
+    _category                    restr_plane
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_reference            '_restr_plane_id'
+    _enumeration_default         1
+    _definition
+;              A character string that identifies the plane
+               to which this atom is constrained.
+;
+
+data_restr_plane_details
+    _name                      '_restr_plane_details'
+    _category                    restr_plane
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_plane_id'
+    _definition
+;              A text string giving details not described elsewhere.
+;
+
+data_restr_plane_displacement
+    _name                      '_restr_plane_displacement'
+    _category                    restr_plane
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_plane_id'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The distance between this atom and the best plane through
+               all the atoms.
+;
+
+data_restr_plane_id
+    _name                      '_restr_plane_id'
+    _category                    restr_plane
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _enumeration_default         1
+    _definition
+;              A unique identifier for each line in the list.
+;
+
+data_restr_plane_site_symmetry
+    _name                      '_restr_plane_site_symmetry'
+    _category                    restr_plane
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_reference            '_restr_plane_id'
+    _enumeration_default         1_555
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _definition
+;              The site symmetry of the atom that helps to define the plane
+               to which it is restrained.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the plane. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+data_restr_plane_target_weight_param
+    _name                      '_restr_plane_target_weight_param'
+    _category                    restr_plane
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_plane_id'
+    _enumeration_range           0:
+    _enumeration_default         0.0
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The weighting parameter = sqrt(1/weight).
+               The expectation value of the distance in angstroms
+               between this atom and the best plane through all
+               the atoms of the class.
+;
+
+############################
+#                          #
+#  RESTR_PLANE_CLASS       #
+#                          #
+############################
+
+data_restr_plane_class_[]
+    _name                      '_restr_plane_class_[]'
+    _category                    category_overview
+    _type                        null
+    _definition
+;              Items in this category describe the properties of
+               the different groups of atoms that are restrained
+               to form a plane.
+;
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_plane_class_class_id
+    _restr_plane_class_displacement_esd
+    _restr_plane_class_displacement_max_atom_site_label
+    _restr_plane_class_displacement_max_site_symmetry
+    _restr_plane_class_displacement_max
+    _restr_plane_class_details
+       1  0.032  c2 1_555  0.094     'displacements for plane 1'
+       2  0.0021 c1 2_655  0.010     'displacements for plane 2'
+;
+; Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+data_restr_plane_class_class_id
+    _name                      '_restr_plane_class_class_id'
+    _category                    restr_plane_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_restr_plane_class_id'
+    _enumeration_default         1
+    _definition
+;       The class identifier for the plane whose properties are described.
+;
+
+data_restr_plane_class_details
+    _name                      '_restr_plane_class_details'
+    _category                    restr_plane_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_plane_class_class_id'
+    _definition
+;        Text describing any special features of the restraint.
+;
+
+data_restr_plane_class_displacement_esd
+    _name                      '_restr_plane_class_displacement_esd'
+    _category                    restr_plane_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_plane_class_class_id'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The observed estimated standard deviation of the
+               atoms from this plane.
+;
+
+data_restr_plane_class_displacement_max
+    _name                      '_restr_plane_class_displacement_max'
+    _category                    restr_plane_class
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_plane_class_class_id'
+    _enumeration_range           0:
+    _units                       A
+    _units_detail                Angstrom
+    _definition
+;              The distance in angstroms from the plane to the atom furthest
+               removed from the plane.
+;
+
+data_restr_plane_class_displacement_max_atom_site_label
+    _name                  '_restr_plane_class_displacement_max_atom_site_label'
+    _category                    restr_plane_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_plane_class_class_id'
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site label of the atom that lies furthest
+               from the plane defined by this class.
+;
+
+data_restr_plane_class_displacement_max_site_symmetry
+    _name                  '_restr_plane_class_displacement_max_site_symmetry'
+    _category                    restr_plane_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_plane_class_class_id'
+    _enumeration_default        1_555
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+    _definition
+;              The site symmetry of the atom lying furthest from the plane
+               to which it is restrained.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom furthest from the plane.  These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 10. ATOMS ARE DEFINED AS BELONGING TO RIGID BODIES.
+# ----------------------------------------------------------------------------
+#
+#############################
+#                           #
+#  RESTR_RIGID_BODY         #
+#                           #
+#############################
+
+data_restr_rigid_body_[]
+    _name                      '_restr_rigid_body_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+           _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_rigid_body_id
+    _restr_rigid_body_atom_site_label
+    _restr_rigid_body_site_symmetry
+    _restr_rigid_body_class_id
+    _restr_rigid_body_details
+      1 C1 1_555  1  ?
+      2 C2 1_555  1  ?
+      3 C3 1_555  1  'C3 is a hinge atom'
+      4 C4 1_555  1  'C4 is a hinge atom'
+      5 C3 1_555  2  ?
+      6 C4 1_555  2  ?
+      7 C5 2_555  2  ?
+      8 C6 1_555  2  ?
+;
+; Example 1. 
+  The first rigid body contains C1, C2, C3 and C4, the second rigid body
+  contains C3, C4, C5 and C6. The bond between C3 and C4 is common to both
+  rigid bodies.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              Items in this category list the atoms defining one or
+               more bodies that are constrained to be rigid in the final
+               refinement.  This is done by listing the atom-site label
+               and symmetry operation for each atom in each rigid body.
+
+               Since rigid bodies are only constrained, not restrained,
+               the rigid body is adequately defined by the refined coordinate
+               in the atom_site list. A second category,
+               restr_rigid_body_class, permits a description
+               of each rigid body to be given in a *_details item.
+;
+
+data_restr_rigid_body_id
+    _name                      '_restr_rigid_body_id'
+    _category                    restr_rigid_body
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _definition
+;              A unique identifier for each atom in the list of atoms in the
+               RESTR_RIGID_BODY category.
+;
+
+data_restr_rigid_body_class_id
+    _name                      '_restr_rigid_body_class_id'
+    _category                    restr_rigid_body
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_rigid_body_id'
+    _enumeration_default         1
+    _definition
+;              A character string identifying a rigid body.
+;
+
+data_restr_rigid_body_atom_site_label
+    _name                      '_restr_rigid_body_atom_site_label'
+    _category                    restr_rigid_body
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_rigid_body_id'
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of an atom in a rigid body.
+;
+
+data_restr_rigid_body_site_symmetry_
+    _name                      '_restr_rigid_body_site_symmetry'
+    _category                    restr_rigid_body
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_rigid_body_id'
+    loop_ _example
+          _example_detail        .     'no symmetry or translation applied'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +1 on x; -1 on y'
+    _enumeration_default         1_555
+    _definition
+;              The site symmetry of an atom in a rigid body.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the cell 
+	       translation number 'klm'. These numbers are combined 
+	       to form the code n_klm. The character string n_klm is 
+	       composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match the number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the rigid body. These translations
+               (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+data_restr_rigid_body_details
+    _name                      '_restr_rigid_body_details'
+    _category                    restr_rigid_body
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_rigid_body_id'
+    _definition
+;              A text description giving details of a rigid body in
+               a class of rigid bodies that are constrained to be equal.
+;
+
+###################################
+#                                 #
+#  RESTR_RIGID_BODY_CLASS         #
+#                                 #
+###################################
+
+data_restr_rigid_body_class_[]
+    _name                      '_restr_rigid_body_class_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_rigid_body_class_class_id
+    _restr_rigid_body_class_details
+             1   'Phenyl ring'
+             2   'methyl group'
+;
+; Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              Items in this category give details of the different rigid
+               bodies as defined by _restr_rigid_body_class_id
+;
+
+data_restr_rigid_body_class_class_id
+    _name                      '_restr_rigid_body_class_class_id'
+    _category                    restr_rigid_body_class
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_restr_rigid_body_class_id'
+    _enumeration_default         1
+    _definition
+;              A character string that identifies the rigid body.
+               It must match one of the values of _restr_rigid_body_class_id.
+;
+
+data_restr_rigid_body_class_details
+    _name                      '_restr_rigid_body_class_details'
+    _category                    restr_rigid_body_class
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_rigid_body_class_class_id'
+    _definition
+;              A text description giving details of a rigid body.
+;
+
+# ----------------------------------------------------------------------------
+# RESTRAINT 11. A TORSION ANGLE IS CONSTRAINED TO A PREDETERMINED VALUE
+# ----------------------------------------------------------------------------
+#
+######################
+#                    #
+#  RESTR_TORSION     #
+#                    #
+######################
+
+data_restr_torsion_[]
+    _name                      '_restr_torsion_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+          _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    _restr_torsion_atom_site_label_1
+    _restr_torsion_site_symmetry_1
+    _restr_torsion_atom_site_label_2
+    _restr_torsion_site_symmetry_2
+    _restr_torsion_atom_site_label_3
+    _restr_torsion_site_symmetry_3
+    _restr_torsion_atom_site_label_4
+    _restr_torsion_site_symmetry_4
+    _restr_torsion_angle_target
+    _restr_torsion_weight_param
+    _restr_torsion_diff
+    _restr_torsion_details
+         Na1 1_555  Na1 2_555  O1 2_555  H101 1_555  90  1  0.97  ?
+;
+; Example 1. 
+  An example of a torsion angle restrained to 90+/-1 degree with a refined
+  difference of 0.97 degrees.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              Items in this category define torsion angles that were
+               restrained in the final refinement.
+;
+
+data_restr_torsion_angle_target
+    _name                      '_restr_torsion_angle_target'
+    _category                    restr_torsion
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_torsion_atom_site_label_'
+    _enumeration_range           -180:180
+    _units                       degree
+    _definition
+;              The angle in degrees to which the torsion angle is restrained.
+               The torsion angle is the dihedral angle between the plane defined
+               by atoms 1, 2 and 3, and the plane defined by atoms 2, 3 and 4.
+;
+
+data_restr_torsion_atom_site_label_
+    loop_ _name                '_restr_torsion_atom_site_label_1'
+                               '_restr_torsion_atom_site_label_2'
+                               '_restr_torsion_atom_site_label_3'
+                               '_restr_torsion_atom_site_label_4'
+    _category                    restr_torsion
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the atoms in the sequence in which
+               they are linked by the bonds whose torsion angle is to
+               be restrained.
+;
+
+data_restr_torsion_details
+    _name                      '_restr_torsion_details'
+    _category                    restr_torsion
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_torsion_atom_site_label_'
+    _units                       degree
+    _definition
+;              A free-text description of the restraint.
+;
+
+data_restr_torsion_diff
+    _name                      '_restr_torsion_diff'
+    _category                    restr_torsion
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            '_restr_torsion_atom_site_label_'
+    _units                       degree
+    _definition
+;              The difference between the target and the refined torsion angle.
+;
+
+data_restr_torsion_site_symmetry_
+    loop_ _name                '_restr_torsion_site_symmetry_1'
+                               '_restr_torsion_site_symmetry_2'
+                               '_restr_torsion_site_symmetry_3'
+                               '_restr_torsion_site_symmetry_4'
+    _category                    restr_torsion
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_torsion_atom_site_label_'
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 '4'     '4th symmetry operation applied'
+                                 '7_645' '7th symm. posn.; +a on x; -b on y'
+    _enumeration_default         1_555
+    _definition
+;              The symmetry transformations needed to generate the coordinates
+               of the four atoms that define the torsion angle.
+
+              The symmetry code of each atom site is given as the 
+	      symmetry-equivalent position number 'n' and the cell 
+	      translation number 'klm'. These numbers are combined 
+	      to form the code n_klm. The character string n_klm is 
+	      composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the torsion angle. These
+               translations (x,y,z) are related to (k,l,m) by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+
+data_restr_torsion_weight_param
+    _name                      '_restr_torsion_weight_param'
+    _category                    restr_torsion
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_torsion_atom_site_label_'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       degree
+    _definition
+;              Weighting parameter = sqrt(1/weight).
+               It is the expectation value of the difference between
+               the refined value and the target.
+               If this parameter is set to zero, the angle will be constrained
+               to refine to the target value.
+               If this item is absent, its value will be taken as zero
+               and the angle will be constrained.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 12: THE ATOMIC DISPLACEMENT PARAMETER IS RESTRAINED TO BE
+# ISOTROPIC.
+# ----------------------------------------------------------------------------
+#
+#####################
+#                   #
+#  RESTR_U_ISO      #
+#                   #
+#####################
+
+data_restr_U_iso_[]
+    _name                      '_restr_U_iso_[]'
+    _category                    category_overview
+    _type                        null
+    _list_reference            '_restr_U_iso_atom_site_label'
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_U_iso_atom_site_label
+    _restr_U_iso_weight_param
+        Na1  0.003
+        O3   0.008
+        O8   0.008
+;
+; Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              This restraint attempts to make an anisotropic
+               atomic displacement isotropic within the range of the
+               weighting parameter.
+               It corresponds to SHELX ISO.
+;
+
+data_restr_U_iso_atom_site_label
+    _name                      '_restr_U_iso_atom_site_label'
+    _category                    restr_U_iso
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_U_iso_atom_site_label'
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              Label of the atom whose atomic displacement parameters
+               are restrained.
+;
+
+data_restr_U_iso_weight_param
+    _name                      '_restr_U_iso_weight_param'
+    _category                    restr_U_iso
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_U_iso_atom_site_label'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       A^-2^
+    _units_detail                'reciprocal Angstrom squared'
+    _definition
+;              The expectation value of the difference between
+               the refined and the isotropic equivalent of the
+               anisotropic atomic displacement parameters.
+               The default value of zero indicates a constraint.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 13. ADPs ARE RESTRAINED FOR A RIGID BOND.
+# ----------------------------------------------------------------------------
+#  This "rigid bond" restraint restrains the anisotropic displacement
+#  parameters of two atoms so that they are equal within a certain
+#  _weight_param along the direction of the vector joining the atoms.
+#
+######################
+#                    #
+#  RESTR_U_RIGID     #
+#                    #
+######################
+
+data_restr_U_rigid_[]
+    _name                      '_restr_U_rigid_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_U_rigid_atom_site_label_1
+    _restr_U_rigid_site_symmetry_1
+    _restr_U_rigid_atom_site_label_2
+    _restr_U_rigid_site_symmetry_2
+    _restr_U_rigid_target_weight_param
+    _restr_U_rigid_U_parallel
+    _restr_U_rigid_diff
+    _restr_U_rigid_details
+        C1 1_555 C2 2_655 0.001 0.0023(2) 0.0006 'C1-C2 is a rigid bond'
+;
+; Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              The items in this category restrains the anisotropic
+               displacement parameters of two atoms to be equal
+               within a certain *_target_weight_param along the
+               direction of the vector joining the atoms.
+;
+
+data_restr_U_rigid_atom_site_label_
+    loop_ _name                '_restr_U_rigid_atom_site_label_1'
+                               '_restr_U_rigid_atom_site_label_2'
+    _category                    restr_U_rigid
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              The atom-site labels of the two atoms that define the rigid bond.
+;
+
+data_restr_U_rigid_details
+    _name                      '_restr_U_rigid_details'
+    _category                    restr_U_rigid
+    _type                        char
+    _list                        yes
+    _list_reference            '_restr_U_rigid_atom_site_label_'
+    _definition
+;              Free-text information about the rigid-bond restraint.
+;
+
+data_restr_U_rigid_diff
+    _name                      '_restr_U_rigid_diff'
+    _category                    restr_U_rigid
+    _type                        numb
+    _type_conditions             su
+    _list                        yes
+    _list_reference            'restr_U_rigid_atom_site_label_'
+    _units                       A^-2^
+    _units_detail                Angstrom^-2^
+    _definition
+;              The difference between the components along the bond direction
+               of the atomic displacement parameters, U, of the two atoms.
+;
+
+data_restr_U_rigid_site_symmetry_
+    loop_ _name                '_restr_U_rigid_site_symmetry_1'
+                               '_restr_U_rigid_site_symmetry_2'
+    _category                    restr_U_rigid
+    _type                        char
+    _list                        yes
+    _list_reference            'restr_U_rigid_atom_site_label_'
+    _enumeration_default         1_555
+    _definition
+;              The site symmetries of the two atoms that define the rigid bond.
+
+               The symmetry code of each atom site is given as the 
+	       symmetry-equivalent position number 'n' and the 
+	       cell translation number 'klm'. These numbers are 
+	       combined to form the code n_klm. The character string 
+	       n_klm is composed as follows:
+
+               n refers to the symmetry operation that is applied to the
+               coordinates stored in _atom_site_fract_x, _atom_site_fract_y
+               and _atom_site_fract_z. It must match a number given in
+               _space_group_symop_id (formerly _symmetry_equiv_pos_site_id).
+
+               k, l and m refer to the translations that are subsequently
+               applied to the symmetry-transformed coordinates to generate
+               the atom used in calculating the rigid bond.
+               These translations (x,y,z) are related to (k,l,m)
+               by the relations
+                    k = 5 + x
+                    l = 5 + y
+                    m = 5 + z
+               By adding 5 to the translations, the use of negative numbers
+               is avoided.
+;
+    loop_ _example
+          _example_detail        .     'no symmetry or translation to site'
+                                 4     '4th symmetry operation applied'
+                                 7_645 '7th symm. posn.; +a on x; -b on y'
+
+data_restr_U_rigid_target_weight_param
+    _name                      '_restr_U_rigid_target_weight_param'
+    _category                    restr_U_rigid
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_U_rigid_atom_site_label_'
+    _enumeration_default         0
+    _units                       A^-2^
+    _units_detail                Angstrom^-2^
+    _definition
+;        The weighting parameter = sqrt(1/weight).
+         The expectation value of the difference between the components
+         of the atomic displacement parameter, U,
+         along the bond direction of the two atoms that define the bond.
+         This number is used to assign a weight during refinement.
+         A value of zero causes the restraint to become a constraint.
+         This item has a default value of zero.
+;
+
+data_restr_U_rigid_U_parallel
+    _name                      '_restr_U_rigid_U_parallel'
+    _category                    restr_U_rigid
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_U_rigid_atom_site_label_'
+    _enumeration_default         0
+    _units                       A^-2^
+    _units_detail                Angstrom^-2^
+    _definition
+;              The average value of the components parallel to the bond
+               of the atomic displacement parameters of the two atoms
+               that define the bond.
+;
+
+#
+# ----------------------------------------------------------------------------
+# RESTRAINT 14.  TWO ATOMS ARE RESTRAINED TO HAVE THE SAME ADPs.
+# ----------------------------------------------------------------------------
+#
+#####################
+#                   #
+#  RESTR_U_SIMILAR  #
+#                   #
+#####################
+
+data_restr_U_similar_[]
+    _name                      '_restr_U_similar_[]'
+    _category                    category_overview
+    _type                        null
+    loop_ _example
+    _example_detail
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    loop_
+    _restr_U_similar_atom_site_label_1
+    _restr_U_similar_atom_site_label_2
+    _restr_U_similar_weight_param
+        C1  C2  0.08
+        C2  C3  0.08
+;
+; Example 1.
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    _definition
+;              This category forces the atomic displacement ellipsoids
+               of atom 2 to be equal to that of atom 1 within the range
+               of the weighting parameter.
+               This is the same as SHELX SIMU.
+;
+
+data_restr_U_similar_atom_site_label_
+loop_
+    _name                      '_restr_U_similar_atom_site_label_1'
+                               '_restr_U_similar_atom_site_label_2'
+    _category                    restr_U_similar
+    _type                        char
+    _list                        yes
+    _list_mandatory              yes
+    _list_link_parent          '_atom_site_label'
+    _definition
+;              _restr_U_similar_atom_site_label_1 is the atom-site label of  
+               the atom whose atomic displacement parameters are used 
+	       as the target. _restr_U_similar_atom_site_label_2 is the 
+	       atom-site label of the atom whose atomic displacement 
+	       parameters are restrained to be the same as atom 1.
+;
+
+
+
+data_restr_U_similar_weight_param
+    _name                      '_restr_U_similar_weight_param'
+    _category                    restr_U_similar
+    _type                        numb
+    _list                        yes
+    _list_reference            '_restr_U_similar_atom_site_label_'
+    _enumeration_range           0:
+    _enumeration_default         0
+    _units                       A^-2^
+    _units_detail                'reciprocal Angstrom squared'
+    _definition
+;              The expectation value of the difference between the
+               anisotropic atomic displacement parameters
+               of the two atoms.
+               The default value of zero represents a constraint.
+;
+
+# -------------- End of restraint and constraint dictionary -------------
