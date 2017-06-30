@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.4.5
-    _dictionary_update          2014-11-21
+    _dictionary_version         2.4.6
+    _dictionary_update          2017-06-30
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -607,7 +607,7 @@ data_on_this_dictionary
    2005-06-21 NJA: corrections to proofs of Intl Tables G Chapter 4.1 included.
                     New data name _publ_author_email added.
    2005-06-27 BMcM: Removed _list_mandatory yes from _atom_site_aniso_label
-                    in response to cif-developers list discussion 
+                    in response to cif-developers list discussion
    2007-03-27 BMcM: Added _publ_section_related_literature; added
                     new categories (QI, QM, QO) to _publ_requested_category
    2007-12-04 BMcM: Fixed typo in equation appearing in
@@ -701,6 +701,9 @@ data_on_this_dictionary
                         _citation_id; _citation_publisher;
                         _database_dataset_doi; _publ_author_id_orcid;
                         _publ_contact_author_id_orcid
+   2017-06-30 AV: Maintenance update:
+                  Moved all unlooped instances of _related_function to
+                        a loop structure as required by the ddl.dic
 ;
 
 ###############
@@ -822,8 +825,8 @@ data_atom_site_adp_type
     _name                      '_atom_site_adp_type'
     _category                    atom_site
     _type                        char
-    _related_item              '_atom_site_thermal_displace_type'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function     '_atom_site_thermal_displace_type'  alternate
     _list                        yes
     _list_reference            '_atom_site_label'
     loop_ _enumeration
@@ -851,13 +854,13 @@ data_atom_site_aniso_B_
     _type_conditions             esd
     _list                        yes
     _list_reference            '_atom_site_aniso_label'
-    _related_item              '_atom_site_aniso_U_'
-    _related_function            conversion
+    loop_ _related_item
+          _related_function    '_atom_site_aniso_U_'  conversion
     _units                       A^2^
     _units_detail              'angstroms squared'
     _definition
 ;              These are the standard anisotropic atomic displacement
-               components in angstroms squared which appear in the 
+               components in angstroms squared which appear in the
                structure-factor term
 
                T = exp{-(1/4) sum~i~ [ sum~j~ (B^ij^ h~i~ h~j~ a*~i~ a*~j~) ] }
@@ -924,8 +927,8 @@ data_atom_site_aniso_U_
     _type_conditions             esd
     _list                        yes
     _list_reference            '_atom_site_aniso_label'
-    _related_item              '_atom_site_aniso_B_'
-    _related_function            conversion
+    loop_ _related_item
+          _related_function    '_atom_site_aniso_B_'  conversion
     _units                      A^2^
     _units_detail              'angstroms squared'
     _definition
@@ -1057,8 +1060,8 @@ data_atom_site_Cartn_
     _category                    atom_site
     _type                        numb
     _type_conditions             esd
-    _related_item              '_atom_site_fract_'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function      '_atom_site_fract_'  alternate
     _list                        yes
     _list_reference            '_atom_site_label'
     _units                       A
@@ -1155,8 +1158,8 @@ data_atom_site_fract_
     _category                    atom_site
     _type                        numb
     _type_conditions             esd
-    _related_item              '_atom_site_Cartn_'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_atom_site_Cartn_'  alternate
     _list                        yes
     _list_reference            '_atom_site_label'
     _definition
@@ -1259,22 +1262,20 @@ data_atom_site_refinement_flags
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-  loop_
-   _related_item
-   _related_function
-                               '_atom_site_refinement_flags_posn'      replace
+    loop_ _related_item
+          _related_function    '_atom_site_refinement_flags_posn'      replace
                                '_atom_site_refinement_flags_adp'       replace
                                '_atom_site_refinement_flags_occupancy' replace
-   loop_ _enumeration
-         _enumeration_detail   . 'no refinement constraints'
-                               S 'special-position constraint on site'
-                               G 'rigid-group refinement of site'
-                               R 'riding-atom site attached to non-riding atom'
-                               D 'distance or angle restraint on site'
-                               T 'thermal displacement constraints'
-                               U 'Uiso or Uij restraint (rigid bond)'
-                               P 'partial occupancy constraint'
-   _definition
+    loop_ _enumeration
+          _enumeration_detail   . 'no refinement constraints'
+                                S 'special-position constraint on site'
+                                G 'rigid-group refinement of site'
+                                R 'riding-atom site attached to non-riding atom'
+                                D 'distance or angle restraint on site'
+                                T 'thermal displacement constraints'
+                                U 'Uiso or Uij restraint (rigid bond)'
+                                P 'partial occupancy constraint'
+    _definition
 ;           A concatenated series of single-letter codes which indicate the
             refinement restraints or constraints applied to this site.  This
             item should not be used.  It has been replaced by
@@ -1289,8 +1290,8 @@ data_atom_site_refinement_flags_adp
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-    _related_item              '_atom_site_refinement_flags'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_atom_site_refinement_flags'  alternate
     loop_ _enumeration
           _enumeration_detail
              .  'no constraints on atomic displacement parameters'
@@ -1308,8 +1309,8 @@ data_atom_site_refinement_flags_occupancy
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-    _related_item              '_atom_site_refinement_flags'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_atom_site_refinement_flags'  alternate
     loop_ _enumeration
           _enumeration_detail   . 'no constraints on site-occupancy parameters'
                                 P 'site-occupancy constraint'
@@ -1324,8 +1325,8 @@ data_atom_site_refinement_flags_posn
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-    _related_item              '_atom_site_refinement_flags'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_atom_site_refinement_flags'  alternate
     loop_ _enumeration
           _enumeration_detail
                      . 'no constraints on  positional coordinates'
@@ -1368,8 +1369,8 @@ data_atom_site_site_symmetry_multiplicity
     _type                        numb
     _list                        yes
     _list_reference            '_atom_site_label'
-    _related_item              '_atom_site_symmetry_multiplicity'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_atom_site_symmetry_multiplicity'  alternate
     _enumeration_range           1:192
     _definition
 ;              The number of different sites that are generated by the
@@ -1412,8 +1413,8 @@ data_atom_site_symmetry_multiplicity
     _type                        numb
     _list                        yes
     _list_reference            '_atom_site_label'
-    _related_item              '_atom_site_site_symmetry_multiplicity'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_atom_site_site_symmetry_multiplicity'  replace
     _enumeration_range           1:192
     _definition
 ;              The multiplicity of a site due to the space-group symmetry as
@@ -1433,8 +1434,8 @@ data_atom_site_thermal_displace_type
     _name                      '_atom_site_thermal_displace_type'
     _category                    atom_site
     _type                        char
-    _related_item              '_atom_site_adp_type'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_atom_site_adp_type'  replace
     _list                        yes
     _list_reference            '_atom_site_label'
     loop_ _enumeration
@@ -1895,7 +1896,7 @@ data_atom_type_scat_Cromer_Mann_
 ;              The Cromer-Mann scattering-factor coefficients used to calculate
                the scattering factors for this atom type.
 
-               Ref: International Tables for X-ray Crystallography (1974). 
+               Ref: International Tables for X-ray Crystallography (1974).
                      Vol. IV, Table 2.2B
                or   International Tables for Crystallography (2004). Vol. C,
                     Tables 6.1.1.4 and 6.1.1.5
@@ -2290,9 +2291,9 @@ data_audit_contact_author_email
     _definition
 ;              The electronic mail address of the author of the data block
                to whom correspondence should be addressed, in a form
-               recognizable to international networks. The format of e-mail 
-               addresses is given in Section 3.4, Address Specification, of 
-               Internet Message Format, RFC 2822, P. Resnick (Editor), 
+               recognizable to international networks. The format of e-mail
+               addresses is given in Section 3.4, Address Specification, of
+               Internet Message Format, RFC 2822, P. Resnick (Editor),
                Network Standards Group, April 2001.
 ;
 
@@ -2840,7 +2841,7 @@ data_chemical_enantioexcess_bulk
     _units                       .
     _units_detail                dimensionless
     _definition
-;              The enantioexcess of the bulk material from which the 
+;              The enantioexcess of the bulk material from which the
                crystals were grown. A value of 0.0 indicates the
                racemate. A value of 1.0 indicates that the compound
                is enantiomerically pure.
@@ -2851,7 +2852,7 @@ data_chemical_enantioexcess_bulk
 
                Ref: Moss G. P. et al. (1996). Basic Terminology of
                     Stereochemistry. Pure Appl. Chem., 68, 2193-2222.
-                    http://www.chem.qmul.ac.uk/iupac/stereo/index.html 
+                    http://www.chem.qmul.ac.uk/iupac/stereo/index.html
 ;
 
 data_chemical_enantioexcess_bulk_technique
@@ -2877,7 +2878,7 @@ data_chemical_enantioexcess_bulk_technique
                                       the bulk compound in solution.
 ;
                                  other
-;                                     Enantioexcess determined by 
+;                                     Enantioexcess determined by
                                       a technique not included elsewhere
                                       in this list.
 ;
@@ -2904,7 +2905,7 @@ data_chemical_enantioexcess_crystal
 
                Ref: Moss G. P. et al. (1996). Basic Terminology of
                     Stereochemistry. Pure Appl. Chem., 68, 2193-2222.
-                    http://www.chem.qmul.ac.uk/iupac/stereo/index.html 
+                    http://www.chem.qmul.ac.uk/iupac/stereo/index.html
 ;
 
 
@@ -2925,7 +2926,7 @@ data_chemical_enantioexcess_crystal_technique
                                       the crystal taken into solution.
 ;
                                  other
-;                                     Enantioexcess determined by 
+;                                     Enantioexcess determined by
                                       a technique not included elsewhere
                                       in this list.
 ;
@@ -2944,8 +2945,8 @@ data_chemical_identifier_inchi
                                  naphthalene
     _definition
 ;              The IUPAC International Chemical Identifier (InChI) is
-               a textual identifier  for chemical substances, designed 
-               to provide a standard and human-readable way to 
+               a textual identifier  for chemical substances, designed
+               to provide a standard and human-readable way to
                encode molecular information and to facilitate the
                search for such information in databases and on the
                web.
@@ -2997,8 +2998,8 @@ data_chemical_melting_point_
                                '_chemical_melting_point_lt'
     _category                    chemical
     _type                        numb
-    _related_item              '_chemical_melting_point'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_chemical_melting_point'  alternate
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
@@ -3147,8 +3148,8 @@ data_chemical_temperature_decomposition_
     _enumeration_range           0.0:
     _units                      K
     _units_detail               kelvin
-    _related_item               '_chemical_temperature_decomposition'
-    _related_function           alternate
+    loop_  _related_item
+           _related_function   '_chemical_temperature_decomposition' alternate
     _example                    350
     _definition
 ;              A temperature in kelvins below which (*_lt) or above which
@@ -3180,8 +3181,8 @@ data_chemical_temperature_sublimation_
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
-    _related_item              '_chemical_temperature_sublimation'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function      '_chemical_temperature_sublimation' alternate
     _example                     350
     _definition
 ;             A temperature in kelvins below which (*_lt) or above which
@@ -3502,8 +3503,8 @@ data_chemical_formula_analytical
     _example                    'Fe2.45(2)  Ni1.60(3)  S4'
     _definition
 ;              Formula determined by standard chemical analysis including trace
-               elements. See the _chemical_formula_[] category description for 
-               rules for writing chemical formulae. Parentheses are used only 
+               elements. See the _chemical_formula_[] category description for
+               rules for writing chemical formulae. Parentheses are used only
                for standard uncertainties (e.s.d.'s).
 ;
 
@@ -3534,8 +3535,8 @@ data_chemical_formula_moiety
                                 "(Cd 2+)3, (C6 N6 Cr 3-)2, 2(H2 O)"
     _definition
 ;              Formula with each discrete bonded residue or ion shown as a
-               separate moiety. See the _chemical_formula_[] category 
-               description for rules for writing chemical formulae. In addition 
+               separate moiety. See the _chemical_formula_[] category
+               description for rules for writing chemical formulae. In addition
                to the general formulae requirements, the following rules apply:
                   (1) Moieties are separated by commas ','.
                   (2) The order of elements within a moiety follows general rule
@@ -3556,9 +3557,9 @@ data_chemical_formula_structural
     loop_ _example              'Ca ((Cl O3)2 O)2 (H2 O)6'
                                 '(Pt (N H3)2 (C5 H7 N3 O)2) (Cl O4)2'
     _definition
-;              See the _chemical_formula_[] category description for the rules 
-               for writing chemical formulae for inorganics, organometallics, 
-               metal complexes etc., in which  bonded groups are preserved 
+;              See the _chemical_formula_[] category description for the rules
+               for writing chemical formulae for inorganics, organometallics,
+               metal complexes etc., in which  bonded groups are preserved
                as discrete entities within parentheses, with post-multipliers
                as required. The order of the elements should give as much
                information as possible about the chemical structure.
@@ -3575,11 +3576,11 @@ data_chemical_formula_sum
     _type                        char
     loop_ _example              'C18 H19 N7 O8 S'
     _definition
-;              See the _chemical_formula_[] category description for the rules 
-               for writing chemical formulae in which all discrete bonded 
-               residues and ions are summed over the constituent elements, 
-               following the ordering given in general rule (5) in the 
-               _chemical_formula_[] category description. Parentheses are not 
+;              See the _chemical_formula_[] category description for the rules
+               for writing chemical formulae in which all discrete bonded
+               residues and ions are summed over the constituent elements,
+               following the ordering given in general rule (5) in the
+               _chemical_formula_[] category description. Parentheses are not
                normally used.
 ;
 
@@ -4412,8 +4413,8 @@ data_diffrn_ambient_pressure_
                                '_diffrn_ambient_pressure_lt'
     _category                    diffrn
     _type                        numb
-    _related_item              '_diffrn_ambient_pressure'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_ambient_pressure'  alternate
     _enumeration_range           0.0:
     _units                       kPa
     _units_detail             'kilopascals'
@@ -4444,8 +4445,8 @@ data_diffrn_ambient_temperature_
                                '_diffrn_ambient_temperature_lt'
     _category                    diffrn
     _type                        numb
-    _related_item              '_diffrn_ambient_temperature'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_ambient_temperature'  alternate
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
@@ -4530,7 +4531,7 @@ data_diffrn_attenuator_[]
 ;
       loop_
         _diffrn_attenuator_code
-        _diffrn_attenuator_scale       
+        _diffrn_attenuator_scale
             0         1.00
             1        16.97
             2        33.89
@@ -4611,8 +4612,8 @@ data_diffrn_detector
     _name                      '_diffrn_detector'
     _category                    diffrn_detector
     _type                        char
-    _related_item              '_diffrn_radiation_detector'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_radiation_detector'  alternate
     loop_
     _example                   'photographic film'
                                'scintillation counter'
@@ -4644,8 +4645,8 @@ data_diffrn_detector_details
 data_diffrn_detector_dtime
     _name                      '_diffrn_detector_dtime'
     _category                    diffrn_detector
-    _related_item              '_diffrn_radiation_detector_dtime'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_radiation_detector_dtime'  alternate
     _type                        numb
     _enumeration_range           0.0:
     _definition
@@ -4665,8 +4666,8 @@ data_diffrn_radiation_detector
     _name                      '_diffrn_radiation_detector'
     _category                    diffrn_detector
     _type                        char
-    _related_item              '_diffrn_detector'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_detector'  replace
     _definition
 ;              The detector used to measure the diffraction intensities.
 ;
@@ -4676,8 +4677,8 @@ data_diffrn_radiation_detector_dtime
     _category                    diffrn_detector
     _type                        numb
     _enumeration_range           0.0:
-    _related_item              '_diffrn_detector_dtime'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_detector_dtime'  replace
     _definition
 ;              The deadtime in microseconds of the detector used to measure
                the diffraction intensities.
@@ -5092,7 +5093,7 @@ data_diffrn_radiation_wavelength
     _name                      '_diffrn_radiation_wavelength'
     _category                    diffrn_radiation_wavelength
     _type                        numb
-    _type_conditions             su        
+    _type_conditions             su
     _list                        both
     _list_reference            '_diffrn_radiation_wavelength_id'
     _enumeration_range           0.0:
@@ -5122,22 +5123,22 @@ data_diffrn_radiation_wavelength_determination
     _list_reference            '_diffrn_radiation_wavelength_id'
     loop_ _enumeration
           _enumeration_detail
-                                 fundamental           
+                                 fundamental
 ;                                        Wavelength that is a
                                          fundamental property of matter
                                          e.g. MoK\alpha.
 ;
-                                 estimated               
+                                 estimated
 ;                                        Estimated from secondary information
                                          e.g. monochromator angle or time
                                          of flight.
 ;
-                                 refined                 
+                                 refined
 ;                                        Based on refinement using a standard
                                          material with known cell parameters.
 ;
     _definition
-;              The method of determination of incident wavelength. 
+;              The method of determination of incident wavelength.
 ;
 
 data_diffrn_radiation_wavelength_id
@@ -5367,8 +5368,8 @@ data_diffrn_refln_intensity_sigma
     _name                      '_diffrn_refln_intensity_sigma'
     _category                    diffrn_refln
     _type                        numb
-    _related_item              '_diffrn_refln_intensity_u'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_refln_intensity_u'  replace
     _list                        yes
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0:
@@ -5382,8 +5383,8 @@ data_diffrn_refln_intensity_u
     _name                      '_diffrn_refln_intensity_u'
     _category                    diffrn_refln
     _type                        numb
-    _related_item              '_diffrn_refln_intensity_sigma'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_refln_intensity_sigma'  alternate
     _list                        yes
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0:
@@ -5592,8 +5593,8 @@ data_diffrn_reflns_av_sigmaI/netI
     _name                      '_diffrn_reflns_av_sigmaI/netI'
     _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_reflns_av_unetI/netI'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_av_unetI/netI'  replace
     _enumeration_range           0.0:
     _definition
 ;              Measure [sum |u(net I)|/sum|net I|] for all measured reflections.
@@ -5603,8 +5604,8 @@ data_diffrn_reflns_av_unetI/netI
     _name                      '_diffrn_reflns_av_unetI/netI'
     _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_reflns_av_sigmaI/netI'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_av_sigmaI/netI'  alternate
     _enumeration_range           0.0:
     _definition
 ;              Measure [sum |u(net I)|/sum|net I|] for all measured reflections.
@@ -5612,10 +5613,10 @@ data_diffrn_reflns_av_unetI/netI
 
 data_diffrn_reflns_Laue_measured_fraction_full
     _name                      '_diffrn_reflns_Laue_measured_fraction_full'
-    _category                    diffrn_reflns         
+    _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_measured_fraction_theta_full'    
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_measured_fraction_theta_full'  alternate
     _enumeration_range           0.95:1.0
     _definition
 ;              Fraction of Laue unique reflections (symmetry-independent in
@@ -5631,10 +5632,10 @@ data_diffrn_reflns_Laue_measured_fraction_full
 
 data_diffrn_reflns_Laue_measured_fraction_max
     _name                      '_diffrn_reflns_Laue_measured_fraction_max'
-    _category                    diffrn_reflns   
+    _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_measured_fraction_theta_max'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_measured_fraction_theta_max'  alternate
     _enumeration_range           0:1.0
     _definition
 ;              Fraction of Laue unique reflections (symmetry-independent in
@@ -5672,10 +5673,10 @@ data_diffrn_reflns_number
 
 data_diffrn_reflns_point_group_measured_fraction_full
     _name                    '_diffrn_reflns_point_group_measured_fraction_full'
-    _category                    diffrn_reflns         
+    _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_measured_fraction_theta_full'    
-    _related_function            alternate
+    loop_ _related_item
+          _related_function  '_diffrn_measured_fraction_theta_full'  alternate
     _enumeration_range           0.95:1.0
     _definition
 ;              Fraction of crystal point-group unique reflections (i.e.
@@ -5691,10 +5692,10 @@ data_diffrn_reflns_point_group_measured_fraction_full
 
 data_diffrn_reflns_point_group_measured_fraction_max
     _name                    '_diffrn_reflns_point_group_measured_fraction_max'
-    _category                    diffrn_reflns   
+    _category                    diffrn_reflns
     _type                        numb
-    _related_item              '_diffrn_measured_fraction_theta_max'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function  '_diffrn_measured_fraction_theta_max'  alternate
     _enumeration_range           0:1.0
     _definition
 ;              Fraction of crystal point-group unique reflections (i.e.
@@ -5722,8 +5723,8 @@ data_diffrn_reflns_resolution_full
     _enumeration_range           0.0:
     _units                       A^-1^
     _units_detail              'reciprocal angstroms'
-    _related_item              '_diffrn_reflns_theta_full'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_theta_full'  alternate
     _definition
 ;              The resolution in reciprocal angstroms at which the measured
                reflection count is close to complete. The fraction of unique
@@ -5738,8 +5739,8 @@ data_diffrn_reflns_resolution_max
     _enumeration_range           0.0:
     _units                       A^-1^
     _units_detail              'reciprocal angstroms'
-    _related_item              '_diffrn_reflns_theta_max'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_theta_max'  alternate
     _definition
 ;              Maximum resolution in reciprocal angstroms of the measured
                diffraction pattern. The fraction of unique reflections
@@ -5863,8 +5864,8 @@ data_diffrn_reflns_class_av_sgI/I
     _name                      '_diffrn_reflns_class_av_sgI/I'
     _category                    diffrn_reflns_class
     _type                        numb
-    _related_item              '_diffrn_reflns_class_av_uI/I'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_class_av_uI/I'  replace
     _list                        yes
     _list_reference            '_diffrn_reflns_class_code'
     _enumeration_range           0.0:
@@ -5877,8 +5878,8 @@ data_diffrn_reflns_class_av_uI/I
     _name                      '_diffrn_reflns_class_av_uI/I'
     _category                    diffrn_reflns_class
     _type                        numb
-    _related_item              '_diffrn_reflns_class_av_sgI/I'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_reflns_class_av_sgI/I'  alternate
     _list                        yes
     _list_reference            '_diffrn_reflns_class_code'
     _enumeration_range           0.0:
@@ -6047,8 +6048,8 @@ data_diffrn_radiation_source
     _name                      '_diffrn_radiation_source'
     _category                    diffrn_source
     _type                        char
-    _related_item              '_diffrn_source'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_source' replace
     _definition
 ;              The source of radiation.
 ;
@@ -6057,8 +6058,8 @@ data_diffrn_source
     _name                      '_diffrn_source'
     _category                    diffrn_source
     _type                        char
-    _related_item              '_diffrn_radiation_source'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_radiation_source'  alternate
     loop_
     _example                   'sealed X-ray tube'
                                'nuclear reactor'
@@ -6263,15 +6264,15 @@ data_diffrn_standards_decay_%
     _type                        numb
     _type_conditions             esd
     _enumeration_range           :100
-    loop_ _example 
+    loop_ _example
           _example_detail
                                  0.5(1)
                                'represents a decay between 0.2% and 0.8%'
-                                 -1(1)     
+                                 -1(1)
 ;                              the change in the standards lies between
                                a decay of 2% and an increase of 4%
 ;
-                                  0.0(2)  
+                                  0.0(2)
 ;                              the change in the standards lies between a
                                decay of 0.6% and an increase of 0.6%.
 ;
@@ -6315,8 +6316,8 @@ data_diffrn_standards_scale_sigma
     _name                      '_diffrn_standards_scale_sigma'
     _category                    diffrn_standards
     _type                        numb
-    _related_item              '_diffrn_standards_scale_u'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_diffrn_standards_scale_u'  replace
     _enumeration_range           0.0:
     _definition
 ;              The standard uncertainty (e.s.d.) of the individual mean
@@ -6327,8 +6328,8 @@ data_diffrn_standards_scale_u
     _name                      '_diffrn_standards_scale_u'
     _category                    diffrn_standards
     _type                        numb
-    _related_item              '_diffrn_standards_scale_sigma'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_diffrn_standards_scale_sigma'  alternate
     _enumeration_range           0.0:
     _definition
 ;              The standard uncertainty of the individual mean
@@ -6450,31 +6451,31 @@ data_exptl_special_details
 
 data_exptl_transmission_factor_max
     _name                      '_exptl_transmission_factor_max'
-    _category                    exptl        
-    _type                        numb        
-    _type_conditions             su        
+    _category                    exptl
+    _type                        numb
+    _type_conditions             su
     _enumeration_range           0.0:1.0
     _definition
 ;              The calculated maximum value of the transmission factor for
                the specimen. Its value does not include the effects of
                absorption in the specimen mount. The presence of this
                item does not imply that the structure factors have been
-               corrected for absorption. The applied correction should be 
+               corrected for absorption. The applied correction should be
                given by _exptl_absorpt_correction_T_max.
 ;
 
 data_exptl_transmission_factor_min
     _name                      '_exptl_transmission_factor_min'
-    _category                    exptl        
-    _type                        numb        
-    _type_conditions             su        
+    _category                    exptl
+    _type                        numb
+    _type_conditions             su
     _enumeration_range           0.0:1.0
     _definition
 ;              The calculated minimum value of the transmission factor for
                the specimen. Its value does not include the effects of
                absorption in the specimen mount. The presence of this
                item does not imply that the structure factors have been
-               corrected for absorption. The applied correction should be 
+               corrected for absorption. The applied correction should be
                given by _exptl_absorpt_correction_T_min.
 ;
 
@@ -6532,11 +6533,10 @@ data_exptl_crystal_colour
     _type                        char
     _list                        both
     _list_reference            '_exptl_crystal_id'
-    loop_
-      _related_item
-      _related_function        '_exptl_crystal_colour_lustre'      alternate
-                               '_exptl_crystal_colour_modifier'    alternate
-                               '_exptl_crystal_colour_primary'     alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_colour_lustre'    alternate
+                               '_exptl_crystal_colour_modifier'  alternate
+                               '_exptl_crystal_colour_primary'   alternate
     _example                   'dark green'
     _definition
 ;              The colour of the crystal.
@@ -6551,8 +6551,8 @@ data_exptl_crystal_colour_lustre
     loop_ _enumeration           metallic
                                  dull
                                  clear
-    _related_item              '_exptl_crystal_colour'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_colour'  alternate
     _definition
 ;             The enumeration list of standardized names developed for the
               International Centre for Diffraction Data.
@@ -6581,8 +6581,8 @@ data_exptl_crystal_colour_modifier
                                  yellowish
                                  greenish
                                  bluish
-    _related_item              '_exptl_crystal_colour'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_colour'  alternate
     _definition
 ;             The enumeration list of standardized names developed for the
               International Centre for Diffraction Data.
@@ -6611,8 +6611,8 @@ data_exptl_crystal_colour_primary
                                  green
                                  blue
                                  violet
-    _related_item              '_exptl_crystal_colour'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_colour'  alternate
     _definition
 ;             The enumeration list of standardized names developed for the
               International Centre for Diffraction Data.
@@ -6662,8 +6662,8 @@ data_exptl_crystal_density_meas_gt
     _enumeration_range           0.0:
     _units                       Mg^-3^
     _units_detail              'megagrams per cubic metre'
-    _related_item              '_exptl_crystal_density_meas'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_density_meas'  alternate
     loop_ _example
           _example_detail
                                  2.5
@@ -6693,8 +6693,8 @@ data_exptl_crystal_density_meas_lt
     _enumeration_range           0.0:
     _units                       Mg^-3^
     _units_detail              'megagrams per cubic metre'
-    _related_item              '_exptl_crystal_density_meas'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_density_meas'  alternate
     loop_ _example
           _example_detail
                                  1.0
@@ -6742,8 +6742,8 @@ data_exptl_crystal_density_meas_temp_gt
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
-    _related_item              '_exptl_crystal_density_meas_temp'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_density_meas_temp'  alternate
     _definition
 ;              Temperature in kelvins above which _exptl_crystal_density_meas
                was determined. _exptl_crystal_density_meas_temp_gt and
@@ -6764,8 +6764,8 @@ data_exptl_crystal_density_meas_temp_lt
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
-    _related_item              '_exptl_crystal_density_meas_temp'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_exptl_crystal_density_meas_temp'  alternate
     loop_ _example
           _example_detail
                                  300
@@ -7300,10 +7300,10 @@ data_geom_bond_distance
 
 data_geom_bond_multiplicity
     _name                      '_geom_bond_multiplicity'
-    _category                    geom_bond        
-    _type                        numb        
-    _list                        yes        
-    _list_reference            '_geom_bond_atom_site_label_'    
+    _category                    geom_bond
+    _type                        numb
+    _list                        yes
+    _list_reference            '_geom_bond_atom_site_label_'
     _enumeration_range           0:
     _enumeration_default         1
     _definition
@@ -7999,8 +7999,8 @@ data_publ_contact_author_email
                                  bm@iucr.org
     _definition
 ;              E-mail address in a form recognizable to international networks.
-               The format of e-mail addresses is given in Section 3.4, Address 
-               Specification, of  Internet Message Format, RFC 2822, P. Resnick 
+               The format of e-mail addresses is given in Section 3.4, Address
+               Specification, of  Internet Message Format, RFC 2822, P. Resnick
                (Editor), Network Standards Group, April 2001.
 ;
 
@@ -8260,10 +8260,10 @@ data_publ_author_email
     loop_ _example               name@host.domain.country
                                  bm@iucr.org
     _definition
-;              The e-mail address of a publication author. If there is more 
+;              The e-mail address of a publication author. If there is more
                than one author, this will be looped with _publ_author_name.
-               The format of e-mail addresses is given in Section 3.4, Address 
-               Specification, of  Internet Message Format, RFC 2822, P. Resnick 
+               The format of e-mail addresses is given in Section 3.4, Address
+               Specification, of  Internet Message Format, RFC 2822, P. Resnick
                (Editor), Network Standards Group, April 2001.
 ;
 
@@ -8823,7 +8823,7 @@ data_refine_ls_F_calc_formula
     _category                    refine
     _type                        char
     _definition
-;              Analytical expression used to calculate the structure factors.  
+;              Analytical expression used to calculate the structure factors.
 ;
 
 data_refine_ls_F_calc_precision
@@ -8876,8 +8876,8 @@ data_refine_ls_goodness_of_fit_gt
     _category                    refine
     _type                        numb
     _type_conditions             esd
-    _related_item              '_refine_ls_goodness_of_fit_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_goodness_of_fit_obs'  alternate
     _enumeration_range           0.0:
     _definition
 ;              The least-squares goodness-of-fit parameter S for
@@ -8910,8 +8910,8 @@ data_refine_ls_goodness_of_fit_obs
     _category                    refine
     _type                        numb
     _type_conditions             esd
-    _related_item              '_refine_ls_goodness_of_fit_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_goodness_of_fit_gt'  replace
     _enumeration_range           0.0:
     _definition
 ;              The least-squares goodness-of-fit parameter S for observed
@@ -8979,7 +8979,7 @@ data_refine_ls_hydrogen_treatment
                                  refU    'refined H-atom U's only'
                                  noref   'no refinement of H-atom parameters'
                                  constr  'H-atom parameters constrained'
-                                 hetero  
+                                 hetero
 ;                                         H-atom parameters constrained for
                                           H on C, all H-atom parameters refined
                                           for H on heteroatoms
@@ -9127,8 +9127,8 @@ data_refine_ls_R_factor_gt
     _name                      '_refine_ls_R_factor_gt'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_R_factor_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_R_factor_obs'  alternate
     _enumeration_range           0.0:
     _definition
 ;              Residual factor for the reflections (with number given by
@@ -9153,8 +9153,8 @@ data_refine_ls_R_factor_obs
     _name                      '_refine_ls_R_factor_obs'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_R_factor_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_R_factor_gt'  replace
     _enumeration_range           0.0:
     _definition
 ;              Residual factor for the reflections classified as 'observed'
@@ -9265,8 +9265,8 @@ data_refine_ls_restrained_S_gt
     _name                      '_refine_ls_restrained_S_gt'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_restrained_S_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_restrained_S_obs'  alternate
     _enumeration_range           0.0:
     _definition
 ;              The least-squares goodness-of-fit parameter S' for
@@ -9307,8 +9307,8 @@ data_refine_ls_restrained_S_obs
     _name                      '_refine_ls_restrained_S_obs'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_restrained_S_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_restrained_S_gt'  replace
     _enumeration_range           0.0:
     _definition
 ;              The least-squares goodness-of-fit parameter S' for observed
@@ -9348,8 +9348,8 @@ data_refine_ls_shift/esd_max
     _name                      '_refine_ls_shift/esd_max'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/su_max'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/su_max'  replace
     _enumeration_range           0.0:
     _definition
 ;              The largest ratio of the final least-squares parameter
@@ -9361,8 +9361,8 @@ data_refine_ls_shift/esd_mean
     _name                      '_refine_ls_shift/esd_mean'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/su_mean'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/su_mean'  replace
     _enumeration_range           0.0:
     _definition
 ;              The average ratio of the final least-squares parameter
@@ -9374,8 +9374,8 @@ data_refine_ls_shift/su_max
     _name                      '_refine_ls_shift/su_max'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/esd_max'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/esd_max'  alternate
     _enumeration_range           0.0:
     _definition
 ;              The largest ratio of the final least-squares parameter
@@ -9386,8 +9386,8 @@ data_refine_ls_shift/su_max_lt
     _name                      '_refine_ls_shift/su_max_lt'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/su_max'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/su_max'  alternate
     _enumeration_range           0.0:
     _definition
 ;              An upper limit for the largest ratio of the final
@@ -9401,8 +9401,8 @@ data_refine_ls_shift/su_mean
     _name                      '_refine_ls_shift/su_mean'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/esd_mean'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/esd_mean'  alternate
     _enumeration_range           0.0:
     _definition
 ;              The average ratio of the final least-squares parameter
@@ -9413,8 +9413,8 @@ data_refine_ls_shift/su_mean_lt
     _name                      '_refine_ls_shift/su_mean_lt'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_shift/su_mean'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_shift/su_mean'  alternate
     _enumeration_range           0.0:
     _definition
 ;              An upper limit for the average ratio of the final
@@ -9499,8 +9499,8 @@ data_refine_ls_wR_factor_gt
     _name                      '_refine_ls_wR_factor_gt'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_wR_factor_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refine_ls_wR_factor_obs'  alternate
     _enumeration_range           0.0:
     _definition
 ;              Weighted residual factors for significantly intense reflections
@@ -9527,8 +9527,8 @@ data_refine_ls_wR_factor_obs
     _name                      '_refine_ls_wR_factor_obs'
     _category                    refine
     _type                        numb
-    _related_item              '_refine_ls_wR_factor_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refine_ls_wR_factor_gt'  replace
     _enumeration_range           0.0:
     _definition
 ;              Weighted residual factors for the reflections classified as
@@ -9950,8 +9950,8 @@ data_refln_include_status
     _name                      '_refln_include_status'
     _category                    refln
     _type                        char
-    _related_item              '_refln_observed_status'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_refln_observed_status'  alternate
     _list                        yes
     _list_reference            '_refln_index_'
     loop_ _enumeration
@@ -10024,8 +10024,8 @@ data_refln_observed_status
     _name                      '_refln_observed_status'
     _category                    refln
     _type                        char
-    _related_item              '_refln_include_status'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_refln_include_status'  replace
     _list                        yes
     _list_reference            '_refln_index_'
     loop_ _enumeration
@@ -10321,8 +10321,8 @@ data_reflns_number_gt
     _name                      '_reflns_number_gt'
     _category                    reflns
     _type                        numb
-    _related_item              '_reflns_number_observed'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_number_observed'  alternate
     _enumeration_range           0:
     _definition
 ;              The number of reflections in the _refln_ list (not the
@@ -10340,8 +10340,8 @@ data_reflns_number_observed
     _name                      '_reflns_number_observed'
     _category                    reflns
     _type                        numb
-    _related_item              '_reflns_number_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_number_gt'  replace
     _enumeration_range           0:
     _definition
 ;              The number of 'observed' reflections in the _refln_ list (not
@@ -10374,8 +10374,8 @@ data_reflns_observed_criterion
     _name                      '_reflns_observed_criterion'
     _category                    reflns
     _type                        char
-    _related_item              '_reflns_threshold_expression'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_threshold_expression'  replace
     _example                    'I>2u(I)'
     _definition
 ;              The criterion used to classify a reflection as 'observed'. This
@@ -10398,8 +10398,8 @@ data_reflns_threshold_expression
     _name                      '_reflns_threshold_expression'
     _category                    reflns
     _type                        char
-    _related_item              '_reflns_observed_criterion'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_observed_criterion'  alternate
     _example                    'I>2u(I)'
     _definition
 ;              The threshold, usually based on multiples of u(I), u(F^2^)
@@ -10444,7 +10444,7 @@ data_reflns_class_code
     _category                    reflns_class
     _type                        char
     _list                        yes
-    loop_ _list_link_child     '_refln_class_code' 
+    loop_ _list_link_child     '_refln_class_code'
                                '_refine_ls_class_code'
     loop_ _example               '1'
                                  'm1'
@@ -10767,8 +10767,8 @@ data_reflns_shell_meanI_over_sigI_all
     _name                      '_reflns_shell_meanI_over_sigI_all'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_meanI_over_uI_all'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_meanI_over_uI_all'  replace
     _list                        yes
     _definition
 ;              The ratio of the mean of the intensities of all reflections
@@ -10780,8 +10780,8 @@ data_reflns_shell_meanI_over_sigI_gt
     _name                      '_reflns_shell_meanI_over_sigI_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_meanI_over_uI_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_meanI_over_uI_gt'  replace
     _list                        yes
     _definition
 ;              The ratio of the mean of the intensities of the significantly
@@ -10795,8 +10795,8 @@ data_reflns_shell_meanI_over_sigI_obs
     _name                      '_reflns_shell_meanI_over_sigI_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_meanI_over_sigI_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_meanI_over_sigI_gt'  replace
     _list                        yes
     _definition
 ;              The ratio of the mean of the intensities of the reflections
@@ -10810,8 +10810,8 @@ data_reflns_shell_meanI_over_uI_all
     _name                      '_reflns_shell_meanI_over_uI_all'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_meanI_over_sigI_all'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_meanI_over_sigI_all'  alternate
     _list                        yes
     _definition
 ;              The ratio of the mean of the intensities of all reflections
@@ -10851,8 +10851,8 @@ data_reflns_shell_number_measured_gt
     _name                      '_reflns_shell_number_measured_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_number_measured_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_number_measured_obs'  alternate
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -10865,8 +10865,8 @@ data_reflns_shell_number_measured_obs
     _name                      '_reflns_shell_number_measured_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_number_measured_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_number_measured_gt'  replace
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -10902,8 +10902,8 @@ data_reflns_shell_number_unique_gt
     _name                      '_reflns_shell_number_unique_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_number_unique_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_number_unique_obs'  alternate
     _list                        yes
     _enumeration_range           0:
     _definition
@@ -10917,8 +10917,8 @@ data_reflns_shell_number_unique_obs
     _name                      '_reflns_shell_number_unique_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_number_unique_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_number_unique_gt'  replace
     _list                        yes
     _enumeration_range           0:
     _definition
@@ -10944,8 +10944,8 @@ data_reflns_shell_percent_possible_gt
     _name                      '_reflns_shell_percent_possible_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_percent_possible_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_percent_possible_obs'  alternate
     _list                        yes
     _enumeration_range           0.0:100.0
     _definition
@@ -10959,8 +10959,8 @@ data_reflns_shell_percent_possible_obs
     _name                      '_reflns_shell_percent_possible_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_percent_possible_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_percent_possible_gt'  replace
     _list                        yes
     _enumeration_range           0.0:100.0
     _definition
@@ -10995,8 +10995,8 @@ data_reflns_shell_Rmerge_F_gt
     _name                      '_reflns_shell_Rmerge_F_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_Rmerge_F_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_Rmerge_F_obs'  alternate
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -11019,8 +11019,8 @@ data_reflns_shell_Rmerge_F_obs
     _name                      '_reflns_shell_Rmerge_F_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_Rmerge_F_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_Rmerge_F_gt' replace
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -11064,8 +11064,8 @@ data_reflns_shell_Rmerge_I_gt
     _name                      '_reflns_shell_Rmerge_I_gt'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_Rmerge_I_obs'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_reflns_shell_Rmerge_I_obs'  alternate
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -11088,8 +11088,8 @@ data_reflns_shell_Rmerge_I_obs
     _name                      '_reflns_shell_Rmerge_I_obs'
     _category                    reflns_shell
     _type                        numb
-    _related_item              '_reflns_shell_Rmerge_I_gt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_reflns_shell_Rmerge_I_gt'  replace
     _list                        yes
     _enumeration_range           0.0:
     _definition
@@ -11160,8 +11160,8 @@ data_space_group_crystal_system
     _type                       char
     _list                       both
     _list_reference            '_space_group_id'
-    _related_item              '_symmetry_cell_setting'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_symmetry_cell_setting'  alternate
     loop_ _enumeration           triclinic
                                  monoclinic
                                  orthorhombic
@@ -11193,8 +11193,8 @@ data_space_group_IT_number
     _type                        numb
     _list                        both
     _list_reference            '_space_group_id'
-    _related_item              '_symmetry_Int_Tables_number'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_symmetry_Int_Tables_number'  alternate
     _enumeration_range           1:230
     _definition
 ;              The number as assigned in International Tables for
@@ -11211,8 +11211,8 @@ data_space_group_name_H-M_alt
     _type                        char
     _list                        both
     _list_reference            '_space_group_id'
-    _related_item              '_symmetry_space_group_name_H-M'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_symmetry_space_group_name_H-M'  alternate
     loop_ _example
           _example_detail
 ;                                loop_
@@ -11258,8 +11258,8 @@ data_space_group_name_Hall
     _type                        char
     _list                        both
     _list_reference            '_space_group_id'
-    _related_item              '_symmetry_space_group_name_Hall'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_symmetry_space_group_name_Hall'  alternate
     loop_ _example
           _example_detail      'P 2c -2ac'            'equivalent to Pca21'
                                '-I 4bd 2ab 3'         'equivalent to Ia-3d'
@@ -11316,8 +11316,8 @@ data_space_group_symop_id
     _list                        yes
     _list_mandatory              yes
     _enumeration_default         1
-    _related_item              '_symmetry_equiv_pos_site_id'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function      '_symmetry_equiv_pos_site_id'  alternate
     _definition
 ;              An arbitrary identifier that uniquely labels each symmetry
                operation in the list.
@@ -11326,7 +11326,7 @@ data_space_group_symop_id
                operation should have _space_group_symop_id or
                _symmetry_equiv_pos_site_id set to 1, and
                _space_group_symop_operation_xyz or
-               _symmetry_equiv_pos_as_xyz set to x,y,z; 
+               _symmetry_equiv_pos_as_xyz set to x,y,z;
                i.e. the operation labelled 1 should be the identity
                operation.
 ;
@@ -11339,8 +11339,8 @@ data_space_group_symop_operation_xyz
     _list                        both
     _list_reference            '_space_group_symop_id'
     _enumeration_default       'x,y,z'
-    _related_item              '_symmetry_equiv_pos_as_xyz'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_symmetry_equiv_pos_as_xyz'  alternate
     loop_ _example
     _example_detail            'x,1/2-y,1/2+z'
 ;                                glide reflection through the plane (x,1/4,z),
@@ -11365,8 +11365,8 @@ data_space_group_symop_operation_xyz
                 all primitive translations of the space group. Such
                 representatives are to be found as the coordinates of
                 the general-equivalent position in International Tables for
-                Crystallography Vol. A (2002), to which it is necessary to 
-                add any centring translations shown above the 
+                Crystallography Vol. A (2002), to which it is necessary to
+                add any centring translations shown above the
                 general-equivalent position.
 
                 That is to say, it is necessary to list explicitly all the
@@ -11377,7 +11377,7 @@ data_space_group_symop_operation_xyz
                operation should have _space_group_symop_id or
                _symmetry_equiv_pos_site_id set to 1, and
                _space_group_symop_operation_xyz or
-               _symmetry_equiv_pos_as_xyz set to x,y,z; 
+               _symmetry_equiv_pos_as_xyz set to x,y,z;
                i.e. the operation labelled 1 should be the identity
                operation.
 ;
@@ -11434,8 +11434,8 @@ data_symmetry_cell_setting
                                  trigonal
                                  hexagonal
                                  cubic
-    _related_item              '_space_group_crystal_system'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_crystal_system'  replace
     _definition
 ;              The cell settings for this space-group symmetry.
 ;
@@ -11445,20 +11445,19 @@ data_symmetry_Int_Tables_number
     _category                    symmetry
     _type                        numb
     _enumeration_range           1:230
-    _related_item              '_space_group_IT_number'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_IT_number'  replace
     _definition
 ;              Space-group number from International Tables for Crystallography
                Vol. A (2002).
 ;
 
-
 data_symmetry_space_group_name_H-M
     _name                      '_symmetry_space_group_name_H-M'
     _category                    symmetry
     _type                        char
-    _related_item              '_space_group_name_H-M_alt'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_name_H-M_alt'  replace
     loop_ _example              'P 1 21/m 1'
                                 'P 2/n 2/n 2/n (origin at -1)'
                                 'R -3 2/m'
@@ -11480,8 +11479,8 @@ data_symmetry_space_group_name_Hall
     _name                      '_symmetry_space_group_name_Hall'
     _category                    symmetry
     _type                        char
-    _related_item              '_space_group_name_Hall'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_name_Hall'  replace
     loop_ _example             '-P 2ac 2n'
                                '-R 3 2"'
                                'P 61 2 2 (0 0 -1)'
@@ -11546,8 +11545,8 @@ data_symmetry_equiv_pos_as_xyz
     _list                        both
     _enumeration_default         x,y,z
     _example                     -y+x,-y,1/3+z
-    _related_item              '_space_group_symop_operation_xyz'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_symop_operation_xyz'  replace
     _definition
 ;              Symmetry-equivalent position in the 'xyz' representation. Except
                for the space group P1, these data will be repeated in a loop.
@@ -11560,7 +11559,7 @@ data_symmetry_equiv_pos_as_xyz
                operation should have _space_group_symop_id or
                _symmetry_equiv_pos_site_id set to 1, and
                _space_group_symop_operation_xyz or
-               _symmetry_equiv_pos_as_xyz set to x,y,z; 
+               _symmetry_equiv_pos_as_xyz set to x,y,z;
                i.e. the operation labelled 1 should be the identity
                operation.
 ;
@@ -11572,8 +11571,8 @@ data_symmetry_equiv_pos_site_id
     _list                        yes
     _list_reference            '_symmetry_equiv_pos_as_xyz'
     _enumeration_default         1
-    _related_item              '_space_group_symop_id'
-    _related_function            replace
+    loop_ _related_item
+          _related_function    '_space_group_symop_id'  replace
     _definition
 ;              A code identifying each entry in the _symmetry_equiv_pos_as_xyz
                list. It is normally the sequence number of the entry in that
@@ -11584,7 +11583,7 @@ data_symmetry_equiv_pos_site_id
                operation should have _space_group_symop_id or
                _symmetry_equiv_pos_site_id set to 1, and
                _space_group_symop_operation_xyz or
-               _symmetry_equiv_pos_as_xyz set to x,y,z; 
+               _symmetry_equiv_pos_as_xyz set to x,y,z;
                i.e. the operation labelled 1 should be the identity
                operation.
 ;
