@@ -8,7 +8,7 @@
 data_on_this_dictionary
 
     _dictionary_name            ddl_core.dic
-    _dictionary_version         1.4.1
+    _dictionary_version         1.4.2
     _dictionary_update          2005-06-29
     _dictionary_history
 ;
@@ -39,10 +39,12 @@ data_on_this_dictionary
               removed, "_enumeration_default none" added to definition of
               _type_conditions and "_enumeration_default .*" to definition
               of _type_construct. BMcM
-  2005-06-20  Minor corrections to reflect proof corrections for Chapter 
+  2005-06-20  Minor corrections to reflect proof corrections for Chapter
               4.9 of IT Vol. G. NJA
   2005-06-29  Allow use of 'su' as synonym for 'esd' in _type_conditions
               and describe 'esd' as 'deprecated'. BMcM
+  2017-06-30  Maitenance update: modifying the _enumeration_range to allow
+              values that only contain an upper limit. AV
 ;
 
 
@@ -159,13 +161,15 @@ data_enumeration_range
                sequence (e.g. numbers or alphabetical characters).
                The minimum value 'min' and maximum value 'max' are separated 
                by a colon character. If 'max' is omitted, then the item can
-               have any permitted value greater than or equal to 'min'.
+               have any permitted value greater than or equal to 'min';
+               alternitavely, if 'min' is omitted, then the item can have
+               any permitted value less than or equal to 'max'.
 ;
     _name                      '_enumeration_range'
     _category                    enumeration_range
     _type                        char
-    _type_construct            (_sequence_minimum):((_sequence_maximum)?)
-    loop_ _example                -4:10   a:z    B:R   0:
+    _type_construct            ((_sequence_minimum):((_sequence_maximum)?))|(:(_sequence_maximum))
+    loop_ _example                -4:10   a:z    B:R   0:   :100
 
 
 data_example
