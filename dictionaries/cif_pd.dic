@@ -13,8 +13,8 @@
 data_on_this_dictionary
 
     _dictionary_name            cif_pd.dic
-    _dictionary_version         1.0.1
-    _dictionary_update          2005-06-14
+    _dictionary_version         1.0.2
+    _dictionary_update          2017-06-30
     _dictionary_history
 ;
   1991-08-28  Initial definitions                                  B.H. Toby
@@ -97,12 +97,15 @@ data_on_this_dictionary
                                                                    B. McMahon
   1997-10-29  Release version 1.0                                  B. McMahon
   2005-01-07  NJA: minor corrections to hyphenation, spelling and punctuation
-                   pd_data_[pd]: Example 3, second loop _pd_calc_2theta_scan 
+                   pd_data_[pd]: Example 3, second loop _pd_calc_2theta_scan
                    changed to _pd_proc_2theta_corrected
                    _pd_instr_cons_illum_len: definition rephrased
                    _pd_phase_[pd]: first sentence of definition rephrased
                    _pd_proc_ls_background_function: second paragraph of
                    definition rephrased
+  2017-06-30  Maintenance update:
+                  Moved all unlooped instances of _related_function to
+                  a loop structure as required by the ddl.dic.     A. Vaitkus
 ;
 
 #......................... Block/Data set names
@@ -118,14 +121,14 @@ data_pd_block_[pd]
                and _pd_phase_block_id).
 
                Note that a data block may contain only a single diffraction
-               data set or information about a single crystalline phase. 
-               However, a single diffraction measurement may yield structural 
-               information on more than one phase, or a single structure 
-               determination may use more than one data set. Alternatively, 
-               results from a single data set, such as calibration parameters 
-               from measurements of a standard, may be used for many subsequent 
-               analyses. Through use of the ID code, a reference made between 
-               data sets may be preserved when the file is exported from the 
+               data set or information about a single crystalline phase.
+               However, a single diffraction measurement may yield structural
+               information on more than one phase, or a single structure
+               determination may use more than one data set. Alternatively,
+               results from a single data set, such as calibration parameters
+               from measurements of a standard, may be used for many subsequent
+               analyses. Through use of the ID code, a reference made between
+               data sets may be preserved when the file is exported from the
                laboratory from which the CIF originated.
 
                The ID code assigned to each data block should be unique with
@@ -258,7 +261,7 @@ data_pd_meas_[pd]
 #----------------------------------------------------------------------------
     _definition
 ;              This section contains the measured diffractogram and information
-               about the conditions used for the measurement of the diffraction 
+               about the conditions used for the measurement of the diffraction
                data set, prior to processing and application of correction
                terms. While additional information may be added to the CIF
                as data are processed and transported between laboratories
@@ -371,8 +374,8 @@ data_pd_meas_counts_
                    referred to as the instrument background;
                  _pd_meas_counts_container, the specimen container or
                    mounting without a specimen, includes background;
-                 _pd_meas_counts_monitor, counts measured by an 
-                   incident-beam monitor to calibrate the flux on the 
+                 _pd_meas_counts_monitor, counts measured by an
+                   incident-beam monitor to calibrate the flux on the
                    specimen.
 
                Corrections for background, detector dead time etc.
@@ -691,7 +694,7 @@ data_pd_calib_[pd]
     ;
 ;
 ;
-    Example 2 - 
+    Example 2 -
                 2\q~actual~ = 2\q~setting~ + arctan( cos(P~1~) / {1/[P~0~
                   (CC - CH~0~ - P~2~ CC^2^)] - sin(P~1~)} ).
 
@@ -707,13 +710,13 @@ data_pd_calib_[pd]
 ;
 #----------------------------------------------------------------------------
     _definition
-;              This section defines the parameters used for the calibration 
-               of the instrument that are used directly or indirectly in the 
-               interpretation of this data set. The information in this 
-               section of the CIF should generally be written when the 
-               intensities are first measured, but from then on should remain 
-               unchanged. Loops may be used for calibration information that 
-               differs by detector channel. The _pd_calibration_ items, 
+;              This section defines the parameters used for the calibration
+               of the instrument that are used directly or indirectly in the
+               interpretation of this data set. The information in this
+               section of the CIF should generally be written when the
+               intensities are first measured, but from then on should remain
+               unchanged. Loops may be used for calibration information that
+               differs by detector channel. The _pd_calibration_ items,
                however, are never looped.
 ;
 
@@ -870,8 +873,8 @@ data_pd_spec_[pd]
 #----------------------------------------------------------------------------
     _definition
 ;              This section contains information about the specimen used
-               for measurement of the diffraction data set. Note that 
-               information about the sample (the batch of material from which 
+               for measurement of the diffraction data set. Note that
+               information about the sample (the batch of material from which
                the specimen was obtained) is specified in _pd_prep_.
 ;
 
@@ -1023,10 +1026,10 @@ data_pd_instr_[pd]
                For data sets measured with partially monochromatized radiation,
                for example, where both K\a~1~ and K\a~2~ are present, it is
                important that all wavelengths present are included in a
-               loop_ using _diffrn_radiation_wavelength to define the 
-               wavelength and _diffrn_radiation_wavelength_wt to define the 
-               relative intensity of that wavelength. It is required that 
-               _diffrn_radiation_wavelength_id also be present in the 
+               loop_ using _diffrn_radiation_wavelength to define the
+               wavelength and _diffrn_radiation_wavelength_wt to define the
+               relative intensity of that wavelength. It is required that
+               _diffrn_radiation_wavelength_id also be present in the
                wavelength loop. It may also be useful to
                create a "dummy" ID to use for labelling
                peaks/reflections where the K\a~1~ and K\a~2~ wavelengths are
@@ -1111,7 +1114,7 @@ data_pd_instr_cons_illum_len
                adjustment of the divergence slits (sometimes known
                as \q-compensated slits).
                Use _pd_instr_var_illum_len for instruments where
-               the illuminated length of the specimen has been 
+               the illuminated length of the specimen has been
                characterized as a function of 2\q, most commonly true
                with a fixed divergence slit.
 ;
@@ -1144,9 +1147,9 @@ data_pd_instr_dist_
                  *_spec/detc, the distance from the specimen to the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and *_anal/detc 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and *_anal/detc
                if there is no analyser in use.
 ;
 
@@ -1183,9 +1186,9 @@ data_pd_instr_divg_ax_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and *_anal/detc 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and *_anal/detc
                if there is no analyser in use.
 ;
 
@@ -1221,9 +1224,9 @@ data_pd_instr_divg_eq_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and *_anal/detc 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and *_anal/detc
                if there is no analyser in use.
 ;
 
@@ -1282,7 +1285,7 @@ data_pd_instr_monochr_
                planes in the specimen and monochromator will be parallel
                when 2\q~monochromator~ is equal to 2\q~specimen~.
                For further discussion see R. Jenkins & R. Snyder (1996).
-               Introduction to X-ray Powder Diffraction, 
+               Introduction to X-ray Powder Diffraction,
                pp. 164-165. New York: Wiley.
 ;
 
@@ -1318,9 +1321,9 @@ data_pd_instr_slit_ax_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and *_anal/detc 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and *_anal/detc
                if there is no analyser in use.
 ;
 
@@ -1355,9 +1358,9 @@ data_pd_instr_slit_eq_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and
                *_anal/detc if there is no analyser in use.
 ;
 
@@ -1393,9 +1396,9 @@ data_pd_instr_soller_ax_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and
                *_anal/detc if there is no analyser in use.
 ;
 
@@ -1430,9 +1433,9 @@ data_pd_instr_soller_eq_
                  *_spec/detc, collimation between the specimen and the
                      detector.
 
-               Note that *_src/spec is used in place of *_src/mono and 
-               *_mono/spec if there is no monochromator in use, and 
-               *_spec/detc is used in place of *_spec/anal and 
+               Note that *_src/spec is used in place of *_src/mono and
+               *_mono/spec if there is no monochromator in use, and
+               *_spec/detc is used in place of *_spec/anal and
                *_anal/detc if there is no analyser in use.
 ;
 
@@ -1557,8 +1560,8 @@ data_pd_proc_energy_
                from secondary calibration information (time-of-flight
                and synchrotron data).
                Detection energy in electronvolts selected by the analyser,
-               if not the same as the incident energy (triple-axis or 
-               energy-dispersive data). This may be a single value or may 
+               if not the same as the incident energy (triple-axis or
+               energy-dispersive data). This may be a single value or may
                vary for each data point (triple-axis and time-of-flight data).
 ;
 
@@ -1794,8 +1797,8 @@ data_pd_proc_ls_[pd]
                Note that values in this section refer to full-pattern fitting.
                Use the appropriate items for single-crystal analyses from the
                core CIF dictionary for structure refinements using diffraction
-               intensities estimated from a powder diffractogram by 
-               pattern-decomposition methods. Also note that many entries in 
+               intensities estimated from a powder diffractogram by
+               pattern-decomposition methods. Also note that many entries in
                the core _refine_ls_ entries may also be useful (for example
                _refine_ls_shift/su_*).
 ;
@@ -1809,7 +1812,7 @@ data_pd_proc_ls_background_function
                fit the data set.
 
                For refinements where the background is computed as a
-               function that is fitted to minimize the difference between 
+               function that is fitted to minimize the difference between
                the observed and calculated patterns, it is
                recommended that in addition to a description of the
                function (e.g. Chebychev polynomial), the actual equation(s)
@@ -1857,7 +1860,7 @@ data_pd_proc_ls_pref_orient_corr
                has been used. If a function form is used, it is
                recommended that the actual equation in TeX, or a
                programming language, is used to specify the function as
-               well as a giving a description. Include the value(s) used 
+               well as a giving a description. Include the value(s) used
                for the correction with s.u.'s.
 ;
 
@@ -1932,7 +1935,7 @@ data_pd_proc_ls_profile_function
                fit the data set. If a function form is used, it is
                recommended that the actual equation in TeX, or a
                programming language, is used to specify the function as
-               well as giving a description. Include the values used 
+               well as giving a description. Include the values used
                for the profile-function coefficients and their s.u.'s.
 ;
 
@@ -2420,7 +2423,7 @@ data_pd_char_colour
 ;              The colour of the material used for the measurement.
                To facilitate more standardized use of names, the
                following guidelines for colour naming developed by
-               Peter Bayliss for the International Centre for 
+               Peter Bayliss for the International Centre for
                Diffraction Data (ICDD) should be followed. Note that
                combinations of descriptors are separated by an
                underscore.
@@ -2481,12 +2484,12 @@ data_pd_data_[pd]
       _pd_proc_ls_weight
       _pd_proc_intensity_bkg_calc
       _pd_calc_intensity_total
-    1    240(15)       0.00417     214.5   214.5 
-    2    219(15)       0.00457     214.3   214.2 
-    3    206(14)       0.00485     214.0   214.0 
-    4    212(15)       0.00472     213.8   213.7 
-    5    190(14)       0.00526     213.5   213.5 
-    6    203(14)       0.00493     213.2   213.2 
+    1    240(15)       0.00417     214.5   214.5
+    2    219(15)       0.00457     214.3   214.2
+    3    206(14)       0.00485     214.0   214.0
+    4    212(15)       0.00472     213.8   213.7
+    5    190(14)       0.00526     213.5   213.5
+    6    203(14)       0.00493     213.2   213.2
      # - - - - data truncated for brevity - - - -
 ;
 ;   Example 1 - data set collected for a two-phase sample (Al~2~O~3~/Si)
@@ -2510,14 +2513,14 @@ data_pd_data_[pd]
      loop_
       _pd_calc_point_id
       _pd_calc_intensity_total
-    1   214.5 2   214.2 3   214.0 4   213.7 5   213.5 6   213.2 
+    1   214.5 2   214.2 3   214.0 4   213.7 5   213.5 6   213.2
 
 ;
 ;   Example 2 - the data of Example 1 split into three separate tables.
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ;
-   loop_ 
+   loop_
      _pd_meas_point_id
      _pd_meas_2theta_scan
      _pd_meas_intensity_total
@@ -2526,7 +2529,7 @@ data_pd_data_[pd]
             3  21.4   67
             4  21.6   98
 
-   loop_ 
+   loop_
      _pd_calc_point_id
      _pd_proc_2theta_corrected
      _pd_calc_intensity_total
@@ -2560,8 +2563,8 @@ data_pd_calc_point_id
     _name                      '_pd_calc_point_id'
     _category                    pd_data
     _type                        char
-    _related_item              '_pd_data_point_id'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_pd_data_point_id'  alternate
     _definition
 ;              Arbitrary label identifying a calculated data point. Used to
                identify a specific entry in a list of values forming the
@@ -2583,8 +2586,8 @@ data_pd_meas_point_id
     _name                      '_pd_meas_point_id'
     _category                    pd_data
     _type                        char
-    _related_item              '_pd_data_point_id'
-    _related_function            alternate
+    loop_ _related_item
+          _related_function    '_pd_data_point_id'  alternate
     _definition
 ;              Arbitrary label identifying a measured data point. Used to
                identify a specific entry in a list of measured intensities.
