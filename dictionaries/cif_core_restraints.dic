@@ -99,7 +99,7 @@ data_on_this_dictionary
    2017-06-23  AV: maintenance update. The _restr_equal_angle_class_detail
                data item was renamed to _restr_equal_angle_class_details
                and the _restr_equal_angle_detail data item was renamed to
-               _restr_equal_angle_detail.
+               _restr_equal_angle_details.
 ;
 
 # This dictionary describes 14 restraints some of which are also constraints.
