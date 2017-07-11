@@ -14,7 +14,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_twinning.dic
-    _dictionary_version         1.0
+    _dictionary_version         1.0.0
     _dictionary_update          2014-02-14
     _dictionary_history
 ;

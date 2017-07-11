@@ -109,13 +109,23 @@ data_dictionary_update
 
 data_dictionary_version
     _definition
-;              The dictionary version number. Version numbers cannot decrease
+;              The dictionary version number string of the form
+               <major>.<minor>.<patch> where each part consists of non-negative
+               integers without leading zeros. Version numbers cannot decrease
                with updates. Normally this item is stored in the separate data
                block labelled data_on_this_dictionary.
 ;
     _name                      '_dictionary_version'
     _category                    dictionary
-    _type                        numb
+    _type                        char
+    _type_construct
+                 # ((0)|([1-9][0-9]*))[.]((0)|([1-9][0-9]*))[.]((0)|([1-9][0-9]*))
+                   (_major_version)[.](_minor_version)[.](_patch_version)
+    loop_
+    _example
+    1.0.0
+    0.23.0
+    1.5.16
 
 
 data_enumeration
