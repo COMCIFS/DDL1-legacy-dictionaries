@@ -17,7 +17,7 @@
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
     _dictionary_version         2.4.6
-    _dictionary_update          2017-06-30
+    _dictionary_update          2017-07-14
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
