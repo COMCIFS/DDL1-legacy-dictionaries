@@ -9,7 +9,7 @@ data_on_this_dictionary
 
     _dictionary_name            ddl_core.dic
     _dictionary_version         1.4.2
-    _dictionary_update          2017-07-11
+    _dictionary_update          2017-07-14
     _dictionary_history
 ;
   1991-03-08 "Implementing SMD in STAR: Dictionary Definition Language"
@@ -43,7 +43,7 @@ data_on_this_dictionary
               4.9 of IT Vol. G. NJA
   2005-06-29  Allow use of 'su' as synonym for 'esd' in _type_conditions
               and describe 'esd' as 'deprecated'. BMcM
-  2017-07-11  Maitenance update: updating the _dictionary_version data item.
+  2017-07-14  Maitenance update: updating the _dictionary_version data item.
               The type was changed from 'numb' to 'char', the constuct type
               was added and the definition was updated accordingly. AV
 ;
