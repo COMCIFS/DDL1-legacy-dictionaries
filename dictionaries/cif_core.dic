@@ -17,7 +17,7 @@
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
     _dictionary_version         2.4.6
-    _dictionary_update          2017-06-30
+    _dictionary_update          2017-07-14
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -704,6 +704,11 @@ data_on_this_dictionary
    2017-06-30 AV: Maintenance update:
                   Moved all unlooped instances of _related_function to
                         a loop structure as required by the ddl.dic
+   2017-07-14 AV: Maintenance update:
+                  Declared all of the data items in the SPACE_GROUP category
+                  as strictly unlooped. Removed the _space_group_id and
+                  _space_group_symop_sg_id data items since they make no
+                  sense in the unlooped context.
 ;
 
 ###############
@@ -8255,7 +8260,7 @@ data_publ_author_email
     _name                      '_publ_author_email'
     _category                    publ_author
     _type                        char
-    _list                          both
+    _list                        both
     _list_reference            '_publ_author_name'
     loop_ _example               name@host.domain.country
                                  bm@iucr.org
@@ -11120,7 +11125,6 @@ data_space_group_[]
     _example_detail
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ;
-    _space_group_id                 1
     _space_group_name_H-M_alt       'C 2/c'
     _space_group_IT_number          15
     _space_group_name_Hall          '-C 2yc'
@@ -11132,11 +11136,10 @@ data_space_group_[]
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     _definition
 ;              Contains all the data items that refer to the space group as a
-               whole, such as its name or crystal system. They may be looped,
-               for example, in a list of space groups and their properties.
+               whole, such as its name or crystal system.
 
                Only a subset of the SPACE_GROUP category items appear in the
-               core dictionary.  The remainder are found in the symmetry CIF
+               core dictionary. The remainder are found in the symmetry CIF
                dictionary.
 
                Space-group types are identified by their number as given in
@@ -11153,13 +11156,10 @@ data_space_group_[]
                dictionary.
 ;
 
-
 data_space_group_crystal_system
     _name                      '_space_group_crystal_system'
     _category                   space_group
     _type                       char
-    _list                       both
-    _list_reference            '_space_group_id'
     loop_ _related_item
           _related_function    '_symmetry_cell_setting'  alternate
     loop_ _enumeration           triclinic
@@ -11176,23 +11176,10 @@ data_space_group_crystal_system
                trigonal system.
 ;
 
-data_space_group_id
-    _name                      '_space_group_id'
-    _category                    space_group
-    _type                        char
-    _list                        yes
-    _list_mandatory              yes
-    _list_link_child           '_space_group_symop_sg_id'
-    _definition
-;              This is an identifier needed if _space_group_ items are looped.
-;
-
 data_space_group_IT_number
     _name                      '_space_group_IT_number'
     _category                    space_group
     _type                        numb
-    _list                        both
-    _list_reference            '_space_group_id'
     loop_ _related_item
           _related_function    '_symmetry_Int_Tables_number'  alternate
     _enumeration_range           1:230
@@ -11201,7 +11188,7 @@ data_space_group_IT_number
                Crystallography Vol. A, specifying the proper affine class (i.e.
                the orientation-preserving affine class) of space groups
                (crystallographic space-group type) to which the space group
-               belongs.  This number defines the space-group type but not
+               belongs. This number defines the space-group type but not
                the coordinate system in which it is expressed.
 ;
 
@@ -11209,18 +11196,15 @@ data_space_group_name_H-M_alt
     _name                      '_space_group_name_H-M_alt'
     _category                    space_group
     _type                        char
-    _list                        both
-    _list_reference            '_space_group_id'
     loop_ _related_item
           _related_function    '_symmetry_space_group_name_H-M'  alternate
     loop_ _example
           _example_detail
 ;                                loop_
-                                   _space_group_id
                                    _space_group_name_H-M_alt
-                                    1    'C m c m'
-                                    2    'C 2/c 2/m 21/m'
-                                    3    'A m a m'
+                                   'C m c m'
+                                   'C 2/c 2/m 21/m'
+                                   'A m a m'
 ;
                                'three examples for space group No. 63'
     _definition
@@ -11235,11 +11219,10 @@ data_space_group_name_H-M_alt
 
                Each component of the space-group name is separated by a
                space or an underscore. The use of a space is strongly
-               recommended.  The underscore is only retained because it
-               was used in older files. It should not be
-               used in new CIFs. Subscripts should appear without special
-               symbols. Bars should be given as negative signs before the
-               numbers to which they apply.
+               recommended. The underscore is only retained because it
+               was used in older files. It should not be used in new CIFs.
+               Subscripts should appear without special symbols. Bars should
+               be given as negative signs before the numbers to which they apply.
 
                The commonly used Hermann-Mauguin symbol determines the space-
                group type uniquely but a given space-group type may be
@@ -11256,8 +11239,6 @@ data_space_group_name_Hall
     _name                      '_space_group_name_Hall'
     _category                    space_group
     _type                        char
-    _list                        both
-    _list_reference            '_space_group_id'
     loop_ _related_item
           _related_function    '_symmetry_space_group_name_Hall'  alternate
     loop_ _example
@@ -11335,7 +11316,7 @@ data_space_group_symop_id
 data_space_group_symop_operation_xyz
     _name                      '_space_group_symop_operation_xyz'
     _category                    space_group_symop
-    _type              char
+    _type                        char
     _list                        both
     _list_reference            '_space_group_symop_id'
     _enumeration_default       'x,y,z'
@@ -11380,20 +11361,6 @@ data_space_group_symop_operation_xyz
                _symmetry_equiv_pos_as_xyz set to x,y,z;
                i.e. the operation labelled 1 should be the identity
                operation.
-;
-
-data_space_group_symop_sg_id
-    _name                      '_space_group_symop_sg_id'
-    _category                    space_group_symop
-    _type                        numb
-    _list                        both
-    _list_mandatory              no
-    _list_reference            '_space_group_symop_id'
-    _list_link_parent          '_space_group_id'
-    _definition
-;              This must match a particular value of _space_group_id, allowing
-               the symmetry operation to be identified with a particular space
-               group.
 ;
 
 ##############

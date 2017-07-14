@@ -8,8 +8,8 @@
 data_on_this_dictionary
 
     _dictionary_name            ddl_core.dic
-    _dictionary_version         1.4.2
-    _dictionary_update          2005-06-29
+    _dictionary_version         1.4.3
+    _dictionary_update          2017-07-14
     _dictionary_history
 ;
   1991-03-08 "Implementing SMD in STAR: Dictionary Definition Language"
@@ -43,7 +43,10 @@ data_on_this_dictionary
               4.9 of IT Vol. G. NJA
   2005-06-29  Allow use of 'su' as synonym for 'esd' in _type_conditions
               and describe 'esd' as 'deprecated'. BMcM
-  2017-06-30  Maitenance update: modifying the _enumeration_range to allow
+  2017-07-14  Maitenance update: updating the _dictionary_version data item.
+              The type was changed from 'numb' to 'char', the constuct type
+              was added and the definition was updated accordingly. AV
+  2017-07-14  Maitenance update: modifying the _enumeration_range to allow
               values that only contain an upper limit. AV
 ;
 
@@ -111,13 +114,23 @@ data_dictionary_update
 
 data_dictionary_version
     _definition
-;              The dictionary version number. Version numbers cannot decrease
+;              The dictionary version number string of the form
+               <major>.<minor>.<patch> where each part consists of non-negative
+               integers without leading zeros. Version numbers cannot decrease
                with updates. Normally this item is stored in the separate data
                block labelled data_on_this_dictionary.
 ;
     _name                      '_dictionary_version'
     _category                    dictionary
-    _type                        numb
+    _type                        char
+    _type_construct
+                 # ((0)|([1-9][0-9]*))[.]((0)|([1-9][0-9]*))[.]((0)|([1-9][0-9]*))
+                   (_major_version)[.](_minor_version)[.](_patch_version)
+    loop_
+    _example
+    1.0.0
+    0.23.0
+    1.5.16
 
 
 data_enumeration
