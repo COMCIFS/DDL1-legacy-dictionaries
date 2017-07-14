@@ -707,8 +707,8 @@ data_on_this_dictionary
    2017-07-14 AV: Maintenance update:
                   Declared all of the data items in the SPACE_GROUP category
                   as strictly unlooped. Removed the _space_group_id and
-                  _space_group_symop_sg_id since they make no sense in
-                  the unlooped context.
+                  _space_group_symop_sg_id data items since they make no
+                  sense in the unlooped context.
 ;
 
 ###############
