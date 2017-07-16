@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.4.6
-    _dictionary_update          2017-07-14
+    _dictionary_version         2.4.7
+    _dictionary_update          2017-07-16
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -709,6 +709,11 @@ data_on_this_dictionary
                   as strictly unlooped. Removed the _space_group_id and
                   _space_group_symop_sg_id data items since they make no
                   sense in the unlooped context.
+   2017-07-16 AV: Maintenance update:
+                  Declared all of the data items in the DIFFRN_REFLN category
+                  as strictly unlooped. Removed the _diffrn_refln_crystal_id
+                  and _refln_crystal_id data items since they make no sense
+                  in the unlooped context.
 ;
 
 ###############
@@ -5300,18 +5305,6 @@ data_diffrn_refln_counts_
                total counts (background plus peak).
 ;
 
-data_diffrn_refln_crystal_id
-    _name                      '_diffrn_refln_crystal_id'
-    _category                    diffrn_refln
-    _type                        char
-    _list                        yes
-    _list_reference            '_diffrn_refln_index_'
-    _list_link_parent          '_exptl_crystal_id'
-    _definition
-;              Code identifying each crystal if multiple crystals are used. Is
-               used to link with _exptl_crystal_id in the _exptl_crystal_ list.
-;
-
 data_diffrn_refln_detect_slit_
     loop_ _name                '_diffrn_refln_detect_slit_horiz'
                                '_diffrn_refln_detect_slit_vert'
@@ -6528,16 +6521,14 @@ data_exptl_crystal_[]
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     _definition
 ;              Data items in the EXPTL_CRYSTAL category record details about
-               experimental measurements on the crystal or crystals used,
-               such as shape, size or density.
+               experimental measurements on the crystal used, such as shape,
+               size or density.
 ;
 
 data_exptl_crystal_colour
     _name                      '_exptl_crystal_colour'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     loop_ _related_item
           _related_function    '_exptl_crystal_colour_lustre'    alternate
                                '_exptl_crystal_colour_modifier'  alternate
@@ -6551,8 +6542,6 @@ data_exptl_crystal_colour_lustre
     _name                      '_exptl_crystal_colour_lustre'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     loop_ _enumeration           metallic
                                  dull
                                  clear
@@ -6572,8 +6561,6 @@ data_exptl_crystal_colour_modifier
     _name                      '_exptl_crystal_colour_modifier'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     loop_ _enumeration           light
                                  dark
                                  whitish
@@ -6602,8 +6589,6 @@ data_exptl_crystal_colour_primary
     _name                      '_exptl_crystal_colour_primary'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     loop_ _enumeration           colourless
                                  white
                                  black
@@ -6632,8 +6617,6 @@ data_exptl_crystal_density_diffrn
     _name                      '_exptl_crystal_density_diffrn'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       Mgm^-3^
     _units_detail              'megagrams per cubic metre'
@@ -6647,8 +6630,6 @@ data_exptl_crystal_density_meas
     _category                    exptl_crystal
     _type                        numb
     _type_conditions             esd
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       Mgm^-3^
     _units_detail              'megagrams per cubic metre'
@@ -6662,8 +6643,6 @@ data_exptl_crystal_density_meas_gt
     _name                      '_exptl_crystal_density_meas_gt'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       Mg^-3^
     _units_detail              'megagrams per cubic metre'
@@ -6693,8 +6672,6 @@ data_exptl_crystal_density_meas_lt
     _name                      '_exptl_crystal_density_meas_lt'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       Mg^-3^
     _units_detail              'megagrams per cubic metre'
@@ -6728,8 +6705,6 @@ data_exptl_crystal_density_meas_temp
     _category                    exptl_crystal
     _type                        numb
     _type_conditions             esd
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
@@ -6742,8 +6717,6 @@ data_exptl_crystal_density_meas_temp_gt
     _name                      '_exptl_crystal_density_meas_temp_gt'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
@@ -6764,8 +6737,6 @@ data_exptl_crystal_density_meas_temp_lt
     _name                      '_exptl_crystal_density_meas_temp_lt'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       K
     _units_detail                kelvin
@@ -6792,8 +6763,6 @@ data_exptl_crystal_density_method
     _name                      '_exptl_crystal_density_method'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     loop_ _example             'flotation in aqueous KI'
                                'not measured'
                                'Berman density torsion balance'
@@ -6806,8 +6775,6 @@ data_exptl_crystal_description
     _name                      '_exptl_crystal_description'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _definition
 ;              A description of the quality and habit of the crystal.
                The crystal dimensions should not normally be reported here;
@@ -6820,8 +6787,6 @@ data_exptl_crystal_F_000
     _name                      '_exptl_crystal_F_000'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _definition
 ;              The expression for a structure factor evaluated in the
                zeroth-order case h = k = l = 0, F(000). This may contain
@@ -6845,22 +6810,14 @@ data_exptl_crystal_id
     _name                      '_exptl_crystal_id'
     _category                    exptl_crystal
     _type                        char
-    _list                        yes
-    _list_mandatory              yes
-    loop_ _list_link_child     '_diffrn_refln_crystal_id'
-                               '_refln_crystal_id'
     _definition
-;              Code identifying each crystal if multiple crystals are used. It
-               is used to link with _diffrn_refln_crystal_id in the intensity
-               measurements and with _refln_crystal_id in the _refln_ list.
+;              Code identifying a crystal.
 ;
 
 data_exptl_crystal_preparation
     _name                      '_exptl_crystal_preparation'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _example                   'mounted in an argon-filled quartz capillary'
     _definition
 ;              Details of crystal growth and preparation of the crystal (e.g.
@@ -6871,8 +6828,6 @@ data_exptl_crystal_pressure_history
     _name                      '_exptl_crystal_pressure_history'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _definition
 ;              Relevant details concerning the pressure history of the
                sample.
@@ -6898,8 +6853,6 @@ data_exptl_crystal_size_
                                '_exptl_crystal_size_rad'
     _category                    exptl_crystal
     _type                        numb
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
     _units                       mm
     _units_detail              'millimetres'
@@ -6907,17 +6860,13 @@ data_exptl_crystal_size_
 ;              The maximum, medial and minimum dimensions in millimetres of
                the crystal. If the crystal is a sphere, then the *_rad item is
                its radius. If the crystal is a cylinder, then the *_rad item
-               is its radius and the *_length item is its length. These may
-               appear in a list with _exptl_crystal_id if multiple crystals
-               are used in the experiment.
+               is its radius and the *_length item is its length.
 ;
 
 data_exptl_crystal_thermal_history
     _name                      '_exptl_crystal_thermal_history'
     _category                    exptl_crystal
     _type                        char
-    _list                        both
-    _list_reference            '_exptl_crystal_id'
     _definition
 ;              Relevant details concerning the thermal history of the
                sample.
@@ -9894,18 +9843,6 @@ data_refln_class_code
                are the integer coefficients that, in addition to h,k,l, index
                the corresponding diffraction vector in the basis defined
                for the reciprocal lattice.
-;
-
-data_refln_crystal_id
-    _name                      '_refln_crystal_id'
-    _category                    refln
-    _type                        char
-    _list                        yes
-    _list_link_parent          '_exptl_crystal_id'
-    _list_reference            '_refln_index_'
-    _definition
-;              Code identifying each crystal if multiple crystals are used. Is
-               used to link with _exptl_crystal_id in the _exptl_crystal_ list.
 ;
 
 data_refln_d_spacing
