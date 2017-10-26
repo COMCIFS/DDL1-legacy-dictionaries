@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.4.6
-    _dictionary_update          2017-07-14
+    _dictionary_version         2.5.0
+    _dictionary_update          2017-10-26
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -709,6 +709,13 @@ data_on_this_dictionary
                   as strictly unlooped. Removed the _space_group_id and
                   _space_group_symop_sg_id data items since they make no
                   sense in the unlooped context.
+   2017-10-26 AV: Maintenance update:
+                  Added 'lustrous', 'transparent', 'translucent', 'opaque', '.'
+                  as enumerator values of the _exptl_crystal_colour_lustre data
+                  item and declared '.' as the default value. Added 'pale',
+                  'intense, '.' as enumerator values of the
+                  _exptl_crystal_colour_modifier data item and declared '.' as
+                  the default value.
 ;
 
 ###############
@@ -6554,8 +6561,14 @@ data_exptl_crystal_colour_lustre
     _list                        both
     _list_reference            '_exptl_crystal_id'
     loop_ _enumeration           metallic
+                                 lustrous
+                                 transparent
+                                 translucent
+                                 opaque
                                  dull
                                  clear
+                                 .
+    _enumeration_default         .
     loop_ _related_item
           _related_function    '_exptl_crystal_colour'  alternate
     _definition
@@ -6566,6 +6579,7 @@ data_exptl_crystal_colour_lustre
               _exptl_crystal_colour_primary, as in 'dark-green' or
               'bluish-violet', if necessary combined with
               _exptl_crystal_colour_lustre, as in 'metallic-green'.
+              Note that 'dull' and 'clear' should no longer be used.
 ;
 
 data_exptl_crystal_colour_modifier
@@ -6576,6 +6590,8 @@ data_exptl_crystal_colour_modifier
     _list_reference            '_exptl_crystal_id'
     loop_ _enumeration           light
                                  dark
+                                 pale
+                                 intense
                                  whitish
                                  blackish
                                  grayish
@@ -6586,6 +6602,8 @@ data_exptl_crystal_colour_modifier
                                  yellowish
                                  greenish
                                  bluish
+                                 .
+    _enumeration_default         .
     loop_ _related_item
           _related_function    '_exptl_crystal_colour'  alternate
     _definition
