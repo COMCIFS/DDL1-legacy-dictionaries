@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.0
-    _dictionary_update          2017-10-26
+    _dictionary_version         2.5.1
+    _dictionary_update          2017-12-17
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -716,6 +716,13 @@ data_on_this_dictionary
                   'intense, '.' as enumerator values of the
                   _exptl_crystal_colour_modifier data item and declared '.' as
                   the default value.
+   2017-12-17 AV: Maintenance update:
+                  Changed the _citation_database_id_Medline data from 'numb'
+                  to 'char' and removed the numeric enumeration range from
+                  the definition of this data item.
+                  Changed the enumeration range of the _cell_length_a,
+                  _cell_length_b and _cell_length_c data items
+                  from '0.0:' to '1.0:'.
 ;
 
 ###############
@@ -2503,7 +2510,7 @@ data_cell_length_
     _category                    cell
     _type                        numb
     _type_conditions             esd
-    _enumeration_range           0.0:
+    _enumeration_range           1.0:
     _units                       A
     _units_detail              'angstroms'
     _definition
@@ -3805,10 +3812,9 @@ data_citation_database_id_CSD
 data_citation_database_id_Medline
     _name                      '_citation_database_id_Medline'
     _category                    citation
-    _type                        numb
+    _type                        char
     _list                        yes
     _list_reference            '_citation_id'
-    _enumeration_range           1:
     _example                     89064067
     _definition
 ;              Accession number used by Medline to categorize a specific
