@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.1
-    _dictionary_update          2017-12-17
+    _dictionary_version         2.5.2
+    _dictionary_update          2018-03-04
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -723,6 +723,10 @@ data_on_this_dictionary
                   Changed the enumeration range of the _cell_length_a,
                   _cell_length_b and _cell_length_c data items
                   from '0.0:' to '1.0:'.
+   2018-03-04 AV: Maitenance update:
+                  Removed most of the default enumeration values. This removal
+                  reflects the policy change towards values that are not
+                  explicitly provided.
 ;
 
 ###############
