@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.2
-    _dictionary_update          2018-03-04
+    _dictionary_version         2.5.3
+    _dictionary_update          2018-03-05
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -727,6 +727,9 @@ data_on_this_dictionary
                   Removed most of the default enumeration values. This removal
                   reflects the policy change towards values that are not
                   explicitly provided.
+   2018-03-05 AV: Maitenance update:
+                  Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
+                  as enumerator values of the _diffrn_source_target data item.
 ;
 
 ###############
@@ -6147,7 +6150,8 @@ data_diffrn_source_target
         Cd  In  Sn  Sb  Te  I  Xe  Cs  Ba  La  Ce  Pr  Nd  Pm  Sm
         Eu  Gd  Tb  Dy  Ho  Er  Tm  Yb  Lu  Hf  Ta  W  Re  Os  Ir
         Pt  Au  Hg  Tl  Pb  Bi  Po  At  Rn  Fr  Ra  Ac  Th  Pa  U
-        Np  Pu  Am  Cm  Bk  Cf  Es  Fm  Md  No  Lr
+        Np  Pu  Am  Cm  Bk  Cf  Es  Fm  Md  No  Lr  Rf  Db  Sg  Bh
+        Hs  Mt  Ds  Rg  Cn
     _definition
 ;              The chemical element symbol for the X-ray target
                (usually the anode) used to generate X-rays.
