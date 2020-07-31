@@ -43,10 +43,10 @@ data_on_this_dictionary
               4.9 of IT Vol. G. NJA
   2005-06-29  Allow use of 'su' as synonym for 'esd' in _type_conditions
               and describe 'esd' as 'deprecated'. BMcM
-  2017-07-14  Maitenance update: updating the _dictionary_version data item.
-              The type was changed from 'numb' to 'char', the constuct type
+  2017-07-14  Maintenance update: updating the _dictionary_version data item.
+              The type was changed from 'numb' to 'char', the construct type
               was added and the definition was updated accordingly. AV
-  2017-07-14  Maitenance update: modifying the _enumeration_range to allow
+  2017-07-14  Maintenance update: modifying the _enumeration_range to allow
               values that only contain an upper limit. AV
 ;
 
@@ -175,7 +175,7 @@ data_enumeration_range
                The minimum value 'min' and maximum value 'max' are separated 
                by a colon character. If 'max' is omitted, then the item can
                have any permitted value greater than or equal to 'min';
-               alternitavely, if 'min' is omitted, then the item can have
+               alternatively, if 'min' is omitted, then the item can have
                any permitted value less than or equal to 'max'.
 ;
     _name                      '_enumeration_range'
@@ -263,7 +263,7 @@ data_list_mandatory
     _definition
 ;               Signals whether the defined item must be present in the loop
                 structure containing other items of the designated _category.
-                This property is transferrable to another data item which is
+                This property is transferable to another data item which is
                 identified by _related_item and has _related_function set as
                 'alternate'.
 ;
