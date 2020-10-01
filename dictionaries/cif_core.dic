@@ -16,7 +16,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3
+    _dictionary_version         2.5.3-dev-0
     _dictionary_update          2018-03-05
     _dictionary_history
 ;

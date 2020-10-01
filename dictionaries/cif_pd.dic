@@ -13,7 +13,7 @@
 data_on_this_dictionary
 
     _dictionary_name            cif_pd.dic
-    _dictionary_version         1.0.2
+    _dictionary_version         1.0.2-dev-0
     _dictionary_update          2017-06-30
     _dictionary_history
 ;

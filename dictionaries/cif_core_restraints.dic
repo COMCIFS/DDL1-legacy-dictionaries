@@ -68,7 +68,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core_restraints.dic
-    _dictionary_version         1.0.1
+    _dictionary_version         1.0.1-dev-0
     _dictionary_update          2017-06-23
     _dictionary_history
 ;
