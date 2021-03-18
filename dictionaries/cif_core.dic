@@ -16,7 +16,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-2
+    _dictionary_version         2.5.3-dev-3
     _dictionary_update          2021-03-18
     _dictionary_history
 ;
@@ -734,6 +734,9 @@ data_on_this_dictionary
                   Corrected the misspelt units of measure of
                     the _exptl_crystal_density_meas_lt and
                     _exptl_crystal_density_meas_gt data items.
+                  Added units of measure of the _diffrn_detector_dtime,
+                    _diffrn_radiation_detector_dtime and
+                    _diffrn_radiation_inhomogeneity data items.
                   Homogenised the _units_detail data item values.
 ;
 
@@ -4667,6 +4670,8 @@ data_diffrn_detector_dtime
           _related_function    '_diffrn_radiation_detector_dtime'  alternate
     _type                        numb
     _enumeration_range           0.0:
+    _units                       \ms
+    _units_detail                microsecond
     _definition
 ;              The deadtime in microseconds of the detector used to measure
                the diffraction intensities.
@@ -4695,6 +4700,8 @@ data_diffrn_radiation_detector_dtime
     _category                    diffrn_detector
     _type                        numb
     _enumeration_range           0.0:
+    _units                       \ms
+    _units_detail                microsecond
     loop_ _related_item
           _related_function    '_diffrn_detector_dtime'  replace
     _definition
@@ -4994,6 +5001,8 @@ data_diffrn_radiation_inhomogeneity
     _category                    diffrn_radiation
     _type                        numb
     _enumeration_range           0.0:
+    _units                       mm
+    _units_detail                millimetre
     _definition
 ;              Half-width in millimetres of the incident beam in the
                direction perpendicular to the diffraction plane.
@@ -6136,7 +6145,8 @@ data_diffrn_source_take-off_angle
     _category                    diffrn_source
     _type                        numb
     _enumeration_range           0:90
-    _units                     'degree of arc'
+    _units                       deg
+    _units_detail              'degree of arc'
     _example                     1.53
     _definition
 ;              The complement of the angle in degrees between the normal
