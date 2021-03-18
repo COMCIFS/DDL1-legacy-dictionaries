@@ -16,7 +16,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-3
+    _dictionary_version         2.5.3-dev-4
     _dictionary_update          2021-03-18
     _dictionary_history
 ;
@@ -731,12 +731,17 @@ data_on_this_dictionary
                   Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
                   as enumerator values of the _diffrn_source_target data item.
    2021-03-18 AV: Maintenance update:
-                  Corrected the misspelt units of measure of
+                  Corrected the misspelt units of measurement of
                     the _exptl_crystal_density_meas_lt and
                     _exptl_crystal_density_meas_gt data items.
-                  Added units of measure of the _diffrn_detector_dtime,
-                    _diffrn_radiation_detector_dtime and
-                    _diffrn_radiation_inhomogeneity data items.
+                  Added units of measurement to the definitions of
+                    the _diffrn_detector_dtime, _diffrn_radiation_detector_dtime
+                    and _diffrn_radiation_inhomogeneity data items.
+                  Split the _diffrn_standards_interval_ definition into
+                    two distinct definitions _diffrn_standards_interval_count
+                    and _diffrn_standards_interval_time. Added units of
+                    measurement to the definition of
+                    the _diffrn_standards_interval_time data item.
                   Homogenised the _units_detail data item values.
 ;
 
@@ -6319,15 +6324,26 @@ data_diffrn_standards_decay_%
                0.3% or an enhancement of less than 0.3%.
 ;
 
-data_diffrn_standards_interval_
-    loop_ _name                '_diffrn_standards_interval_count'
-                               '_diffrn_standards_interval_time'
+data_diffrn_standards_interval_count
+    _name                      '_diffrn_standards_interval_count'
     _category                    diffrn_standards
     _type                        numb
     _enumeration_range           0:
     _definition
-;              The number of reflection intensities, or the time in minutes,
-               between the measurement of standard reflection intensities.
+;              The number of reflection intensities between the measurements
+               of standard reflection intensities.
+;
+
+data_diffrn_standards_interval_time
+    _name                      '_diffrn_standards_interval_time'
+    _category                    diffrn_standards
+    _type                        numb
+    _enumeration_range           0:
+    _units                       min
+    _units_detail                minute
+    _definition
+;              The time in minutes between the measurements
+               of standard reflection intensities.
 ;
 
 data_diffrn_standards_number
