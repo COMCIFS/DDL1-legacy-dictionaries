@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-4
-    _dictionary_update          2021-03-18
+    _dictionary_version         2.5.3-dev-5
+    _dictionary_update          2021-03-19
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -4654,7 +4654,7 @@ data_diffrn_detector_area_resol_mean
     _category                    diffrn_detector
     _type                        numb
     _enumeration_range           0.0:
-    _units                       mm^-1^
+    _units                       pixel/mm
     _units_detail              'pixel per millimetre'
     _definition
 ;              The resolution of an area detector, in pixels/mm.
@@ -5489,7 +5489,7 @@ data_diffrn_refln_scan_time_backgd
     _list                        yes
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
-    _units                      sec
+    _units                      s
     _units_detail               second
     _definition
 ;              The time spent measuring each background in seconds.
@@ -6683,7 +6683,7 @@ data_exptl_crystal_density_diffrn
     _list                        both
     _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
+    _units                       Mg/m^3^
     _units_detail              'megagram per metre cubed'
     _definition
 ;              Density values calculated from the crystal cell and contents. The
@@ -6698,7 +6698,7 @@ data_exptl_crystal_density_meas
     _list                        both
     _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
+    _units                       Mg/m^3^
     _units_detail              'megagram per metre cubed'
     _definition
 ;              Density values measured using standard chemical and physical
@@ -6713,7 +6713,7 @@ data_exptl_crystal_density_meas_gt
     _list                        both
     _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
+    _units                       Mg/m^3^
     _units_detail              'megagram per metre cubed'
     loop_ _related_item
           _related_function    '_exptl_crystal_density_meas'  alternate
@@ -6744,7 +6744,7 @@ data_exptl_crystal_density_meas_lt
     _list                        both
     _list_reference            '_exptl_crystal_id'
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
+    _units                       Mg/m^3^
     _units_detail              'megagram per metre cubed'
     loop_ _related_item
           _related_function    '_exptl_crystal_density_meas'  alternate
@@ -8689,7 +8689,7 @@ data_refine_diff_density_
     _category                    refine
     _type                        numb
     _type_conditions             esd
-    _units                       e_A^-3^
+    _units                       e/A^3^
     _units_detail              'electron per angstrom cubed'
     _definition
 ;              The largest and smallest values and the root-mean-square
