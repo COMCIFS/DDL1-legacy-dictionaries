@@ -8,8 +8,8 @@
 data_on_this_dictionary
 
     _dictionary_name            ddl_core.dic
-    _dictionary_version         1.4.3-dev-0
-    _dictionary_update          2017-07-14
+    _dictionary_version         1.4.3-dev-1
+    _dictionary_update          2021-03-19
     _dictionary_history
 ;
   1991-03-08 "Implementing SMD in STAR: Dictionary Definition Language"
@@ -43,11 +43,13 @@ data_on_this_dictionary
               4.9 of IT Vol. G. NJA
   2005-06-29  Allow use of 'su' as synonym for 'esd' in _type_conditions
               and describe 'esd' as 'deprecated'. BMcM
-  2017-07-14  Maintenance update: updating the _dictionary_version data item.
+  2017-07-14  Maintenance update: updated the _dictionary_version data item.
               The type was changed from 'numb' to 'char', the construct type
               was added and the definition was updated accordingly. AV
-  2017-07-14  Maintenance update: modifying the _enumeration_range to allow
+  2017-07-14  Maintenance update: modified the _enumeration_range to allow
               values that only contain an upper limit. AV
+  2021-03-19  Maintenance update: added several more examples to
+              the _unit data item definition. AV
 ;
 
 
@@ -469,15 +471,24 @@ data_units
     _category                    units
     _type                        char
     loop_ _example
-          _example_detail         K    'kelvins'
-                                  C    'degrees Celsius'
-                                  rad  'radians'
-                                  e    'electrons'
-                                  V    'volts'
-                                  Dal  'daltons'
-                                  m    'metres'
-                                  kg   'kilograms'
-                                  s    'seconds'
+          _example_detail
+                K    'kelvin'
+                C    'degree Celsius'
+                rad  'radian'
+                deg  'degree of arc'
+                e    'electron'
+                V    'volt'
+                Da   'dalton'
+                m    'metre'
+                A      'angstrom'
+                A^2^   'angstrom squared'
+                A^3^   'angstrom cubed'
+                A^-1^  'reciprocal angstrom'
+                A^-2^  'reciprocal angstrom squared'
+                kg     'kilogram'
+                s      'second'
+                Mg/m^3^ 'megagram per metre cubed'
+                e/A^3^  'electron per angstrom cubed'
 
 data_units_detail
     _definition
