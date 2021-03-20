@@ -68,8 +68,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core_restraints.dic
-    _dictionary_version         1.0.1-dev-0
-    _dictionary_update          2017-06-23
+    _dictionary_version         1.0.1-dev-1
+    _dictionary_update          2021-03-21
     _dictionary_history
 ;
    2009-18-10  Following consultations between the user community and
@@ -100,6 +100,10 @@ data_on_this_dictionary
                data item was renamed to _restr_equal_angle_class_details
                and the _restr_equal_angle_detail data item was renamed to
                _restr_equal_angle_details.
+
+   2021-03-21  AV: maintenance update.
+               Homogenised the values of the _units and _units_detail
+                data items.
 ;
 
 # This dictionary describes 14 restraints some of which are also constraints.
@@ -225,7 +229,8 @@ data_restr_angle_diff
     _list                        yes
     _list_reference            '_restr_angle_atom_site_label_'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The difference between the target and the refined angle.
 ;
@@ -276,7 +281,8 @@ data_restr_angle_target
     _list                        yes
     _list_reference            '_restr_angle_atom_site_label_'
     _enumeration_range           0:180
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The expectation angle defined by the three atoms.
                This is the target angle for the restrained refinement.
@@ -290,7 +296,8 @@ data_restr_angle_target_weight_param
     _list_reference            '_restr_angle_atom_site_label_'
     _enumeration_range           0:180
     _enumeration_default         0
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              Weighting parameter = sqrt(1/weight).
                It is the expectation value of the difference between
@@ -373,7 +380,7 @@ data_restr_distance_diff
     _list                        yes
     _list_reference            '_restr_distance_atom_site_label_'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The difference between the target and the refined distance.
 ;
@@ -423,7 +430,7 @@ data_restr_distance_target
     _list                        yes
     _list_reference            '_restr_distance_atom_site_label_'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The expectation distance between the two atoms.
                This is the target distance for the restrained refinement.
@@ -437,7 +444,7 @@ data_restr_distance_target_weight_param
     _list_reference            '_restr_distance_atom_site_label_'
     _enumeration_default         0
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              Weighting parameter = sqrt(1/weight).
                It is the expectation value of the difference between
@@ -544,7 +551,7 @@ data_restr_distance_min_B
     _enumeration_range           0:
     _enumeration_default         0
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The weight associated with the difference between the
                refined distance D and the prescribed minimum distance
@@ -609,7 +616,7 @@ data_restr_distance_min_difference
     _list                        yes
     _list_reference            'restr_distance_min_atom_site_label_'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The difference in angstroms between the refined distance
                of approach of the two atoms and the target distance B or F:
@@ -625,7 +632,7 @@ data_restr_distance_min_distance
     _list_reference            'restr_distance_min_atom_site_label_'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The refined distance, D, between the two atoms.
 ;
@@ -665,7 +672,7 @@ data_restr_distance_min_F
     _list_reference            'restr_distance_min_atom_site_label_'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The weight associated with the difference between the
                refined distance D and the prescribed minimum distance
@@ -693,7 +700,7 @@ data_restr_distance_min_G
     _list                        yes
     _list_reference            'restr_distance_min_atom_site_label_'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The weight associated with the difference between
                the refined distance D and the prescribed minimum
@@ -910,7 +917,8 @@ data_restr_equal_angle_class_average
     _list                        yes
     _list_reference            '_restr_equal_angle_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The average angle in the class of angles restrained to
                be the same after refinement.
@@ -948,7 +956,8 @@ data_restr_equal_angle_class_diff_max
     _list                        yes
     _list_reference            '_restr_equal_angle_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The maximum deviation of an angle in the class from the
                class average after refinement.
@@ -961,7 +970,8 @@ data_restr_equal_angle_class_esd
     _list                        yes
     _list_reference            '_restr_equal_angle_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The actual estimated standard deviation of the angles in the
                class from their average after refinement.
@@ -977,7 +987,8 @@ data_restr_equal_angle_class_target_weight_param
     _list_reference            '_restr_equal_angle_class_class_id'
     _enumeration_range           0:
     _enumeration_default         0
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The weighting parameter = sqrt(1/weight).
                The expectation value of the estimated standard deviation of
@@ -1149,7 +1160,7 @@ data_restr_equal_distance_class_average
     _list_reference            '_restr_equal_distance_class_class_id'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The average distance in the class of distances restrained to
                be the same after refinement.
@@ -1188,7 +1199,7 @@ data_restr_equal_distance_class_diff_max
     _list_reference            '_restr_equal_distance_class_class_id'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The maximum deviation of a distance in the class from the
                class average after refinement.
@@ -1201,7 +1212,8 @@ data_restr_equal_distance_class_esd
     _list_reference            '_restr_equal_distance_class_class_id'
     _list                        yes
     _enumeration_range           0:
-    _units                       Angstrom
+    _units                       A
+    _units_detail                angstrom
     _definition
 ;              The actual estimated standard deviation of the distances in the
                class from their average after refinement.
@@ -1218,7 +1230,7 @@ data_restr_equal_distance_class_target_weight_param
     _enumeration_range           0:
     _enumeration_default         0
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The weighting parameter = sqrt(1/weight).
                The expectation value of the estimated standard deviation of the
@@ -1396,7 +1408,8 @@ data_restr_equal_torsion_class_average
     _list                        yes
     _list_reference            '_restr_equal_torsion_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The average torsion angle in the class of torsion angles
                restrained to be the same after refinement.
@@ -1434,7 +1447,8 @@ data_restr_equal_torsion_class_diff_max
     _list                        yes
     _list_reference            '_restr_equal_torsion_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The maximum deviation of a torsion angle in the class
                from the class average after refinement.
@@ -1447,7 +1461,8 @@ data_restr_equal_torsion_class_esd
     _list                        yes
     _list_reference            '_restr_equal_torsion_class_class_id'
     _enumeration_range           0:
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The actual estimated standard deviation of the torsion
                angles in the class from their average after refinement.
@@ -1463,7 +1478,8 @@ data_restr_equal_torsion_class_target_weight_param
     _list_reference            '_restr_equal_torsion_class_class_id'
     _enumeration_range           0:
     _enumeration_default         0
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The weighting parameter = sqrt(1/weight).
                This is the expectation value of the estimated
@@ -1869,7 +1885,7 @@ data_restr_plane_displacement
     _list_reference            '_restr_plane_id'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The distance between this atom and the best plane through
                all the atoms.
@@ -1933,7 +1949,7 @@ data_restr_plane_target_weight_param
     _enumeration_range           0:
     _enumeration_default         0.0
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The weighting parameter = sqrt(1/weight).
                The expectation value of the distance in angstroms
@@ -2004,7 +2020,7 @@ data_restr_plane_class_displacement_esd
     _list_reference            '_restr_plane_class_class_id'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The observed estimated standard deviation of the
                atoms from this plane.
@@ -2019,7 +2035,7 @@ data_restr_plane_class_displacement_max
     _list_reference            '_restr_plane_class_class_id'
     _enumeration_range           0:
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The distance in angstroms from the plane to the atom furthest
                removed from the plane.
@@ -2307,7 +2323,8 @@ data_restr_torsion_angle_target
     _list                        yes
     _list_reference            '_restr_torsion_atom_site_label_'
     _enumeration_range           -180:180
-    _units                       degree
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The angle in degrees to which the torsion angle is restrained.
                The torsion angle is the dihedral angle between the plane defined
@@ -2336,7 +2353,8 @@ data_restr_torsion_details
     _type                        numb
     _list                        yes
     _list_reference            '_restr_torsion_atom_site_label_'
-    _units                       degree
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              A free-text description of the restraint.
 ;
@@ -2348,7 +2366,8 @@ data_restr_torsion_diff
     _type_conditions             su
     _list                        yes
     _list_reference            '_restr_torsion_atom_site_label_'
-    _units                       degree
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              The difference between the target and the refined torsion angle.
 ;
@@ -2401,7 +2420,8 @@ data_restr_torsion_weight_param
     _list_reference            '_restr_torsion_atom_site_label_'
     _enumeration_range           0:
     _enumeration_default         0
-    _units                       degree
+    _units                       deg
+    _units_detail              'degree of arc'
     _definition
 ;              Weighting parameter = sqrt(1/weight).
                It is the expectation value of the difference between
@@ -2472,7 +2492,7 @@ data_restr_U_iso_weight_param
     _enumeration_range           0:
     _enumeration_default         0
     _units                       A^-2^
-    _units_detail                'reciprocal Angstrom squared'
+    _units_detail              'reciprocal angstrom squared'
     _definition
 ;              The expectation value of the difference between
                the refined and the isotropic equivalent of the
@@ -2553,7 +2573,7 @@ data_restr_U_rigid_diff
     _list                        yes
     _list_reference            'restr_U_rigid_atom_site_label_'
     _units                       A^-2^
-    _units_detail                Angstrom^-2^
+    _units_detail              'reciprocal angstrom squared'
     _definition
 ;              The difference between the components along the bond direction
                of the atomic displacement parameters, U, of the two atoms.
@@ -2605,7 +2625,7 @@ data_restr_U_rigid_target_weight_param
     _list_reference            '_restr_U_rigid_atom_site_label_'
     _enumeration_default         0
     _units                       A^-2^
-    _units_detail                Angstrom^-2^
+    _units_detail              'reciprocal angstrom squared'
     _definition
 ;        The weighting parameter = sqrt(1/weight).
          The expectation value of the difference between the components
@@ -2624,7 +2644,7 @@ data_restr_U_rigid_U_parallel
     _list_reference            '_restr_U_rigid_atom_site_label_'
     _enumeration_default         0
     _units                       A^-2^
-    _units_detail                Angstrom^-2^
+    _units_detail              'reciprocal angstrom squared'
     _definition
 ;              The average value of the components parallel to the bond
                of the atomic displacement parameters of the two atoms
@@ -2695,7 +2715,7 @@ data_restr_U_similar_weight_param
     _enumeration_range           0:
     _enumeration_default         0
     _units                       A^-2^
-    _units_detail                'reciprocal Angstrom squared'
+    _units_detail              'reciprocal angstrom squared'
     _definition
 ;              The expectation value of the difference between the
                anisotropic atomic displacement parameters
