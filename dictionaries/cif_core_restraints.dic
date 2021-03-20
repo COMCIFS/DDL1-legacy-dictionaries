@@ -68,7 +68,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core_restraints.dic
-    _dictionary_version         1.0.1-dev-1
+    _dictionary_version         1.0.1-dev-2
     _dictionary_update          2021-03-21
     _dictionary_history
 ;
@@ -103,7 +103,9 @@ data_on_this_dictionary
 
    2021-03-21  AV: maintenance update.
                Homogenised the values of the _units and _units_detail
-                data items.
+                 data items.
+               Removed the _units and _units_detail data items from
+                 the definition of the _restr_torsion_details data item.
 ;
 
 # This dictionary describes 14 restraints some of which are also constraints.
@@ -2353,8 +2355,6 @@ data_restr_torsion_details
     _type                        numb
     _list                        yes
     _list_reference            '_restr_torsion_atom_site_label_'
-    _units                       deg
-    _units_detail              'degree of arc'
     _definition
 ;              A free-text description of the restraint.
 ;
