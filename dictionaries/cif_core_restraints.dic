@@ -68,7 +68,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core_restraints.dic
-    _dictionary_version         1.0.1-dev-3
+    _dictionary_version         1.0.1-dev-4
     _dictionary_update          2021-03-22
     _dictionary_history
 ;
@@ -111,6 +111,9 @@ data_on_this_dictionary
                Removed the redundant _list_reference data item from
                  the definition of the _restr_U_iso_atom_site_label
                  data item.
+               Added the _list_link_child data item to the definitions
+                 of multiple data items to indicate the reciprocal
+                 parent-child relationship between data items.
 ;
 
 # This dictionary describes 14 restraints some of which are also constraints.
@@ -827,6 +830,7 @@ data_restr_equal_angle_class_id
     _type                        char
     _list                        yes
     _list_reference            '_restr_equal_angle_atom_site_label_'
+    _list_link_child           '_restr_equal_angle_class_class_id'
     _enumeration_default         1
     _definition
 ;              A character string identifying the class of equal angles
@@ -1070,6 +1074,7 @@ data_restr_equal_distance_class_id
     _type                        char
     _list                        yes
     _list_reference            '_restr_equal_distance_atom_site_label_'
+    _list_link_child           '_restr_equal_distance_class_class_id'
     _enumeration_default         1
     _definition
 ;              A character string identifying the class of equal distances
@@ -1317,6 +1322,7 @@ data_restr_equal_torsion_class_id
     _type                        char
     _list                        yes
     _list_reference            '_restr_equal_torsion_atom_site_label_'
+    _list_link_child           '_restr_equal_torsion_class_class_id'
     _enumeration_default         1
     _definition
 ;              A character string identifying the class of equal torsion
@@ -1659,6 +1665,7 @@ data_restr_parameter_class_id
     _type                        char
     _list                        yes
     _list_reference            '_restr_parameter_id'
+    _list_link_child           '_restr_parameter_class_class_id'
     _enumeration_default         1
     _definition
 ;              The identifier of the class of restraint applied to the atoms.
@@ -1867,6 +1874,7 @@ data_restr_plane_class_id
     _list                        yes
     _list_mandatory              yes
     _list_reference            '_restr_plane_id'
+    _list_link_child           '_restr_plane_class_class_id'
     _enumeration_default         1
     _definition
 ;              A character string that identifies the plane
@@ -2167,6 +2175,7 @@ data_restr_rigid_body_class_id
     _type                        char
     _list                        yes
     _list_reference            '_restr_rigid_body_id'
+    _list_link_child           '_restr_rigid_body_class_class_id'
     _enumeration_default         1
     _definition
 ;              A character string identifying a rigid body.
