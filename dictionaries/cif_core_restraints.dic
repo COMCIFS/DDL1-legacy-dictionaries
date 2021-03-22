@@ -68,8 +68,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core_restraints.dic
-    _dictionary_version         1.0.1-dev-2
-    _dictionary_update          2021-03-21
+    _dictionary_version         1.0.1-dev-3
+    _dictionary_update          2021-03-22
     _dictionary_history
 ;
    2009-18-10  Following consultations between the user community and
@@ -101,11 +101,16 @@ data_on_this_dictionary
                and the _restr_equal_angle_detail data item was renamed to
                _restr_equal_angle_details.
 
-   2021-03-21  AV: maintenance update.
+   2021-03-22  AV: maintenance update.
                Homogenised the values of the _units and _units_detail
                  data items.
                Removed the _units and _units_detail data items from
                  the definition of the _restr_torsion_details data item.
+               Removed the inapplicable _list_reference data item from
+                 the definition of the _restr_U_iso_[] category.
+               Removed the redundant _list_reference data item from
+                 the definition of the _restr_U_iso_atom_site_label
+                 data item.
 ;
 
 # This dictionary describes 14 restraints some of which are also constraints.
@@ -2448,7 +2453,6 @@ data_restr_U_iso_[]
     _name                      '_restr_U_iso_[]'
     _category                    category_overview
     _type                        null
-    _list_reference            '_restr_U_iso_atom_site_label'
     loop_ _example
     _example_detail
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2475,7 +2479,6 @@ data_restr_U_iso_atom_site_label
     _category                    restr_U_iso
     _type                        char
     _list                        yes
-    _list_reference            '_restr_U_iso_atom_site_label'
     _list_mandatory              yes
     _list_link_parent          '_atom_site_label'
     _definition
