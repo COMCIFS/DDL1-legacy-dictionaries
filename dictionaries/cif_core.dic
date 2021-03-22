@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-5
-    _dictionary_update          2021-03-19
+    _dictionary_version         2.5.3-dev-6
+    _dictionary_update          2021-03-22
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -731,6 +731,17 @@ data_on_this_dictionary
                   Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
                   as enumerator values of the _diffrn_source_target data item.
    2021-03-18 AV: Maintenance update:
+                  Changed the value of the _list data item from 'yes' to 'both'
+                    in the definitions of the _diffrn_radiation_wavelength_id,
+                    _diffrn_radiation_wavelength_wt, _exptl_crystal_id,
+                    _space_group_symop_id and _symmetry_equiv_pos_site_id
+                    data items to homogenise the loop eligibility of all
+                    items in the DIFFRN_RADIATION_WAVELENGTH, EXPTL_CRYSTAL,
+                    SPACE_GROUP_SYMOP and SYMMETRY_EQUIV categories.
+                  Added the _list data item with the value 'both' to the
+                    definition of the _exptl_crystal_recrystallization_method
+                    to homogenise the loop eligibility of all data items
+                    in the EXPTL_CRYSTAL category.
                   Corrected the misspelt units of measurement of
                     the _exptl_crystal_density_meas_lt and
                     _exptl_crystal_density_meas_gt data items.
@@ -5177,7 +5188,7 @@ data_diffrn_radiation_wavelength_id
     _name                      '_diffrn_radiation_wavelength_id'
     _category                    diffrn_radiation_wavelength
     _type                        char
-    _list                        yes
+    _list                        both
     _list_mandatory              yes
     _list_link_child           '_diffrn_refln_wavelength_id'
     loop_ _example               x1  x2  neut
@@ -5193,7 +5204,7 @@ data_diffrn_radiation_wavelength_wt
     _name                      '_diffrn_radiation_wavelength_wt'
     _category                    diffrn_radiation_wavelength
     _type                        numb
-    _list                        yes
+    _list                        both
     _list_reference            '_diffrn_radiation_wavelength_id'
     _enumeration_range           0.0:1.0
     _definition
@@ -6893,7 +6904,7 @@ data_exptl_crystal_id
     _name                      '_exptl_crystal_id'
     _category                    exptl_crystal
     _type                        char
-    _list                        yes
+    _list                        both
     _list_mandatory              yes
     loop_ _list_link_child     '_diffrn_refln_crystal_id'
                                '_refln_crystal_id'
@@ -6930,6 +6941,7 @@ data_exptl_crystal_recrystallization_method
     _name                      '_exptl_crystal_recrystallization_method'
     _category                    exptl_crystal
     _type                        char
+    _list                        both
     _definition
 ;              Describes the method used to recrystallize the sample.
                Sufficient details should be given for the procedure to be
@@ -11327,7 +11339,7 @@ data_space_group_symop_id
     _name                      '_space_group_symop_id'
     _type                        char
     _category                    space_group_symop
-    _list                        yes
+    _list                        both
     _list_mandatory              yes
     loop_ _related_item
           _related_function      '_symmetry_equiv_pos_site_id'  alternate
@@ -11565,7 +11577,7 @@ data_symmetry_equiv_pos_site_id
     _name                      '_symmetry_equiv_pos_site_id'
     _category                    symmetry_equiv
     _type                        numb
-    _list                        yes
+    _list                        both
     _list_reference            '_symmetry_equiv_pos_as_xyz'
     loop_ _related_item
           _related_function    '_space_group_symop_id'  replace
