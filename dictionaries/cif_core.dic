@@ -16,7 +16,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-6
+    _dictionary_version         2.5.3-dev-7
     _dictionary_update          2021-03-22
     _dictionary_history
 ;
@@ -742,6 +742,8 @@ data_on_this_dictionary
                     definition of the _exptl_crystal_recrystallization_method
                     to homogenise the loop eligibility of all data items
                     in the EXPTL_CRYSTAL category.
+                  Removed the redundant _list_reference data item from
+                    the definition of the _valence_ref_id data item.
                   Corrected the misspelt units of measurement of
                     the _exptl_crystal_density_meas_lt and
                     _exptl_crystal_density_meas_gt data items.
@@ -11768,7 +11770,6 @@ data_valence_ref_id
     _category                    valence_ref
     _type                        char
     _list                        yes
-    _list_reference            '_valence_ref_id'
     _list_link_child           '_valence_param_ref_id'
     _definition
 ;              An identifier for items in this category. Parent of
