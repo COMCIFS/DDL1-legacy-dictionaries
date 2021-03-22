@@ -744,6 +744,9 @@ data_on_this_dictionary
                     in the EXPTL_CRYSTAL category.
                   Removed the redundant _list_reference data item from
                     the definition of the _valence_ref_id data item.
+                  Added "_refln_wavelength_id" to the list of
+                    the _list_link_child data item values in the definition
+                    of the _diffrn_radiation_wavelength_id data item.
                   Corrected the misspelt units of measurement of
                     the _exptl_crystal_density_meas_lt and
                     _exptl_crystal_density_meas_gt data items.
@@ -5192,7 +5195,8 @@ data_diffrn_radiation_wavelength_id
     _type                        char
     _list                        both
     _list_mandatory              yes
-    _list_link_child           '_diffrn_refln_wavelength_id'
+    loop_ _list_link_child     '_diffrn_refln_wavelength_id'
+                               '_refln_wavelength_id'
     loop_ _example               x1  x2  neut
     _definition
 ;              An arbitrary code identifying each value of
