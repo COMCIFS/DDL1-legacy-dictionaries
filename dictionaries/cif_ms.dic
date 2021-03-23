@@ -17,7 +17,7 @@
 data_on_this_dictionary
 
     _dictionary_name                  cif_ms.dic
-    _dictionary_version               1.0.2-2
+    _dictionary_version               1.0.2-3
     _dictionary_update                2021-03-23
     _dictionary_history
 ;
@@ -649,6 +649,9 @@ data_on_this_dictionary
              Renamed multiple category definition blocks by adding an
                underscore symbol ("_") before the dictionary extension
                code ("[ms]").
+             Added the _list_link_child data item with value
+               "_atom_site_subsystem_code" to the definition
+               of the _cell_subsystem_code data item.
              Homogenised the values of the _units and _units_detail data items.
            A. Vaitkus
 ;
@@ -3049,6 +3052,7 @@ data_cell_subsystem_code
     _category                    cell_subsystem
     _type                        char
     _list                        yes
+    _list_link_child             '_atom_site_subsystem_code'
     _example                     'NbS2'
     _definition
 ;              The code identifying uniquely a certain composite subsystem.
