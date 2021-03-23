@@ -17,8 +17,8 @@
 data_on_this_dictionary
 
     _dictionary_name                  cif_ms.dic
-    _dictionary_version               1.0.1
-    _dictionary_update                2005-06-16
+    _dictionary_version               1.0.2-1
+    _dictionary_update                2021-03-23
     _dictionary_history
 ;
   1994-09-12  Initial definitions                             G. Madariaga
@@ -645,6 +645,9 @@ data_on_this_dictionary
               _geom_torsion_: reference changed from Endeavour to Experientia
 2005-03-27   Addition of changes included in ITCG chapter 4.3 G. Madariaga
 2005-06-16   Category overviews added for all categories    NJ Ashcroft
+2021-03-23 Maintenance update:
+             Homogenised the values of the _units and _units_detail data items.
+           A. Vaitkus
 ;
 
 ###############
@@ -1474,7 +1477,7 @@ data_atom_site_displace_Fourier_param_phase
     _enumeration_range          -1.0:1.0
     _enumeration_default        0.0
     _units                      cy
-    _units_detail               'Cycles'
+    _units_detail               cycle
     _definition
 ;              The displacive distortion of a given atom or rigid group (see
                also _atom_site_rot_Fourier_param_phase) is usually parameterized
@@ -1786,7 +1789,7 @@ data_atom_site_occ_Fourier_param_phase
     _enumeration_range          -1.0:1.0
     _enumeration_default         0.0
     _units                       cy
-    _units_detail                'Cycles'
+    _units_detail                cycle
     _definition
 ;              The occupational distortion of a given atom or rigid group is
                usually parameterized by Fourier series. Each term of the series
@@ -2101,8 +2104,8 @@ data_atom_site_rot_Fourier_param_cos
     _list                        yes
     _list_reference              '_atom_site_rot_Fourier_param_id'
     _enumeration_default         0.0
-    _units                       'deg'
-    _units_detail                'Degrees'
+    _units                       deg
+    _units_detail                'degree of arc'
     _definition
 ;              The displacive distortion of a given rigid group is not
                completely described by _atom_site_displace_Fourier_. The rigid
@@ -2145,8 +2148,8 @@ data_atom_site_rot_Fourier_param_modulus
     _list_reference              '_atom_site_rot_Fourier_param_id'
     _enumeration_range           0.0:
     _enumeration_default         0.0
-    _units                       'deg'
-    _units_detail                'Degrees'
+    _units                       deg
+    _units_detail                'degree of arc'
     _definition
 ;              The displacive distortion of a given rigid group is not
                completely described by _atom_site_displace_Fourier_. The rigid
@@ -2177,7 +2180,7 @@ data_atom_site_rot_Fourier_param_phase
     _enumeration_range          -1.0:1.0
     _enumeration_default         0.0
     _units                       cy
-    _units_detail                'Cycles'
+    _units_detail                cycle
     _definition
 ;              The displacive distortion of a given rigid group is not
                completely described by _atom_site_displace_Fourier_. The rigid
@@ -2205,8 +2208,8 @@ data_atom_site_rot_Fourier_param_sin
     _list                        yes
     _list_reference              '_atom_site_rot_Fourier_param_id'
     _enumeration_default         0.0
-    _units                       'deg'
-    _units_detail                'Degrees'
+    _units                       deg
+    _units_detail                'degree of arc'
     _definition
 ;              The displacive distortion of a given rigid group is not
                completely described by _atom_site_displace_Fourier_. The rigid
@@ -2390,7 +2393,7 @@ data_atom_site_U_Fourier_param_cos
     _list_reference              '_atom_site_U_Fourier_param_id'
     _enumeration_default         0.0
     _units                       A^2^
-    _units_detail                'Angstroms squared'
+    _units_detail                'angstrom squared'
     _definition
 ;              The modulation of the atomic thermal parameters is usually
                parameterized by Fourier series. Each term of the series
@@ -2432,7 +2435,7 @@ data_atom_site_U_Fourier_param_modulus
     _enumeration_range           0.0:
     _enumeration_default         0.0
     _units                       A^2^
-    _units_detail                'Angstroms squared'
+    _units_detail                'angstrom squared'
     _definition
 ;              The modulation of the atomic thermal parameters is usually
                parameterized by Fourier series. Each term of the series
@@ -2460,7 +2463,7 @@ data_atom_site_U_Fourier_param_phase
     _enumeration_range          -1.0:1.0
     _enumeration_default         0.0
     _units                       cy
-    _units_detail                'Cycles'
+    _units_detail                cycle
     _definition
 ;              The modulation of the atomic thermal parameters is usually
                parameterized by Fourier series. Each term of the series
@@ -2486,7 +2489,7 @@ data_atom_site_U_Fourier_param_sin
     _list_reference              '_atom_site_U_Fourier_param_id'
     _enumeration_default         0.0
     _units                       A^2^
-    _units_detail                'Angstroms squared'
+    _units_detail                'angstrom squared'
     _definition
 ;              The modulation of the atomic thermal parameters is usually
                parameterized by Fourier series. Each term of the series
@@ -2791,7 +2794,7 @@ data_atom_sites_modulation_global_phase_t_
     _enumeration_range           -1.0:1.0
     _enumeration_default         0.0
     _units                       cy
-    _units_detail                'Cycles'
+    _units_detail                cycle
     _definition
 ;              The initial phases, in cycles, of the modulation waves. For
                incommensurate structures they are irrelevant. However, they are
@@ -3414,7 +3417,7 @@ data_cell_wave_vectors_pressure_
     _type                        numb
     _type_conditions             esd
     _units                       kPa
-    _units_detail                'Kilopascals'
+    _units_detail                kilopascal
     _enumeration_range           0.0:
     _definition
 ;              The maximum and minimum values of the pressure in kilopascals
@@ -3429,7 +3432,7 @@ data_cell_wave_vectors_temp_
     _type                        numb
     _type_conditions             esd
     _units                       K
-    _units_detail                'Kelvins'
+    _units_detail                kelvin
     _enumeration_range           0.0:
     _definition
 ;              The maximum and minimum values of the temperature in kelvins
@@ -3699,7 +3702,7 @@ data_geom_angle_
     _list                        yes
     _list_reference              '_geom_angle_atom_site_label_'
     _units                       deg
-    _units_detail               'Degrees'
+    _units_detail                'degree of arc'
     _definition
 ;              Maximum, minimum and average angles in degrees bounded by
                _geom_angle_atom_site_label_1, *_2, and *_3. The site at *_2
@@ -3771,7 +3774,7 @@ data_geom_bond_distance_
     _list_reference              '_geom_bond_atom_site_label_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              Maximum, minimum and average values of the intramolecular bond
                distance in angstroms.
@@ -3841,7 +3844,7 @@ data_geom_contact_distance_
     _list_reference              '_geom_contact_atom_site_label_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              Maximum, minimum and average values of the interatomic contact
                distance in angstroms.
@@ -3910,7 +3913,7 @@ data_geom_torsion_
     _list                        yes
     _list_reference              '_geom_torsion_atom_site_label_'
     _units                       deg
-    _units_detail                'Degrees'
+    _units_detail                'degree of arc'
     _definition
 ;              Maximum, minimum and average torsion angles in degrees bounded
                by the four atom sites identified by the
