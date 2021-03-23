@@ -17,7 +17,7 @@
 data_on_this_dictionary
 
     _dictionary_name                  cif_ms.dic
-    _dictionary_version               1.0.2-1
+    _dictionary_version               1.0.2-2
     _dictionary_update                2021-03-23
     _dictionary_history
 ;
@@ -646,6 +646,9 @@ data_on_this_dictionary
 2005-03-27   Addition of changes included in ITCG chapter 4.3 G. Madariaga
 2005-06-16   Category overviews added for all categories    NJ Ashcroft
 2021-03-23 Maintenance update:
+             Renamed multiple category definition blocks by adding an
+               underscore symbol ("_") before the dictionary extension
+               code ("[ms]").
              Homogenised the values of the _units and _units_detail data items.
            A. Vaitkus
 ;
@@ -653,7 +656,7 @@ data_on_this_dictionary
 ###############
 ## ATOM_SITE ##
 ###############
-data_atom_site[ms]
+data_atom_site_[ms]
     _name                        '_atom_site_[ms]'
     _category                    category_overview
     _type                        null
@@ -2942,7 +2945,7 @@ data_audit_link_[ms]
 ##########
 ## CELL ##
 ##########
-data_cell[ms]
+data_cell_[ms]
     _name                        '_cell_[ms]'
     _category                    category_overview
     _type                        null
@@ -3455,7 +3458,7 @@ data_cell_wave_vectors_variation
 ##################
 ## DIFFRN_REFLN ##
 ##################
-data_diffrn_refln[ms]
+data_diffrn_refln_[ms]
     _name                        '_diffrn_refln_[ms]'
     _category                    category_overview
     _type                        null
@@ -3507,7 +3510,7 @@ loop_ _list_reference        '_diffrn_refln_index_h'
 ###################
 ## DIFFRN_REFLNS ##
 ###################
-data_diffrn_reflns[ms]
+data_diffrn_reflns_[ms]
     _name                        '_diffrn_reflns_[ms]'
     _category                    category_overview
     _type                        null
@@ -3563,7 +3566,7 @@ data_diffrn_reflns_satellite_order_max
 ###########################
 ## DIFFRN_STANDARD_REFLN ##
 ###########################
-data_diffrn_standard_refln[ms]
+data_diffrn_standard_refln_[ms]
     _name                        '_diffrn_standard_refln_[ms]'
     _category                    category_overview
     _type                        null
@@ -3608,7 +3611,7 @@ data_diffrn_standard_refln_index_m_
 ########################
 ## EXPTL_CRYSTAL_FACE ##
 ########################
-data_exptl_crystal_face[ms]
+data_exptl_crystal_face_[ms]
     _name                        '_exptl_crystal_face_[ms]'
     _category                    category_overview
     _type                        null
@@ -3647,7 +3650,7 @@ data_exptl_crystal_face_index_m_
 ###################
 ## EXPTL_CRYSTAL ##
 ###################
-data_exptl_crystal[ms]
+data_exptl_crystal_[ms]
     _name                        '_exptl_crystal_[ms]'
     _category                    category_overview
     _type                        null
@@ -3678,7 +3681,7 @@ data_exptl_crystal_type_of_structure
 ################
 ## GEOM_ANGLE ##
 ################
-data_geom_angle[ms]
+data_geom_angle_[ms]
     _name                        '_geom_angle_[ms]'
     _category                    category_overview
     _type                        null
@@ -3749,7 +3752,7 @@ data_geom_angle_site_ssg_symmetry_
 ###############
 ## GEOM_BOND ##
 ###############
-data_geom_bond[ms]
+data_geom_bond_[ms]
     _name                        '_geom_bond_[ms]'
     _category                    category_overview
     _type                        null
@@ -3819,7 +3822,7 @@ data_geom_bond_site_ssg_symmetry_
 ##################
 ## GEOM_CONTACT ##
 ##################
-data_geom_contact[ms]
+data_geom_contact_[ms]
     _name                        '_geom_contact_[ms]'
     _category                    category_overview
     _type                        null
@@ -3889,7 +3892,7 @@ data_geom_contact_site_ssg_symmetry_
 ##################
 ## GEOM_TORSION ##
 ##################
-data_geom_torsion[ms]
+data_geom_torsion_[ms]
     _name                        '_geom_torsion_[ms]'
     _category                    category_overview
     _type                        null
@@ -3965,7 +3968,7 @@ data_geom_torsion_site_ssg_symmetry_
 ############
 ## REFINE ##
 ############
-data_refine[ms]
+data_refine_[ms]
     _name                        '_refine_[ms]'
     _category                    category_overview
     _type                        null
@@ -4034,7 +4037,7 @@ data_refine_ls_mod_overall_phason_formula
 ###########
 ## REFLN ##
 ###########
-data_refln[ms]
+data_refln_[ms]
     _name                        '_refln_[ms]'
     _category                    category_overview
     _type                        null
@@ -4077,7 +4080,7 @@ data_refln_index_m_
 ############
 ## REFLNS ##
 ############
-data_reflns[ms]
+data_reflns_[ms]
     _name                        '_reflns_[ms]'
     _category                    category_overview
     _type                        null
