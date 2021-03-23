@@ -17,7 +17,7 @@
 data_on_this_dictionary
 
     _dictionary_name                  cif_ms.dic
-    _dictionary_version               1.0.2-3
+    _dictionary_version               1.0.2-4
     _dictionary_update                2021-03-23
     _dictionary_history
 ;
@@ -652,6 +652,8 @@ data_on_this_dictionary
              Added the _list_link_child data item with value
                "_atom_site_subsystem_code" to the definition
                of the _cell_subsystem_code data item.
+             Corrected a minor error in the description of
+               the ATOM_SITE_OCC_SPECIAL_FUNC category.
              Homogenised the values of the _units and _units_detail data items.
            A. Vaitkus
 ;
@@ -2650,8 +2652,8 @@ data_atom_site_occ_special_func_[]
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       _definition
-;              Data items in the ATOM_SITE_DISPLACE_OCC_SPECIAL_FUNC category
-               record details about the occupational modulation of a given atom
+;              Data items in the ATOM_SITE_OCC_SPECIAL_FUNC category record
+               details about the occupational modulation of a given atom
                or rigid group in a modulated structure when it is not described
                by Fourier series. Special functions are effective in some cases
                where the modulations are highly anharmonic, since the number of
