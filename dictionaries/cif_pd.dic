@@ -13,8 +13,8 @@
 data_on_this_dictionary
 
     _dictionary_name            cif_pd.dic
-    _dictionary_version         1.0.2-dev-0
-    _dictionary_update          2017-06-30
+    _dictionary_version         1.0.2-dev-1
+    _dictionary_update          2021-03-23
     _dictionary_history
 ;
   1991-08-28  Initial definitions                                  B.H. Toby
@@ -104,8 +104,11 @@ data_on_this_dictionary
                    _pd_proc_ls_background_function: second paragraph of
                    definition rephrased
   2017-06-30  Maintenance update:
-                  Moved all unlooped instances of _related_function to
+                Moved all unlooped instances of _related_function to
                   a loop structure as required by the ddl.dic.     A. Vaitkus
+  2021-03-23  Maintenance update:
+                Homogenised the values of the _units and _units_detail
+                  data items.
 ;
 
 #......................... Block/Data set names
@@ -544,7 +547,7 @@ data_pd_meas_position
     _type_conditions             esd
     _list                        yes
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _definition
 ;              A linear distance in millimetres corresponding to the
                location where an intensity measurement is made.
@@ -571,7 +574,7 @@ data_pd_meas_rocking_angle
     _type                        numb
     _list                        both
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           0:360.0
     _definition
 ;              The angular range in degrees through which a sample is rotated
@@ -628,7 +631,7 @@ data_pd_meas_step_count_time
     _type_conditions             esd
     _list                        both
     _units                       s
-    _units_detail               'seconds'
+    _units_detail                second
     _enumeration_range           0.0:
     _definition
 ;              The count time in seconds for each intensity measurement.
@@ -645,7 +648,7 @@ data_pd_meas_time_of_flight
     _type_conditions             esd
     _list                        yes
     _units                       \ms
-    _units_detail               'microseconds'
+    _units_detail                microsecond
     _enumeration_range           0:
     _definition
 ;              Measured time in microseconds for time-of-flight neutron
@@ -730,7 +733,7 @@ data_pd_calib_2theta_
     _list                        both
     _list_reference            '_pd_calib_detector_id'
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           -180.0:180.0
     _definition
 ;              _pd_calib_2theta_offset defines an offset angle (in degrees)
@@ -966,7 +969,7 @@ data_pd_spec_size_
     _category                    pd_spec
     _type                        numb
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _enumeration_range           0.0:
     _definition
 ;              The size of the specimen in three mutually perpendicular
@@ -1059,7 +1062,7 @@ data_pd_instr_2theta_monochr_
     _type                        numb
     _list                        both
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           -180.0:180.0
     _definition
 ;              The 2\q angle for a pre-specimen or post-specimen
@@ -1074,7 +1077,7 @@ data_pd_instr_beam_size_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _definition
 ;              Axial and equatorial dimensions of the radiation beam
                at the specimen position (in millimetres).
@@ -1104,7 +1107,7 @@ data_pd_instr_cons_illum_len
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _definition
 ;              Length of the specimen that is illuminated by the radiation
                source (in millimetres).
@@ -1129,7 +1132,7 @@ data_pd_instr_dist_
     _category                    pd_instr
     _type                        numb
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _enumeration_range           0.0:
     _list                        both
     _definition
@@ -1164,7 +1167,7 @@ data_pd_instr_divg_ax_
     _type                        numb
     _enumeration_range           0.0:
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _list                        both
     _definition
 ;              Describes collimation in the axial direction
@@ -1203,7 +1206,7 @@ data_pd_instr_divg_eq_
     _type                        numb
     _enumeration_range           0.0:
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _list                        both
     _definition
 ;              Describes collimation in the equatorial plane (the plane
@@ -1300,7 +1303,7 @@ data_pd_instr_slit_ax_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _list                        both
     _definition
 ;              Describes collimation in the axial direction
@@ -1338,7 +1341,7 @@ data_pd_instr_slit_eq_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _list                        both
     _definition
 ;              Describes collimation in the equatorial plane (the plane
@@ -1375,7 +1378,7 @@ data_pd_instr_soller_ax_
     _type                        numb
     _enumeration_range           0.0:
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _list                        both
     _definition
 ;              Describes collimation in the axial direction
@@ -1413,7 +1416,7 @@ data_pd_instr_soller_eq_
     _type                        numb
     _enumeration_range           0.0:
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _list                        both
     _definition
 ;              Describes collimation in the equatorial plane (the plane
@@ -1446,7 +1449,7 @@ data_pd_instr_source_size_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _definition
 ;              Axial and equatorial intrinsic dimensions
                of the radiation source (in millimetres).
@@ -1471,7 +1474,7 @@ data_pd_instr_var_illum_len
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail               'millimetres'
+    _units_detail                millimetre
     _definition
 ;              Length of the specimen that is illuminated by the radiation
                source (in millimetres) for instruments where
@@ -1504,7 +1507,7 @@ data_pd_proc_2theta_corrected
     _type                        numb
     _list                        yes
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           -180.0:180.0
     _definition
 ;              The 2\q diffraction angle in degrees of an intensity
@@ -1524,7 +1527,7 @@ data_pd_proc_2theta_range_
     _category                    pd_proc_info
     _type                        numb
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           -180.0:180.0
     _definition
 ;              The range of 2\q diffraction angles in degrees for the
@@ -1540,7 +1543,7 @@ data_pd_proc_d_spacing
     _list                        yes
     _enumeration_range           0.0:
     _units                       A
-    _units_detail               'angstroms'
+    _units_detail                angstrom
     _definition
 ;              d-spacing corresponding to an intensity point
                from Bragg's law, d = \l/(2 sin\q), in units of angstroms.
@@ -1553,7 +1556,7 @@ data_pd_proc_energy_
     _type                        numb
     _list                        both
     _units                       eV
-    _units_detail               'electron volts'
+    _units_detail                electronvolt
     _enumeration_range           0.0:
     _definition
 ;              Incident energy in electronvolts of the source computed
@@ -1758,7 +1761,7 @@ data_pd_proc_recip_len_Q
     _list                        yes
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail               'reciprocal angstroms'
+    _units_detail               'reciprocal angstrom'
     _definition
 ;              Length in reciprocal space (|Q|= 2\p/d) corresponding to
                an intensity point. Units are inverse angstroms.
@@ -1771,7 +1774,7 @@ data_pd_proc_wavelength
     _list                        both
     _enumeration_range           0.0:
     _units                       A
-    _units_detail               'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              Wavelength in angstroms for the incident radiation as
                computed from secondary calibration information. This will
@@ -2052,7 +2055,7 @@ data_pd_peak_2theta_
     _list                        yes
     _list_reference            '_pd_peak_id'
     _units                       deg
-    _units_detail               'degrees'
+    _units_detail               'degree of arc'
     _enumeration_range           0.0:180.0
     _definition
 ;              Position of the centroid and maximum of a peak as a
@@ -2068,7 +2071,7 @@ data_pd_peak_d_spacing
     _list_reference            '_pd_peak_id'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail               'angstroms'
+    _units_detail                angstrom
     _definition
 ;              Peak position as a d-spacing in angstroms.
 ;
@@ -2159,7 +2162,7 @@ data_pd_peak_width_2theta
     _list_reference            '_pd_peak_id'
     _enumeration_range           0.0:180.0
     _units                       deg
-    _units_detail                degrees
+    _units_detail               'degree of arc'
     _definition
 ;              Peak width as full-width at half-maximum expressed as
                a 2\q value in degrees.
@@ -2174,7 +2177,7 @@ data_pd_peak_width_d_spacing
     _list_reference            '_pd_peak_id'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail               'angstroms'
+    _units_detail                angstrom
     _definition
 ;              Peak width as full-width at half-maximum expressed as
                a d-spacing in angstroms.
@@ -2338,8 +2341,8 @@ data_pd_prep_cool_rate
     _type                        numb
     _type_conditions             esd
     _enumeration_range           0.0:
-    _units                       Kmin^-1^
-    _units_detail               'kelvins/minute'
+    _units                       K/min
+    _units_detail               'kelvin per minute'
     _definition
 ;              Cooling rate in kelvins per minute for samples prepared
                at high temperatures. If the cooling rate is not linear
@@ -2354,7 +2357,7 @@ data_pd_prep_pressure
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       kPa
-    _units_detail               'kilopascals'
+    _units_detail                kilopascal
     _definition
 ;              Preparation pressure of the sample in kilopascals. This
                is particularly important for materials which are metastable
@@ -2368,7 +2371,7 @@ data_pd_prep_temperature
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       K
-    _units_detail               'kelvin'
+    _units_detail                kelvin
     _definition
 ;              Preparation temperature of the sample in kelvins. This is
                particularly important for materials which are metastable
@@ -2393,7 +2396,7 @@ data_pd_char_atten_coef_mu_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm^-1^
-    _units_detail                'reciprocal millimetres'
+    _units_detail                'reciprocal millimetre'
     _definition
 ;              The observed and calculated linear attenuation coefficient,
                \m, in units of inverse millimetres. Note that this quantity
