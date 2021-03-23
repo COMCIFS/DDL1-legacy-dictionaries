@@ -14,7 +14,7 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_twinning.dic
-    _dictionary_version         1.0.1-dev
+    _dictionary_version         1.0.2-dev
     _dictionary_update          2021-03-23
     _dictionary_history
 ;
@@ -90,6 +90,8 @@ data_on_this_dictionary
                Added r to enumeration list of _twin_refln_include_status.
    2014-02-14  BMcM and NJA: minor editing for clean release version
    2021-03-23  AV: Maintenance update:
+               Changed the category of the _twin_individual_twin_lattice_type
+                 data item from TWIN to TWIN_INDIVIDUAL.
                Removed trailing whitespaces and replaced tabs with spaces.
 ;
 
@@ -309,7 +311,7 @@ data_twin_individual_mass_fraction_refined
 
 data_twin_individual_twin_lattice_type
     _name                     '_twin_individual_twin_lattice_type'
-    _category                 twin
+    _category                 twin_individual
     _type                     char
     _list                     yes
     loop_ _enumeration
