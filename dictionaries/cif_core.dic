@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.4.7
-    _dictionary_update          2017-07-16
+    _dictionary_version         2.5.3-dev-7
+    _dictionary_update          2021-03-22
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -703,13 +703,63 @@ data_on_this_dictionary
                         _publ_contact_author_id_orcid
    2017-06-30 AV: Maintenance update:
                   Moved all unlooped instances of _related_function to
-                        a loop structure as required by the ddl.dic
+                  a loop structure as required by the ddl.dic
    2017-07-14 AV: Maintenance update:
                   Declared all of the data items in the SPACE_GROUP category
                   as strictly unlooped. Removed the _space_group_id and
                   _space_group_symop_sg_id data items since they make no
                   sense in the unlooped context.
-   2017-07-16 AV: Maintenance update:
+   2017-10-26 AV: Maintenance update:
+                  Added 'lustrous', 'transparent', 'translucent', 'opaque', '.'
+                  as enumerator values of the _exptl_crystal_colour_lustre data
+                  item and declared '.' as the default value. Added 'pale',
+                  'intense, '.' as enumerator values of the
+                  _exptl_crystal_colour_modifier data item and declared '.' as
+                  the default value.
+   2017-12-17 AV: Maintenance update:
+                  Changed the _citation_database_id_Medline data type from
+                  'numb' to 'char' and removed the numeric enumeration range
+                  from the definition of this data item.
+                  Changed the enumeration range of the _cell_length_a,
+                  _cell_length_b and _cell_length_c data items
+                  from '0.0:' to '1.0:'.
+   2018-03-04 AV: Maintenance update:
+                  Removed most of the default enumeration values. This removal
+                  reflects the policy change towards values that are not
+                  explicitly provided.
+   2018-03-05 AV: Maintenance update:
+                  Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
+                  as enumerator values of the _diffrn_source_target data item.
+   2021-03-18 AV: Maintenance update:
+                  Changed the value of the _list data item from 'yes' to 'both'
+                    in the definitions of the _diffrn_radiation_wavelength_id,
+                    _diffrn_radiation_wavelength_wt, _exptl_crystal_id,
+                    _space_group_symop_id and _symmetry_equiv_pos_site_id
+                    data items to homogenise the loop eligibility of all
+                    items in the DIFFRN_RADIATION_WAVELENGTH, EXPTL_CRYSTAL,
+                    SPACE_GROUP_SYMOP and SYMMETRY_EQUIV categories.
+                  Added the _list data item with the value 'both' to the
+                    definition of the _exptl_crystal_recrystallization_method
+                    to homogenise the loop eligibility of all data items
+                    in the EXPTL_CRYSTAL category.
+                  Removed the redundant _list_reference data item from
+                    the definition of the _valence_ref_id data item.
+                  Added "_refln_wavelength_id" to the list of
+                    the _list_link_child data item values in the definition
+                    of the _diffrn_radiation_wavelength_id data item.
+                  Corrected the misspelt units of measurement of
+                    the _exptl_crystal_density_meas_lt and
+                    _exptl_crystal_density_meas_gt data items.
+                  Added units of measurement to the definitions of
+                    the _diffrn_detector_dtime, _diffrn_radiation_detector_dtime
+                    and _diffrn_radiation_inhomogeneity data items.
+                  Split the _diffrn_standards_interval_ definition into
+                    two distinct definitions _diffrn_standards_interval_count
+                    and _diffrn_standards_interval_time. Added units of
+                    measurement to the definition of
+                    the _diffrn_standards_interval_time data item.
+                  Homogenised the _units_detail data item values.
+   2023-09-12 AV: Maintenance update:
                   Declared all of the data items in the DIFFRN_REFLN category
                   as strictly unlooped. Removed the _diffrn_refln_crystal_id
                   and _refln_crystal_id data items since they make no sense
@@ -867,7 +917,7 @@ data_atom_site_aniso_B_
     loop_ _related_item
           _related_function    '_atom_site_aniso_U_'  conversion
     _units                       A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              These are the standard anisotropic atomic displacement
                components in angstroms squared which appear in the
@@ -940,7 +990,7 @@ data_atom_site_aniso_U_
     loop_ _related_item
           _related_function    '_atom_site_aniso_B_'  conversion
     _units                      A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              These are the standard anisotropic atomic displacement
                components in angstroms squared which appear in the
@@ -962,7 +1012,6 @@ data_atom_site_attached_hydrogens
     _list                        yes
     _list_reference            '_atom_site_label'
     _enumeration_range           0:8
-    _enumeration_default         0
     loop_ _example
           _example_detail        2    'water oxygen'
                                  1    'hydroxyl oxygen'
@@ -985,7 +1034,7 @@ data_atom_site_B_equiv_geom_mean
           _related_function    '_atom_site_B_iso_or_equiv'     alternate
                                '_atom_site_U_equiv_geom_mean'  conversion
     _units                       A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              Equivalent isotropic atomic displacement parameter, B(equiv),
                in angstroms squared, calculated as the geometric mean of
@@ -1012,7 +1061,7 @@ data_atom_site_B_iso_or_equiv
           _related_function    '_atom_site_B_equiv_geom_mean'  alternate
                                '_atom_site_U_iso_or_equiv'     conversion
     _units                       A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              Isotropic atomic displacement parameter, or equivalent isotropic
                atomic displacement parameter, B(equiv), in angstroms squared,
@@ -1038,7 +1087,6 @@ data_atom_site_calc_attached_atom
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-    _enumeration_default        '.'
     _definition
 ;              The _atom_site_label of the atom site to which the 'geometry-
                calculated' atom site is attached.
@@ -1055,7 +1103,6 @@ data_atom_site_calc_flag
                                 calc  'calculated from molecular geometry'
                                 c     'abbreviation for "calc"'
                                 dum   'dummy site with meaningless coordinates'
-    _enumeration_default        d
     _definition
 ;              A standard code to signal whether the site coordinates have been
                determined from the intensities or calculated from the geometry
@@ -1075,7 +1122,7 @@ data_atom_site_Cartn_
     _list                        yes
     _list_reference            '_atom_site_label'
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The atom-site coordinates in angstroms specified according to a
                set of orthogonal Cartesian axes related to the cell axes as
@@ -1101,7 +1148,6 @@ data_atom_site_constraints
     _type                        char
     _list                        yes
     _list_reference            '_atom_site_label'
-    _enumeration_default        '.'
     _example                    'pop=1.0-pop(Zn3)'
     _definition
 ;              A description of the constraints applied to parameters at this
@@ -1256,7 +1302,6 @@ data_atom_site_occupancy
     _list                        yes
     _list_reference            '_atom_site_label'
     _enumeration_range           0.0:1.0
-    _enumeration_default         1.0
     _definition
 ;              The fraction of the atom type present at this site.
                The sum of the occupancies of all the atom types at this site
@@ -1491,7 +1536,7 @@ data_atom_site_U_equiv_geom_mean
           _related_function    '_atom_site_U_iso_or_equiv'     alternate
                                '_atom_site_B_equiv_geom_mean'  conversion
     _units                       A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              Equivalent isotropic atomic displacement parameter, U(equiv),
                in angstroms squared, calculated as the geometric mean of
@@ -1514,7 +1559,7 @@ data_atom_site_U_iso_or_equiv
           _related_function    '_atom_site_U_equiv_geom_mean'  alternate
                                '_atom_site_B_iso_or_equiv'     conversion
     _units                       A^2^
-    _units_detail              'angstroms squared'
+    _units_detail              'angstrom squared'
     _definition
 ;              Isotropic atomic displacement parameter, or equivalent isotropic
                atomic  displacement parameter, U(equiv), in angstroms squared,
@@ -1868,7 +1913,6 @@ data_atom_type_oxidation_number
     _list                        yes
     _list_reference            '_atom_type_symbol'
     _enumeration_range           -8:8
-    _enumeration_default         0
     _definition
 ;              Formal oxidation state of this atom type in the structure.
 ;
@@ -1882,7 +1926,7 @@ data_atom_type_radius_
     _list_reference            '_atom_type_symbol'
     _enumeration_range           0.0:5.0
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The effective intra- and intermolecular bonding radii in
                angstroms of this atom type.
@@ -1919,7 +1963,6 @@ data_atom_type_scat_dispersion_
     _type                        numb
     _list                        yes
     _list_reference            '_atom_type_symbol'
-    _enumeration_default         0.0
     _definition
 ;              The imaginary and real components of the anomalous-dispersion
                scattering factor, f'' and f', in electrons for this atom type
@@ -1944,9 +1987,8 @@ data_atom_type_scat_length_neutron
     _type                        numb
     _list                        yes
     _list_reference            '_atom_type_symbol'
-    _enumeration_default         0.0
     _units                       fm
-    _units_detail              'femtometres'
+    _units_detail                femtometre
     _definition
 ;              The bound coherent scattering length in femtometres for the
                atom type at the isotopic composition used for the diffraction
@@ -2470,9 +2512,8 @@ data_cell_angle_
     _type                        numb
     _type_conditions             esd
     _enumeration_range           0.0:180.0
-    _enumeration_default         90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Unit-cell angles of the reported structure in degrees.
                The values of _refln_index_h, *_k, *_l must correspond to the
@@ -2501,9 +2542,9 @@ data_cell_length_
     _category                    cell
     _type                        numb
     _type_conditions             esd
-    _enumeration_range           0.0:
+    _enumeration_range           1.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              Unit-cell lengths in angstroms corresponding to the structure
                reported. The values of _refln_index_h, *_k, *_l must
@@ -2521,7 +2562,7 @@ data_cell_measurement_pressure
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       kPa
-    _units_detail              'kilopascals'
+    _units_detail                kilopascal
     _definition
 ;              The pressure in kilopascals at which the unit-cell parameters
                were measured (not the pressure at which the sample was
@@ -2568,7 +2609,7 @@ data_cell_measurement_theta_
     _type                        numb
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The maximum and minimum theta angles of reflections
                used to measure the unit cell in degrees.
@@ -2580,7 +2621,7 @@ data_cell_measurement_wavelength
     _type                        numb
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The wavelength in angstroms of the radiation used to measure
                the unit cell. If this is not specified, the wavelength is
@@ -2595,9 +2636,8 @@ data_cell_reciprocal_angle_
     _type                        numb
     _type_conditions             esd
     _enumeration_range           0.0:180.0
-    _enumeration_default         90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The angles defining the reciprocal cell in degrees. These
                are related to those in the real cell by:
@@ -2624,7 +2664,7 @@ data_cell_reciprocal_length_
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail              'reciprocal angstroms'
+    _units_detail              'reciprocal angstrom'
     _definition
 ;              The reciprocal-cell lengths in inverse angstroms.  These are
                related to the real cell by:
@@ -2659,7 +2699,7 @@ data_cell_volume
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       A^3^
-    _units_detail              'cubic angstroms'
+    _units_detail              'angstrom cubed'
     _definition
 ;              Cell volume V in angstroms cubed.
 
@@ -2736,7 +2776,7 @@ data_cell_measurement_refln_theta
     _list_reference            '_cell_measurement_refln_index_'
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Theta angle in degrees for the reflection used for
                measurement of the unit cell with the indices
@@ -3268,7 +3308,6 @@ data_chemical_conn_atom_charge
     _list                        yes
     _list_reference            '_chemical_conn_atom_type_symbol'
     _enumeration_range           -6:6
-    _enumeration_default         0
     loop_ _example
           _example_detail        1  'for an ammonium nitrogen'
                                 -1  'for a chloride ion'
@@ -3427,7 +3466,6 @@ data_chemical_conn_bond_type
                                  poly    'polymeric bond'
                                  delo    'delocalized double bond'
                                  pi      'pi bond'
-    _enumeration_default         sing
     _definition
 ;              The chemical bond type associated with the connection between
                the two sites _chemical_conn_bond_atom_1 and *_2.
@@ -3600,7 +3638,7 @@ data_chemical_formula_weight
     _type                        numb
     _enumeration_range           1.0:
     _units                       Da
-    _units_detail              'daltons'
+    _units_detail                dalton
     _definition
 ;              Formula mass in daltons. This mass should correspond to the
                formulae given under _chemical_formula_structural, *_iupac,
@@ -3615,7 +3653,7 @@ data_chemical_formula_weight_meas
     _type                        numb
     _enumeration_range           1.0:
     _units                       Da
-    _units_detail              'daltons'
+    _units_detail                dalton
     _definition
 ;              Formula mass in daltons measured by a non-diffraction experiment.
 ;
@@ -3803,10 +3841,9 @@ data_citation_database_id_CSD
 data_citation_database_id_Medline
     _name                      '_citation_database_id_Medline'
     _category                    citation
-    _type                        numb
+    _type                        char
     _list                        yes
     _list_reference            '_citation_id'
-    _enumeration_range           1:
     _example                     89064067
     _definition
 ;              Accession number used by Medline to categorize a specific
@@ -4412,7 +4449,7 @@ data_diffrn_ambient_pressure
     _type_conditions             esd
     _enumeration_range           0.0:
     _units                       kPa
-    _units_detail               'kilopascals'
+    _units_detail                kilopascal
     _definition
 ;              The mean hydrostatic pressure in kilopascals at which the
                intensities were measured.
@@ -4427,7 +4464,7 @@ data_diffrn_ambient_pressure_
           _related_function    '_diffrn_ambient_pressure'  alternate
     _enumeration_range           0.0:
     _units                       kPa
-    _units_detail             'kilopascals'
+    _units_detail                kilopascal
     _definition
 ;              The mean hydrostatic pressure in kilopascals above which (*_gt)
                or below which (*_lt) the intensities were measured. These
@@ -4638,8 +4675,8 @@ data_diffrn_detector_area_resol_mean
     _category                    diffrn_detector
     _type                        numb
     _enumeration_range           0.0:
-    _units                       mm^-1^
-    _units_detail              'pixels per millimetre'
+    _units                       pixel/mm
+    _units_detail              'pixel per millimetre'
     _definition
 ;              The resolution of an area detector, in pixels/mm.
 ;
@@ -4659,6 +4696,8 @@ data_diffrn_detector_dtime
           _related_function    '_diffrn_radiation_detector_dtime'  alternate
     _type                        numb
     _enumeration_range           0.0:
+    _units                       \ms
+    _units_detail                microsecond
     _definition
 ;              The deadtime in microseconds of the detector used to measure
                the diffraction intensities.
@@ -4687,6 +4726,8 @@ data_diffrn_radiation_detector_dtime
     _category                    diffrn_detector
     _type                        numb
     _enumeration_range           0.0:
+    _units                       \ms
+    _units_detail                microsecond
     loop_ _related_item
           _related_function    '_diffrn_detector_dtime'  replace
     _definition
@@ -4909,7 +4950,7 @@ data_diffrn_orient_refln_angle_
     _list                        yes
     _list_reference            '_diffrn_orient_refln_index_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Diffractometer angles of a reflection used to define
                the orientation matrix in degrees. See
@@ -4976,7 +5017,7 @@ data_diffrn_radiation_filter_edge
     _type                        numb
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              Absorption edge in angstroms of the radiation filter used.
 ;
@@ -4986,6 +5027,8 @@ data_diffrn_radiation_inhomogeneity
     _category                    diffrn_radiation
     _type                        numb
     _enumeration_range           0.0:
+    _units                       mm
+    _units_detail                millimetre
     _definition
 ;              Half-width in millimetres of the incident beam in the
                direction perpendicular to the diffraction plane.
@@ -5009,7 +5052,7 @@ data_diffrn_radiation_polarisn_norm
     _type                        numb
     _enumeration_range           -180.0:180.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The angle in degrees, as viewed from the specimen, between the
                perpendicular component of the polarization and the diffraction
@@ -5108,7 +5151,7 @@ data_diffrn_radiation_wavelength
     _list_reference            '_diffrn_radiation_wavelength_id'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The radiation wavelength in angstroms.
 ;
@@ -5155,9 +5198,10 @@ data_diffrn_radiation_wavelength_id
     _name                      '_diffrn_radiation_wavelength_id'
     _category                    diffrn_radiation_wavelength
     _type                        char
-    _list                        yes
+    _list                        both
     _list_mandatory              yes
-    _list_link_child           '_diffrn_refln_wavelength_id'
+    loop_ _list_link_child     '_diffrn_refln_wavelength_id'
+                               '_refln_wavelength_id'
     loop_ _example               x1  x2  neut
     _definition
 ;              An arbitrary code identifying each value of
@@ -5171,10 +5215,9 @@ data_diffrn_radiation_wavelength_wt
     _name                      '_diffrn_radiation_wavelength_wt'
     _category                    diffrn_radiation_wavelength
     _type                        numb
-    _list                        yes
+    _list                        both
     _list_reference            '_diffrn_radiation_wavelength_id'
     _enumeration_range           0.0:1.0
-    _enumeration_default         1.0
     _definition
 ;              The relative weight of a wavelength identified by the code
                _diffrn_radiation_wavelength_id in the list of wavelengths.
@@ -5251,7 +5294,7 @@ data_diffrn_refln_angle_
     _list                        yes
     _list_reference            '_diffrn_refln_index_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The diffractometer angles of a reflection in degrees. These
                correspond to the specified orientation matrix and the original
@@ -5314,7 +5357,7 @@ data_diffrn_refln_detect_slit_
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Total slit apertures in degrees in the diffraction plane
                (*_horiz) and perpendicular to the diffraction plane (*_vert).
@@ -5328,7 +5371,7 @@ data_diffrn_refln_elapsed_time
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
     _units                       min
-    _units_detail              'minutes'
+    _units_detail                minute
     _definition
 ;              Elapsed time in minutes from the start of the diffraction
                experiment to the measurement of this intensity.
@@ -5443,7 +5486,7 @@ data_diffrn_refln_scan_rate
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
     _units                      deg/min
-    _units_detail              'degrees per minute'
+    _units_detail              'degree of arc per minute'
     _definition
 ;              The rate of scanning a reflection in
                degrees per minute to measure the intensity.
@@ -5456,8 +5499,8 @@ data_diffrn_refln_scan_time_backgd
     _list                        yes
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
-    _units                      sec
-    _units_detail              'seconds'
+    _units                      s
+    _units_detail               second
     _definition
 ;              The time spent measuring each background in seconds.
 ;
@@ -5470,7 +5513,7 @@ data_diffrn_refln_scan_width
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The scan width in degrees of the scan mode defined by the code
                _diffrn_refln_scan_mode.
@@ -5484,7 +5527,7 @@ data_diffrn_refln_sint/lambda
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail              'reciprocal angstroms'
+    _units_detail              'reciprocal angstrom'
     _definition
 ;              The (sin theta)/lambda value in reciprocal angstroms for
                this reflection.
@@ -5512,7 +5555,7 @@ data_diffrn_refln_wavelength
     _list_reference            '_diffrn_refln_index_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The mean wavelength in angstroms of the radiation used to measure
                the intensity of this reflection. This is an important parameter
@@ -5720,7 +5763,7 @@ data_diffrn_reflns_resolution_full
     _type                        numb
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail              'reciprocal angstroms'
+    _units_detail              'reciprocal angstrom'
     loop_ _related_item
           _related_function    '_diffrn_reflns_theta_full'  alternate
     _definition
@@ -5736,7 +5779,7 @@ data_diffrn_reflns_resolution_max
     _type                        numb
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail              'reciprocal angstroms'
+    _units_detail              'reciprocal angstrom'
     loop_ _related_item
           _related_function    '_diffrn_reflns_theta_max'  alternate
     _definition
@@ -5752,7 +5795,7 @@ data_diffrn_reflns_theta_full
     _type                        numb
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The theta angle (in degrees) at which the measured reflection
                count is close to complete. The fraction of unique reflections
@@ -5766,7 +5809,7 @@ data_diffrn_reflns_theta_max
     _type                        numb
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Maximum theta angle in degrees for the measured intensities.
                The fraction of unique reflections measured out to this angle
@@ -5779,7 +5822,7 @@ data_diffrn_reflns_theta_min
     _type                        numb
     _enumeration_range           0.0:90.0
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Minimum theta angle in degrees for the measured intensities.
 ;
@@ -5908,7 +5951,7 @@ data_diffrn_reflns_class_d_res_high
     _list_reference            '_diffrn_reflns_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              The smallest value in angstroms of the interplanar
                spacings of the reflections in each reflection class.
@@ -5923,7 +5966,7 @@ data_diffrn_reflns_class_d_res_low
     _list_reference            '_diffrn_reflns_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              The highest value in angstroms of the interplanar
                spacings of the reflections in each reflection class.
@@ -6075,7 +6118,7 @@ data_diffrn_source_current
     _type                        numb
     _enumeration_range           0.0:
     _units                       mA
-    _units_detail              'milliamperes'
+    _units_detail                milliampere
     _definition
 ;              The current in milliamperes at which the radiation source was
                operated.
@@ -6095,7 +6138,7 @@ data_diffrn_source_power
     _type                        numb
     _enumeration_range           0.0:
     _units                       kW
-    _units_detail              'kilowatts'
+    _units_detail                kilowatt
     _definition
 ;              The power in kilowatts at which the radiation source was
                operated.
@@ -6117,7 +6160,8 @@ data_diffrn_source_take-off_angle
     _category                    diffrn_source
     _type                        numb
     _enumeration_range           0:90
-    _units                       degrees
+    _units                       deg
+    _units_detail              'degree of arc'
     _example                     1.53
     _definition
 ;              The complement of the angle in degrees between the normal
@@ -6136,7 +6180,8 @@ data_diffrn_source_target
         Cd  In  Sn  Sb  Te  I  Xe  Cs  Ba  La  Ce  Pr  Nd  Pm  Sm
         Eu  Gd  Tb  Dy  Ho  Er  Tm  Yb  Lu  Hf  Ta  W  Re  Os  Ir
         Pt  Au  Hg  Tl  Pb  Bi  Po  At  Rn  Fr  Ra  Ac  Th  Pa  U
-        Np  Pu  Am  Cm  Bk  Cf  Es  Fm  Md  No  Lr
+        Np  Pu  Am  Cm  Bk  Cf  Es  Fm  Md  No  Lr  Rf  Db  Sg  Bh
+        Hs  Mt  Ds  Rg  Cn
     _definition
 ;              The chemical element symbol for the X-ray target
                (usually the anode) used to generate X-rays.
@@ -6160,7 +6205,7 @@ data_diffrn_source_voltage
     _type                        numb
     _enumeration_range           0.0:
     _units                       kV
-    _units_detail              'kilovolts'
+    _units_detail                kilovolt
     _definition
 ;              The voltage in kilovolts at which the radiation source was
                operated.
@@ -6289,15 +6334,26 @@ data_diffrn_standards_decay_%
                0.3% or an enhancement of less than 0.3%.
 ;
 
-data_diffrn_standards_interval_
-    loop_ _name                '_diffrn_standards_interval_count'
-                               '_diffrn_standards_interval_time'
+data_diffrn_standards_interval_count
+    _name                      '_diffrn_standards_interval_count'
     _category                    diffrn_standards
     _type                        numb
     _enumeration_range           0:
     _definition
-;              The number of reflection intensities, or the time in minutes,
-               between the measurement of standard reflection intensities.
+;              The number of reflection intensities between the measurements
+               of standard reflection intensities.
+;
+
+data_diffrn_standards_interval_time
+    _name                      '_diffrn_standards_interval_time'
+    _category                    diffrn_standards
+    _type                        numb
+    _enumeration_range           0:
+    _units                       min
+    _units_detail                minute
+    _definition
+;              The time in minutes between the measurements
+               of standard reflection intensities.
 ;
 
 data_diffrn_standards_number
@@ -6370,7 +6426,7 @@ data_exptl_absorpt_coefficient_mu
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm^-1^
-    _units_detail              'reciprocal millimetres'
+    _units_detail              'reciprocal millimetre'
     _definition
 ;              The absorption coefficient mu in reciprocal millimetres
                calculated from the atomic content of the cell, the density and
@@ -6543,8 +6599,13 @@ data_exptl_crystal_colour_lustre
     _category                    exptl_crystal
     _type                        char
     loop_ _enumeration           metallic
+                                 lustrous
+                                 transparent
+                                 translucent
+                                 opaque
                                  dull
                                  clear
+                                 .
     loop_ _related_item
           _related_function    '_exptl_crystal_colour'  alternate
     _definition
@@ -6555,6 +6616,7 @@ data_exptl_crystal_colour_lustre
               _exptl_crystal_colour_primary, as in 'dark-green' or
               'bluish-violet', if necessary combined with
               _exptl_crystal_colour_lustre, as in 'metallic-green'.
+              Note that 'dull' and 'clear' should no longer be used.
 ;
 
 data_exptl_crystal_colour_modifier
@@ -6563,6 +6625,8 @@ data_exptl_crystal_colour_modifier
     _type                        char
     loop_ _enumeration           light
                                  dark
+                                 pale
+                                 intense
                                  whitish
                                  blackish
                                  grayish
@@ -6573,6 +6637,7 @@ data_exptl_crystal_colour_modifier
                                  yellowish
                                  greenish
                                  bluish
+                                 .
     loop_ _related_item
           _related_function    '_exptl_crystal_colour'  alternate
     _definition
@@ -6618,8 +6683,8 @@ data_exptl_crystal_density_diffrn
     _category                    exptl_crystal
     _type                        numb
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
-    _units_detail              'megagrams per cubic metre'
+    _units                       Mg/m^3^
+    _units_detail              'megagram per metre cubed'
     _definition
 ;              Density values calculated from the crystal cell and contents. The
                units are megagrams per cubic metre (grams per cubic centimetre).
@@ -6631,8 +6696,8 @@ data_exptl_crystal_density_meas
     _type                        numb
     _type_conditions             esd
     _enumeration_range           0.0:
-    _units                       Mgm^-3^
-    _units_detail              'megagrams per cubic metre'
+    _units                       Mg/m^3^
+    _units_detail              'megagram per metre cubed'
     _definition
 ;              Density values measured using standard chemical and physical
                methods. The units are megagrams per cubic metre (grams per
@@ -6644,8 +6709,8 @@ data_exptl_crystal_density_meas_gt
     _category                    exptl_crystal
     _type                        numb
     _enumeration_range           0.0:
-    _units                       Mg^-3^
-    _units_detail              'megagrams per cubic metre'
+    _units                       Mg/m^3^
+    _units_detail              'megagram per metre cubed'
     loop_ _related_item
           _related_function    '_exptl_crystal_density_meas'  alternate
     loop_ _example
@@ -6673,8 +6738,8 @@ data_exptl_crystal_density_meas_lt
     _category                    exptl_crystal
     _type                        numb
     _enumeration_range           0.0:
-    _units                       Mg^-3^
-    _units_detail              'megagrams per cubic metre'
+    _units                       Mg/m^3^
+    _units_detail              'megagram per metre cubed'
     loop_ _related_item
           _related_function    '_exptl_crystal_density_meas'  alternate
     loop_ _example
@@ -6837,6 +6902,7 @@ data_exptl_crystal_recrystallization_method
     _name                      '_exptl_crystal_recrystallization_method'
     _category                    exptl_crystal
     _type                        char
+    _list                        both
     _definition
 ;              Describes the method used to recrystallize the sample.
                Sufficient details should be given for the procedure to be
@@ -6855,7 +6921,7 @@ data_exptl_crystal_size_
     _type                        numb
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail              'millimetres'
+    _units_detail                millimetre
     _definition
 ;              The maximum, medial and minimum dimensions in millimetres of
                the crystal. If the crystal is a sphere, then the *_rad item is
@@ -6919,7 +6985,7 @@ data_exptl_crystal_face_diffr_
     _list                        yes
     _list_reference            '_exptl_crystal_face_index_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The goniometer angle settings in degrees when the perpendicular
                to the specified crystal face is aligned along a specified
@@ -6949,7 +7015,7 @@ data_exptl_crystal_face_perp_dist
     _list_reference            '_exptl_crystal_face_index_'
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail              'millimetres'
+    _units_detail                millimetre
     _definition
 ;              The perpendicular distance in millimetres from the face to the
                centre of rotation of the crystal.
@@ -7058,7 +7124,7 @@ data_geom_angle
     _list                        yes
     _list_reference            '_geom_angle_atom_site_label_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Angle in degrees defined by the three sites
                _geom_angle_atom_site_label_1, *_2 and *_3. The site at *_2
@@ -7092,7 +7158,6 @@ data_geom_angle_publ_flag
                                  n   'abbreviation for "no"'
                                  yes 'do include angle in special list'
                                  y   'abbreviation for "yes"'
-    _enumeration_default         no
     _definition
 ;              This code signals whether the angle is referred to in a
                publication or should be placed in a table of significant
@@ -7247,7 +7312,7 @@ data_geom_bond_distance
     _list_reference            '_geom_bond_atom_site_label_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The intramolecular bond distance in angstroms.
 ;
@@ -7259,7 +7324,6 @@ data_geom_bond_multiplicity
     _list                        yes
     _list_reference            '_geom_bond_atom_site_label_'
     _enumeration_range           0:
-    _enumeration_default         1
     _definition
 ;              The number of times the given bond appears in the environment
                of the atoms labelled _geom_bond_atom_site_label_1. In cases
@@ -7279,7 +7343,6 @@ data_geom_bond_publ_flag
                                  n   'abbreviation for "no"'
                                  yes 'do include bond in special list'
                                  y   'abbreviation for "yes"'
-    _enumeration_default         no
     _definition
 ;              This code signals whether the bond distance is referred to in a
                publication or should be placed in a list of significant bond
@@ -7385,7 +7448,7 @@ data_geom_contact_distance
     _list_reference            '_geom_contact_atom_site_label_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The interatomic contact distance in angstroms.
 ;
@@ -7401,7 +7464,6 @@ data_geom_contact_publ_flag
                                  n   'abbreviation for "no"'
                                  yes 'do include distance in special list'
                                  y   'abbreviation for "yes"'
-    _enumeration_default         no
     _definition
 ;              This code signals whether the contact distance is referred to
                in a publication or should be placed in a list of significant
@@ -7486,7 +7548,7 @@ data_geom_hbond_angle_DHA
     _list                        yes
     _list_reference            '_geom_hbond_atom_site_label_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              Angle in degrees defined by the three sites
                _geom_hbond_atom_site_label_D, *_H and *_A. The site at *_H
@@ -7521,7 +7583,7 @@ data_geom_hbond_distance_
     _list_reference            '_geom_hbond_atom_site_label_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              Distances in angstroms between the donor and hydrogen (*_DH),
                hydrogen and acceptor (*_HA) and donor and acceptor (*_DA)
@@ -7539,7 +7601,6 @@ data_geom_hbond_publ_flag
                                  n   'abbreviation for "no"'
                                  yes 'do include bond in special list'
                                  y   'abbreviation for "yes"'
-    _enumeration_default         no
     _definition
 ;              This code signals whether the hydrogen-bond information
                is referred to in a publication or should be placed in a
@@ -7629,7 +7690,7 @@ data_geom_torsion
     _list                        yes
     _list_reference            '_geom_torsion_atom_site_label_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The torsion angle in degrees bounded by the four atom sites
                identified by the _geom_torsion_atom_site_label_ codes. These
@@ -7674,7 +7735,6 @@ data_geom_torsion_publ_flag
                                  n   'abbreviation for "no"'
                                  yes 'do include angle in special list'
                                  y   'abbreviation for "yes"'
-    _enumeration_default         no
     _definition
 ;              This code signals whether the torsion angle is referred to in a
                publication or should be placed in a table of significant
@@ -8596,8 +8656,8 @@ data_refine_diff_density_
     _category                    refine
     _type                        numb
     _type_conditions             esd
-    _units                       e_A^-3^
-    _units_detail              'electrons per cubic angstrom'
+    _units                       e/A^3^
+    _units_detail              'electron per angstrom cubed'
     _definition
 ;              The largest and smallest values and the root-mean-square
                deviation, in electrons per angstrom cubed, of the final
@@ -8661,7 +8721,7 @@ data_refine_ls_d_res_high
     _type                        numb
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The smallest value in angstroms of the interplanar spacings
                of the reflections used in the refinement. This is called
@@ -8674,7 +8734,7 @@ data_refine_ls_d_res_low
     _type                        numb
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The largest value in angstroms of the interplanar spacings
                of the reflections used in the refinement. This is called
@@ -8727,7 +8787,6 @@ data_refine_ls_extinction_method
     _name                      '_refine_ls_extinction_method'
     _category                    refine
     _type                        char
-    _enumeration_default        'Zachariasen'
     loop_ _example              'B-C type 2 Gaussian isotropic'
                                 'none'
     _definition
@@ -8979,7 +9038,6 @@ data_refine_ls_hydrogen_treatment
 ;
                                  mixed   'some constrained, some independent'
                                  undef   'H-atom parameters not defined'
-    _enumeration_default         undef
     _definition
 ;              Treatment of hydrogen atoms in the least-squares refinement.
 ;
@@ -8995,7 +9053,6 @@ data_refine_ls_matrix_type
                                  userblock  'user-defined blocks'
                                  diagonal   'diagonal elements only'
                                  sparse     'selected elements only'
-    _enumeration_default         full
     _definition
 ;              Type of matrix used to accumulate the least-squares derivatives.
 ;
@@ -9005,7 +9062,6 @@ data_refine_ls_number_constraints
     _category                    refine
     _type                        numb
     _enumeration_range           0:
-    _enumeration_default         0
     _definition
 ;              The number of constrained (non-refined or dependent) parameters
                in the least-squares process. These may be due to symmetry or any
@@ -9386,7 +9442,6 @@ data_refine_ls_structure_factor_coef
           _enumeration_detail    F      'structure-factor magnitude'
                                  Fsqd   'structure factor squared'
                                  Inet   'net intensity'
-    _enumeration_default         F
     _definition
 ;              Structure-factor coefficient |F|, F^2^ or I used in the
                least-squares refinement process.
@@ -9418,7 +9473,6 @@ data_refine_ls_weighting_scheme
           _enumeration_detail    sigma    "based on measured s.u.'s"
                                  unit     'unit or no weights applied'
                                  calc     'calculated weights applied'
-    _enumeration_default         sigma
     _definition
 ;              The weighting scheme applied in the least-squares process. The
                standard code may be followed by a description of the weight
@@ -9593,7 +9647,7 @@ data_refine_ls_class_d_res_high
     _list_reference            '_refine_ls_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              For each reflection class, the highest resolution in angstroms
                for the reflections used in the refinement. This is
@@ -9608,7 +9662,7 @@ data_refine_ls_class_d_res_low
     _list_reference            '_refine_ls_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              For each reflection class, the lowest resolution in angstroms
                for the reflections used in the refinement. This is
@@ -9853,7 +9907,7 @@ data_refln_d_spacing
     _list_reference            '_refln_index_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The d spacing in angstroms for this reflection. This is related
                to the (sin theta)/lambda value by the expression
@@ -9913,7 +9967,6 @@ data_refln_include_status
                                  x  'unreliable measurement -- not used'
                                  h  'does not satisfy _refine_ls_d_res_high'
                                  l  'does not satisfy _refine_ls_d_res_low'
-    _enumeration_default         o
     _definition
 ;              Classification of a reflection indicating its status with
                respect to inclusion in the refinement and the calculation
@@ -9956,7 +10009,7 @@ data_refln_mean_path_length_tbar
     _list_reference            '_refln_index_'
     _enumeration_range           0.0:
     _units                       mm
-    _units_detail              'millimetres'
+    _units_detail                millimetre
     _definition
 ;              Mean path length in millimetres through the crystal for this
                reflection.
@@ -9985,7 +10038,6 @@ data_refln_observed_status
                                  x  'unreliable measurement -- not used'
                                  h  'does not satisfy _refine_ls_d_res_high'
                                  l  'does not satisfy _refine_ls_d_res_low'
-    _enumeration_default         o
     _definition
 ;              Classification of a reflection indicating its status with
                respect to inclusion in the refinement and the calculation
@@ -9999,7 +10051,7 @@ data_refln_phase_calc
     _list                        yes
     _list_reference            '_refln_index_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The calculated structure-factor phase in degrees.
 ;
@@ -10012,7 +10064,7 @@ data_refln_phase_meas
     _list                        yes
     _list_reference            '_refln_index_'
     _units                       deg
-    _units_detail              'degrees'
+    _units_detail              'degree of arc'
     _definition
 ;              The measured structure-factor phase in degrees.
 ;
@@ -10027,7 +10079,6 @@ data_refln_refinement_status
           _enumeration_detail    incl    'included in ls process'
                                  excl    'excluded from ls process'
                                  extn    'excluded due to extinction'
-    _enumeration_default         incl
     _definition
 ;              Status of a reflection in the structure-refinement process.
 ;
@@ -10053,7 +10104,7 @@ data_refln_sint/lambda
     _list_reference            '_refln_index_'
     _enumeration_range           0.0:
     _units                       A^-1^
-    _units_detail              'reciprocal angstroms'
+    _units_detail              'reciprocal angstrom'
     _definition
 ;              The (sin theta)/lambda value in reciprocal angstroms for this
                reflection.
@@ -10095,7 +10146,7 @@ data_refln_wavelength
     _list_reference            '_refln_index_'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The mean wavelength in angstroms of the radiation used to measure
                this reflection. This is an important parameter for data
@@ -10161,7 +10212,7 @@ data_reflns_d_resolution_
     _type                        numb
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The highest and lowest resolution in angstroms for the
                reflections. These are the smallest and largest d values.
@@ -10404,7 +10455,7 @@ data_reflns_class_d_res_high
     _list_reference            '_reflns_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              For each reflection class, the highest resolution in angstroms
                for the reflections used in the refinement. This is the smallest
@@ -10419,7 +10470,7 @@ data_reflns_class_d_res_low
     _list_reference            '_reflns_class_code'
     _enumeration_range           0.0:
     _units                       A
-    _units_detail                'Angstroms'
+    _units_detail                angstrom
     _definition
 ;              For each reflection class, the lowest resolution in angstroms
                for the reflections used in the refinement. This is the largest
@@ -10686,7 +10737,7 @@ data_reflns_shell_d_res_high
     _list                        yes
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The highest resolution in angstroms for the reflections in
                this shell. This is the smallest d value.
@@ -10699,7 +10750,7 @@ data_reflns_shell_d_res_low
     _list                        yes
     _enumeration_range           0.0:
     _units                       A
-    _units_detail              'angstroms'
+    _units_detail                angstrom
     _definition
 ;              The lowest resolution in angstroms for the
                reflections in this shell. This is the largest d value.
@@ -11231,9 +11282,8 @@ data_space_group_symop_id
     _name                      '_space_group_symop_id'
     _type                        char
     _category                    space_group_symop
-    _list                        yes
+    _list                        both
     _list_mandatory              yes
-    _enumeration_default         1
     loop_ _related_item
           _related_function      '_symmetry_equiv_pos_site_id'  alternate
     _definition
@@ -11256,7 +11306,6 @@ data_space_group_symop_operation_xyz
     _type                        char
     _list                        both
     _list_reference            '_space_group_symop_id'
-    _enumeration_default       'x,y,z'
     loop_ _related_item
           _related_function    '_symmetry_equiv_pos_as_xyz'  alternate
     loop_ _example
@@ -11447,7 +11496,6 @@ data_symmetry_equiv_pos_as_xyz
     _category                    symmetry_equiv
     _type                        char
     _list                        both
-    _enumeration_default         x,y,z
     _example                     -y+x,-y,1/3+z
     loop_ _related_item
           _related_function    '_space_group_symop_operation_xyz'  replace
@@ -11472,9 +11520,8 @@ data_symmetry_equiv_pos_site_id
     _name                      '_symmetry_equiv_pos_site_id'
     _category                    symmetry_equiv
     _type                        numb
-    _list                        yes
+    _list                        both
     _list_reference            '_symmetry_equiv_pos_as_xyz'
-    _enumeration_default         1
     loop_ _related_item
           _related_function    '_space_group_symop_id'  replace
     _definition
@@ -11588,7 +11635,7 @@ data_valence_param_B
     _list                        yes
     _list_reference            '_valence_param_id'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The bond-valence parameter B used in the expression
 
@@ -11637,7 +11684,7 @@ data_valence_param_Ro
     _list                        yes
     _list_reference            '_valence_param_id'
     _units                       A
-    _units_detail                Angstrom
+    _units_detail                angstrom
     _definition
 ;              The bond-valence parameter Ro used in the expression
 
@@ -11664,7 +11711,6 @@ data_valence_ref_id
     _category                    valence_ref
     _type                        char
     _list                        yes
-    _list_reference            '_valence_ref_id'
     _list_link_child           '_valence_param_ref_id'
     _definition
 ;              An identifier for items in this category. Parent of
