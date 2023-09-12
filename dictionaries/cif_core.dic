@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-7
-    _dictionary_update          2021-03-22
+    _dictionary_version         2.5.3-dev-8
+    _dictionary_update          2023-09-12
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -730,7 +730,7 @@ data_on_this_dictionary
    2018-03-05 AV: Maintenance update:
                   Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
                   as enumerator values of the _diffrn_source_target data item.
-   2021-03-18 AV: Maintenance update:
+   2023-09-12 AV: Maintenance update:
                   Changed the value of the _list data item from 'yes' to 'both'
                     in the definitions of the _diffrn_radiation_wavelength_id,
                     _diffrn_radiation_wavelength_wt, _exptl_crystal_id,
@@ -759,6 +759,9 @@ data_on_this_dictionary
                     measurement to the definition of
                     the _diffrn_standards_interval_time data item.
                   Homogenised the _units_detail data item values.
+
+                  Updated example of the _chemical_identifier_inchi_key
+                  data item.
 ;
 
 ###############
@@ -3006,7 +3009,7 @@ data_chemical_identifier_inchi_key
     _type                        char
     loop_ _example
           _example_detail
-                               'InChIKey=OROGSEYTTFOCAN-DNJOTXNNBG'
+                               'OROGSEYTTFOCAN-DNJOTXNNSA-N'
                                  codeine
     _definition
 ;              The InChIKey is a compact hashed version of the full InChI
