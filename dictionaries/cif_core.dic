@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-9
-    _dictionary_update          2024-09-17
+    _dictionary_version         2.5.3-dev-10
+    _dictionary_update          2024-06-17
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -730,7 +730,7 @@ data_on_this_dictionary
    2018-03-05 AV: Maintenance update:
                   Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
                   as enumerator values of the _diffrn_source_target data item.
-   2024-09-17 AV: Maintenance update:
+   2024-06-17 AV: Maintenance update:
                   Changed the value of the _list data item from 'yes' to 'both'
                     in the definitions of the _diffrn_radiation_wavelength_id,
                     _diffrn_radiation_wavelength_wt, _exptl_crystal_id,
@@ -764,6 +764,10 @@ data_on_this_dictionary
                   data item.
 
                   Added '_type_conditions su' to _cell_measurement_wavelength.
+
+                  Reverted the enumeration range of the _cell_length_a,
+                  _cell_length_b and _cell_length_c data items
+                  from '1.0:' back to '0.0:'.
 ;
 
 ###############
@@ -2542,7 +2546,7 @@ data_cell_length_
     _category                    cell
     _type                        numb
     _type_conditions             esd
-    _enumeration_range           1.0:
+    _enumeration_range           0.0:
     _units                       A
     _units_detail                angstrom
     _definition
