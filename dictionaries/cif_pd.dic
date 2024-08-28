@@ -13,8 +13,8 @@
 data_on_this_dictionary
 
     _dictionary_name            cif_pd.dic
-    _dictionary_version         1.0.2-dev-1
-    _dictionary_update          2021-03-23
+    _dictionary_version         1.0.2-dev.1
+    _dictionary_update          2024-08-28
     _dictionary_history
 ;
   1991-08-28  Initial definitions                                  B.H. Toby
@@ -103,12 +103,13 @@ data_on_this_dictionary
                    _pd_phase_[pd]: first sentence of definition rephrased
                    _pd_proc_ls_background_function: second paragraph of
                    definition rephrased
-  2017-06-30  Maintenance update:
-                Moved all unlooped instances of _related_function to
-                  a loop structure as required by the ddl.dic.     A. Vaitkus
-  2021-03-23  Maintenance update:
-                Homogenised the values of the _units and _units_detail
-                  data items.
+  2024-08-28  Ongoing maintenance update:
+
+              Moved all unlooped instances of _related_function to
+                a loop structure as required by the ddl.dic.       A. Vaitkus
+
+              Homogenised the values of the _units and _units_detail
+                data items.                                        A. Vaitkus
 ;
 
 #......................... Block/Data set names
