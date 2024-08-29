@@ -17,8 +17,8 @@
 data_on_this_dictionary
 
     _dictionary_name                  cif_ms.dic
-    _dictionary_version               1.0.2-4
-    _dictionary_update                2021-03-23
+    _dictionary_version               1.0.2-dev.4
+    _dictionary_update                2024-08-28
     _dictionary_history
 ;
   1994-09-12  Initial definitions                             G. Madariaga
@@ -645,17 +645,21 @@ data_on_this_dictionary
               _geom_torsion_: reference changed from Endeavour to Experientia
 2005-03-27   Addition of changes included in ITCG chapter 4.3 G. Madariaga
 2005-06-16   Category overviews added for all categories    NJ Ashcroft
-2021-03-23 Maintenance update:
-             Renamed multiple category definition blocks by adding an
-               underscore symbol ("_") before the dictionary extension
-               code ("[ms]").
-             Added the _list_link_child data item with value
-               "_atom_site_subsystem_code" to the definition
-               of the _cell_subsystem_code data item.
-             Corrected a minor error in the description of
-               the ATOM_SITE_OCC_SPECIAL_FUNC category.
-             Homogenised the values of the _units and _units_detail data items.
-           A. Vaitkus
+2024-08-28  Ongoing maintenance update:
+
+            Renamed multiple category definition blocks by adding an
+              underscore symbol ("_") before the dictionary extension
+              code ("[ms]"). A. Vaitkus
+
+            Added the _list_link_child data item with value
+              "_atom_site_subsystem_code" to the definition
+              of the _cell_subsystem_code data item. A. Vaitkus
+
+            Corrected a minor error in the description of
+              the ATOM_SITE_OCC_SPECIAL_FUNC category. A. Vaitkus
+
+            Homogenised the values of the _units and _units_detail data items.
+              A. Vaitkus
 ;
 
 ###############

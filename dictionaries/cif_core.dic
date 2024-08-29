@@ -16,8 +16,8 @@
 
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
-    _dictionary_version         2.5.3-dev-10
-    _dictionary_update          2024-06-17
+    _dictionary_version         2.5.0-dev.1
+    _dictionary_update          2024-08-28
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -701,73 +701,76 @@ data_on_this_dictionary
                         _citation_id; _citation_publisher;
                         _database_dataset_doi; _publ_author_id_orcid;
                         _publ_contact_author_id_orcid
-   2017-06-30 AV: Maintenance update:
+   2024-08-28 Ongoing maintenance update:
+
                   Moved all unlooped instances of _related_function to
-                  a loop structure as required by the ddl.dic
-   2017-07-14 AV: Maintenance update:
+                      a loop structure as required by the ddl.dic. AV
+
                   Declared all of the data items in the SPACE_GROUP category
-                  as strictly unlooped. Removed the _space_group_id and
-                  _space_group_symop_sg_id data items since they make no
-                  sense in the unlooped context.
-   2017-10-26 AV: Maintenance update:
+                      as strictly unlooped. Removed the _space_group_id and
+                      _space_group_symop_sg_id data items since they make no
+                      sense in the unlooped context. AV
+
                   Added 'lustrous', 'transparent', 'translucent', 'opaque', '.'
-                  as enumerator values of the _exptl_crystal_colour_lustre data
-                  item and declared '.' as the default value. Added 'pale',
-                  'intense, '.' as enumerator values of the
-                  _exptl_crystal_colour_modifier data item and declared '.' as
-                  the default value.
-   2017-12-17 AV: Maintenance update:
+                    as enumeration values of the _exptl_crystal_colour_lustre
+                    data item and declared '.' as the default value. AV
+
+                  Added 'pale', 'intense, '.' as enumeration values of the
+                    _exptl_crystal_colour_modifier data item and declared '.'
+                    as the default value. AV
+
                   Changed the _citation_database_id_Medline data type from
-                  'numb' to 'char' and removed the numeric enumeration range
-                  from the definition of this data item.
-                  Changed the enumeration range of the _cell_length_a,
-                  _cell_length_b and _cell_length_c data items
-                  from '0.0:' to '1.0:'.
-   2018-03-04 AV: Maintenance update:
+                    'numb' to 'char' and removed the numeric enumeration range
+                    from the definition of this data item. AV
+
                   Removed most of the default enumeration values. This removal
-                  reflects the policy change towards values that are not
-                  explicitly provided.
-   2018-03-05 AV: Maintenance update:
+                    reflects the policy change towards values that are not
+                    explicitly provided. AV
+
                   Added 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'
-                  as enumerator values of the _diffrn_source_target data item.
-   2024-06-17 AV: Maintenance update:
+                    as enumeration values of the _diffrn_source_target data item.
+
                   Changed the value of the _list data item from 'yes' to 'both'
                     in the definitions of the _diffrn_radiation_wavelength_id,
                     _diffrn_radiation_wavelength_wt, _exptl_crystal_id,
                     _space_group_symop_id and _symmetry_equiv_pos_site_id
                     data items to homogenise the loop eligibility of all
                     items in the DIFFRN_RADIATION_WAVELENGTH, EXPTL_CRYSTAL,
-                    SPACE_GROUP_SYMOP and SYMMETRY_EQUIV categories.
+                    SPACE_GROUP_SYMOP and SYMMETRY_EQUIV categories. AV
+
                   Added the _list data item with the value 'both' to the
                     definition of the _exptl_crystal_recrystallization_method
                     to homogenise the loop eligibility of all data items
-                    in the EXPTL_CRYSTAL category.
+                    in the EXPTL_CRYSTAL category. AV
+
                   Removed the redundant _list_reference data item from
-                    the definition of the _valence_ref_id data item.
+                    the definition of the _valence_ref_id data item. AV
+
                   Added "_refln_wavelength_id" to the list of
                     the _list_link_child data item values in the definition
-                    of the _diffrn_radiation_wavelength_id data item.
+                    of the _diffrn_radiation_wavelength_id data item. AV
+
                   Corrected the misspelt units of measurement of
                     the _exptl_crystal_density_meas_lt and
-                    _exptl_crystal_density_meas_gt data items.
+                    _exptl_crystal_density_meas_gt data items. AV
+
                   Added units of measurement to the definitions of
                     the _diffrn_detector_dtime, _diffrn_radiation_detector_dtime
-                    and _diffrn_radiation_inhomogeneity data items.
+                    and _diffrn_radiation_inhomogeneity data items. AV
+
                   Split the _diffrn_standards_interval_ definition into
                     two distinct definitions _diffrn_standards_interval_count
                     and _diffrn_standards_interval_time. Added units of
                     measurement to the definition of
-                    the _diffrn_standards_interval_time data item.
-                  Homogenised the _units_detail data item values.
+                    the _diffrn_standards_interval_time data item. AV
+
+                  Homogenised the _units_detail data item values. AV
 
                   Updated example of the _chemical_identifier_inchi_key
-                  data item.
+                    data item. AV
 
                   Added '_type_conditions su' to _cell_measurement_wavelength.
-
-                  Reverted the enumeration range of the _cell_length_a,
-                  _cell_length_b and _cell_length_c data items
-                  from '1.0:' back to '0.0:'.
+                    AV
 ;
 
 ###############
