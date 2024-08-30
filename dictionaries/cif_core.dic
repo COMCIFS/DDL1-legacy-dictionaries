@@ -17,7 +17,7 @@
 data_on_this_dictionary
     _dictionary_name            cif_core.dic
     _dictionary_version         2.5.0-dev.1
-    _dictionary_update          2024-08-28
+    _dictionary_update          2024-08-30
     _dictionary_history
 ;
    1991-05-27  Created from CIF Dictionary text. SRH
@@ -701,7 +701,7 @@ data_on_this_dictionary
                         _citation_id; _citation_publisher;
                         _database_dataset_doi; _publ_author_id_orcid;
                         _publ_contact_author_id_orcid
-   2024-08-28 Ongoing maintenance update:
+   2024-08-30 Ongoing maintenance update:
 
                   Moved all unlooped instances of _related_function to
                       a loop structure as required by the ddl.dic. AV
@@ -770,6 +770,10 @@ data_on_this_dictionary
                     data item. AV
 
                   Added '_type_conditions su' to _cell_measurement_wavelength.
+                    AV
+
+                  Deprecated _publ_contact_author in favour of
+                    _publ_contact_author_name and _publ_contact_author_address.
                     AV
 ;
 
@@ -8036,6 +8040,9 @@ data_publ_contact_author
     _name                      '_publ_contact_author'
     _category                    publ
     _type                        char
+    loop_ _related_item
+          _related_function    '_publ_contact_author_name'     replace
+                               '_publ_contact_author_address'  replace
      loop_
     _example
 ;                       Professor George Ferguson
@@ -8056,6 +8063,8 @@ data_publ_contact_author_address
     _name                      '_publ_contact_author_address'
     _category                    publ
     _type                        char
+    loop_ _related_item
+          _related_function    '_publ_contact_author'  alternate
     _example
 ;                       Department of Chemistry and Biochemistry
                         University of Guelph
@@ -8128,6 +8137,8 @@ data_publ_contact_author_name
     _name                      '_publ_contact_author_name'
     _category                    publ
     _type                        char
+    loop_ _related_item
+          _related_function    '_publ_contact_author'  alternate
     _example                    'Professor George Ferguson'
     _definition
 ;              The name of the author submitting the manuscript and
